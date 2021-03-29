@@ -11,6 +11,7 @@ Our `uniswappeR` R package abstracts away the GraphQL layer of querying for unis
 - swaps: Returns the swap data for a given set of addresses
 - swap_statistics: High level statistics on swaps
 - swap_visualizations: A series of ggplot2 visualizations about swap performance
+- swap_performance: A ggplot2 visualization for assessing the performance of your swaps
 
 Install the R package with:
 
