@@ -1,0 +1,32 @@
+Package: uniswappeR
+Type: Package
+Title: Uniswap Position and Trading Explorer
+Version: 0.1.0
+Authors@R: c(
+    person("Omni Analytics Group", email = "services@omnianalytics.io", role = "aut"),
+    person("Eric Hare", email = "eric@omnianalytics.io", role = "cre"))
+Description: Routines to interact with the Uniswap trading platform API <https://uniswap.org>.
+  Analytics on the opened and closed positions, as well as trader level statistics, are
+  available when an address is provided. Tabular results and visualizations are both
+  provided.
+Depends: R (>= 3.1)
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/Omni-Analytics-Group/uniswappeR
+BugReports: https://github.com/Omni-Analytics-Group/uniswappeR/issues
+RoxygenNote: 7.1.1
+Imports:
+  httr,
+  lubridate,
+  dplyr,
+  magrittr,
+  rlang,
+  tibble,
+  tidyr,
+  ggplot2,
+  scales,
+  ghql,
+  jsonlite,
+  patchwork,
+  purrr

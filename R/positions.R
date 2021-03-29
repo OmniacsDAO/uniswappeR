@@ -1,0 +1,566 @@
+#' @import ghql
+initialize_queries <- function() {
+    ## Initialize Client Connection
+    con <- GraphqlClient$new("https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2")
+
+    ## Prepare New Query
+    qry <- Query$new()
+
+    ## Add Position data query
+    qry$query('position_data',
+              'query position_data($user: String!, $pair: String!)
+	{
+		mints(where: {to: $user, pair: $pair})
+		{
+			amountUSD
+			amount0
+			amount1
+			timestamp
+  			pair
+  			{
+  				id
+  				token0
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  				token1
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  			}
+		}
+		burns(where: {sender: $user, pair: $pair})
+		{
+			amountUSD
+			amount0
+			amount1
+			timestamp
+  			pair
+  			{
+  				id
+  				token0
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  				token1
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  			}
+		}
+	}'
+    )
+
+    ## Add Position query
+    qry$query('liquidity_positions',
+              'query liquidity_positions($user: String!)
+	{
+		liquidityPositions(where:{ user:$user })
+			{
+  				id
+  				user
+  				pair
+  				{
+  					id
+  					reserve0
+  					reserve1
+  					reserveUSD
+  					totalSupply
+  					token0
+  					{
+  						symbol
+  						name
+  						decimals
+  						derivedETH
+  					}
+  					token1
+  					{
+  						symbol
+  						name
+  						decimals
+  						derivedETH
+  					}
+  				}
+  				liquidityTokenBalance
+			}
+	}'
+    )
+
+    ## Add Liquidity Position Snapshot query
+    qry$query('liquidity_position_snapshots',
+              'query liquidity_position_snapshots($user: String!)
+	{
+		liquidityPositionSnapshots(where:{ user:$user })
+			{
+  				id
+  				timestamp
+  				block
+  				user
+  				pair
+  				{
+  					id
+  					reserve0
+  					reserve1
+  					reserveUSD
+  					token0
+  					{
+  						symbol
+  						name
+  						decimals
+  					}
+  					token1
+  					{
+  						symbol
+  						name
+  						decimals
+  					}
+  				}
+  				token0PriceUSD
+  				token1PriceUSD
+  				reserve0
+  				reserve1
+  				reserveUSD
+  				liquidityTokenTotalSupply
+  				liquidityTokenBalance
+			}
+	}'
+    )
+
+    ## Add Transactions Query
+    qry$query('transactions',
+              'query transactions($user: String!)
+	{
+		mints(orderBy: timestamp, orderDirection: desc, where:{ to:$user })
+		{
+  			id
+  			transaction
+  			{
+  				id
+  				timestamp
+  			}
+  			pair
+  			{
+  				id
+  				token0
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  				token1
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  			}
+  			sender
+  			to
+  			liquidity
+  			amount0
+  			amount1
+  			amountUSD
+  		}
+  		burns(orderBy: timestamp, orderDirection: desc, where:{ sender:$user })
+		{
+  			id
+  			transaction
+  			{
+  				id
+  				timestamp
+  			}
+  			pair
+  			{
+  				id
+  				token0
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  				token1
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  			}
+  			sender
+  			to
+  			liquidity
+  			amount0
+  			amount1
+  			amountUSD
+  		}
+  		swaps(orderBy: timestamp, orderDirection: desc, where:{ to:$user })
+		{
+  			id
+  			transaction
+  			{
+  				id
+  				timestamp
+  			}
+  			pair
+  			{
+  				id
+  				token0
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  				token1
+  				{
+  					symbol
+  					name
+  					decimals
+  				}
+  			}
+  			sender
+  			to
+  			amount0In
+  			amount0Out
+  			amount1In
+  			amount1Out
+  			amountUSD
+  		}
+
+	}'
+    )
+
+    ## Add Liquidity historical plot data
+    qry$query('liquidity_historical',
+              'query liquidity_historical($pair: String!, $date: Int!)
+	{
+		pairDayDatas(first: 1000, orderBy: date, orderDirection: asc, where: {pairAddress: $pair , date_gt: $date})
+		{
+  			id
+    		pairAddress
+    		date
+    		dailyVolumeToken0
+    		dailyVolumeToken1
+    		dailyVolumeUSD
+    		totalSupply
+    		reserveUSD
+    		token0
+  			{
+  				symbol
+  				name
+  				decimals
+  			}
+  			token1
+  			{
+  				symbol
+  				name
+  				decimals
+  			}
+    	}
+    }'
+    )
+
+    return(list(con, qry))
+}
+
+#' Get all the swaps data for a given address or addresses
+#'
+#' @param address A wallet address (or vector of addresses) for the account owner's account
+#'
+#' @return Data on the swaps for the given account owner
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#' @importFrom lubridate as_datetime
+#' @importFrom tidyr unnest
+#'
+#' @examples
+#'
+#' addresses <- c("0xb1b117a45aD71d408eb55475FC3A65454edCc94A",
+#' "0x41D2a18E1DdACdAbFDdADB62e9AEE67c63070b76",
+#' "0x0De20c4bDBE0d0EEFFd2956Be4c148CA86C6cC45")
+#'
+#' swaps(addresses)
+swaps <- function(address) {
+    qcon <- initialize_queries()
+
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    user_list <- lapply(address, function(x) list(user = x))
+
+    transactions <- lapply(user_list,function(user) {
+        res <- fromJSON(con$exec(qry$queries$transactions, user))$data
+        lapply(res, function(x) if (!is.data.frame(x)) return(NULL) else x %>% mutate(Address = user))
+    })
+
+    swaps0 <- lapply(transactions, `[[`, 3) %>% bind_rows() %>% as_tibble()
+    token0 <- swaps0$pair$token0 %>% rename_with(function(.) paste0("token0_", .))
+    token1 <- swaps0$pair$token1 %>% rename_with(function(.) paste0("token1_", .))
+    trans <- swaps0$transaction %>% rename(transaction_id = id) %>% mutate(timestamp = as_datetime(as.numeric(.data$timestamp)))
+    swaps1 <- swaps0 %>% select(-.data$pair, -.data$transaction) %>% unnest(.data$Address)
+    swaps <- swaps1 %>% cbind(trans) %>% cbind(token0) %>% cbind(token1) %>% as_tibble() %>%
+        mutate(across(starts_with("amount"), as.numeric)) %>%
+        arrange(desc(.data$timestamp))
+    names(swaps) <- c("amount0In", "amount0Out", "amount1In", "amount1Out", "amountUSD",
+                      "id", "sender", "to", "Address", "transaction_id", "timestamp", "token0_decimals", "token0_name", "token0_symbol",
+                      "token1_decimals", "token1_name", "token1_symbol")
+
+    return(swaps %>% select(.data$Address, everything()))
+}
+
+#' Get statistics on the swaps data for a given address or addresses
+#'
+#' @param swap_data The data on swaps as generated by the swaps() function
+#' @param aggregate_addresses If TRUE, aggregate the addresses passed in
+#'
+#' @return Statistics on the swaps for the given account owner
+#'
+#' @export
+#'
+#' @importFrom purrr map_df
+#' @import dplyr
+#' @importFrom tidyr spread
+#'
+#' @examples
+#'
+#' addresses <- c("0xb1b117a45aD71d408eb55475FC3A65454edCc94A",
+#' "0x41D2a18E1DdACdAbFDdADB62e9AEE67c63070b76",
+#' "0x0De20c4bDBE0d0EEFFd2956Be4c148CA86C6cC45")
+#'
+#' swap_data <- swaps(addresses)
+#' swap_statistics(swap_data)
+swap_statistics <- function(swap_data, aggregate_addresses=TRUE) {
+    if (aggregate_addresses) {
+        swap_data$Address <- "All Addresses"
+    }
+
+    `.` <- NULL
+
+    res <- swap_data %>%
+        split(.$Address) %>%
+        map_df(function(x) {
+            pairs <- x %>%
+                distinct(.data$token0_name, .data$token1_name)
+
+            num_pairs <- nrow(pairs)
+            unique_tokens <- unique(c(x$token0_symbol, x$token1_symbol))
+            num_swaps <- nrow(x)
+            total_usd <- sum(x$amountUSD)
+            avg_time <- -1 * as.numeric(mean(diff(x$timestamp))) / 60 / 60 / 24
+
+            tibble(
+                Address = x$Address[1],
+                Statistic = c("Number of Pairs", "Number of Unique Tokens Traded", "Number of Swaps",
+                              "Total USD Volume", "Average Days between Swaps"),
+                Value = c(num_pairs, length(unique_tokens), num_swaps, total_usd, avg_time)
+            )
+        })
+
+    if (!aggregate_addresses || length(unique(swap_data$Address)) > 1) {
+        res <- res %>% spread(key = .data$Address, value = .data$Value)
+    }
+
+    if (aggregate_addresses) {
+        res <- res %>% select(-.data$Address)
+    }
+
+    return(res)
+}
+
+#' Get a visualization on the swap data
+#'
+#' @param swap_data The data on swaps as generated by the swaps() function
+#'
+#' @return Visualizations on the swaps for the given account owner
+#'
+#' @export
+#'
+#' @import ggplot2
+#' @import dplyr
+#' @import patchwork
+#'
+#' @examples
+#'
+#' addresses <- c("0xb1b117a45aD71d408eb55475FC3A65454edCc94A",
+#' "0x41D2a18E1DdACdAbFDdADB62e9AEE67c63070b76",
+#' "0x0De20c4bDBE0d0EEFFd2956Be4c148CA86C6cC45")
+#'
+#' swap_data <- swaps(addresses)
+#' swap_visualizations(swap_data)
+swap_visualizations <- function(swap_data) {
+    p1 <- ggplot(swap_data %>% arrange(.data$timestamp) %>% mutate(Count = 1:n()), aes(x = .data$timestamp, y = .data$Count)) +
+        geom_point(colour = "purple4") +
+        geom_line(colour = "purple4") +
+        scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
+        scale_x_datetime(date_breaks = "1 month", date_labels = "%b %y") +
+        labs(
+            title = "Cumulative Number of Swaps over Time",
+            subtitle = "For Swaps on the Uniswap Platform",
+            x = "Date",
+            y = "Number of Swaps"
+        )
+
+    p2 <- ggplot(swap_data %>% arrange(.data$timestamp) %>% mutate(Sum = cumsum(.data$amountUSD)), aes(x = .data$timestamp, y = .data$Sum)) +
+        geom_point(colour = "green4") +
+        geom_line(colour = "green4") +
+        scale_y_continuous(breaks = scales::pretty_breaks(n = 10),
+                           labels = scales::dollar) +
+        scale_x_datetime(date_breaks = "1 month", date_labels = "%b %y") +
+        labs(
+            title = "Cumulative Amount of USD Swapped over Time",
+            subtitle = "For Swaps on the Uniswap Platform",
+            x = "Date",
+            y = "Cumulative Amount ($)"
+        )
+
+    p3 <- ggplot(swap_data %>% mutate(Pair = paste0(.data$token0_symbol, "/", .data$token1_symbol)) %>%
+                     group_by(.data$Pair) %>% summarise(Count = n()) %>%
+                     arrange(desc(.data$Count)) %>% mutate(Pair = factor(.data$Pair, levels = .data$Pair)), aes(x = .data$Pair, y = .data$Count)) +
+        geom_bar(stat = "identity", fill = "goldenrod3", colour = "black") +
+        labs(
+            title = "Total Number of Swaps of Each Pair",
+            subtitle = "For Swaps on the Uniswap Platform",
+            x = "Pair",
+            y = "Number of Swaps"
+        )
+
+    unique_tokens <- tibble(
+        Token = c(swap_data$token0_symbol, swap_data$token1_symbol),
+        Count = 1
+    ) %>%
+        group_by(.data$Token) %>%
+        summarise(Count = sum(.data$Count)) %>%
+        arrange(desc(.data$Count)) %>%
+        mutate(Token = factor(.data$Token, levels = .data$Token))
+
+    p4 <- ggplot(unique_tokens, aes(x = .data$Token, y = .data$Count)) +
+        geom_bar(stat = "identity", fill = "red3", colour = "black") +
+        scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
+        labs(
+            title = "Total Number of Swaps of Each Token",
+            subtitle = "For Swaps on the Uniswap Platform",
+            x = "Token",
+            y = "Number of Swaps"
+        )
+
+    (p1 + p2) / (p3 + p4)
+}
+
+id_mapping = c(
+    "BTC" = "1",
+    "ETH" = "1027",
+    "WETH" = "2396",
+    "WBTC" = "3717",
+    "DAI" = "4943",
+    "UST" = "7129",
+    "GUSD" = "3306",
+    "UNI" = "7083",
+    "NMR" = "1732",
+    "BADGER" = "7859",
+    "USDT" = "825",
+    "USDC" = "3408"
+)
+
+#' @importFrom lubridate ymd today as_date ymd_hms
+#' @importFrom httr GET content
+#' @importFrom tibble tibble
+cmc_data_new <- function(ticker, start_date = "20130329", end_date = gsub("-", "", today())) {
+    start <- ymd(start_date)
+    end <- ymd(end_date)
+
+    my_id = id_mapping[ticker]
+
+    web_api <- paste0("https://web-api.coinmarketcap.com/v1.1/cryptocurrency/quotes/historical?convert=USD&format=chart_crypto_details&id=", my_id, "&interval=1d&time_end=", as.numeric(as.POSIXct(end)), "&time_start=", as.numeric(as.POSIXct(start)))
+
+    dat <- GET(web_api)
+    parsed <- content(dat, "parsed")
+
+    prices <- sapply(parsed$data, function(x) x$USD[[1]])
+    my_tbl <- tibble(
+        Date = names(prices),
+        Price = as.numeric(prices)
+    ) %>%
+        mutate(Date = as_date(ymd_hms(.data$Date)))
+
+    print(my_tbl)
+
+    return(my_tbl)
+}
+
+
+#' Get a visualization on the swap performance
+#'
+#' @param swap_data The data on swaps as generated by the swaps() function
+#'
+#' @return Visualization on the swap performance for the given account owner
+#'
+#' @export
+#'
+#' @import ggplot2
+#' @import dplyr
+#' @import patchwork
+#'
+#' @examples
+#'
+#' addresses <- c("0xb1b117a45aD71d408eb55475FC3A65454edCc94A",
+#' "0x41D2a18E1DdACdAbFDdADB62e9AEE67c63070b76",
+#' "0x0De20c4bDBE0d0EEFFd2956Be4c148CA86C6cC45")
+#'
+#' swap_data <- swaps(addresses)
+#' swap_performance(swap_data)
+swap_performance <- function(swap_data) {
+    all_tokens <- unique(c(swap_data$token0_symbol, swap_data$token1_symbol))
+    hist_data <- lapply(all_tokens, cmc_data_new)
+
+    binded <- hist_data %>%
+        bind_rows() %>%
+        mutate(Ticker = rep(all_tokens, sapply(hist_data, nrow))) %>%
+        group_by(.data$Ticker) %>%
+        summarise(Price = .data$Price[which.max(.data$Date)])
+
+    x <- swap_data %>%
+        select(starts_with("amount"), ends_with("_symbol")) %>%
+        mutate(token_out = ifelse(.data$amount0In > 0, .data$token1_symbol, .data$token0_symbol),
+               token_in = ifelse(.data$amount0In > 0, .data$token0_symbol, .data$token1_symbol),
+               amount_out = .data$amountUSD / ifelse(.data$amount0In > 0, .data$amount1Out, .data$amount0Out),
+               amount_in = .data$amountUSD / ifelse(.data$amount0In > 0, .data$amount0In, .data$amount1In)) %>%
+        select(.data$token_out, .data$amount_out, .data$token_in, .data$amount_in)
+
+    y <- x %>% select(token = .data$token_out, amount = .data$amount_out) %>%
+        rbind(x %>% select(token = .data$token_in, amount = .data$amount_in))
+
+    amt <- y %>%
+        group_by(.data$token) %>%
+        summarise(amt = mean(.data$amount)) %>%
+        rename(Ticker = .data$token) %>%
+        left_join(binded) %>%
+        mutate(Prop = (.data$Price - .data$amt) / (.data$amt))
+
+    p1 <- ggplot(data = amt, aes(x = .data$Prop, y = .data$Ticker, colour = .data$Prop)) +
+        geom_segment(aes(xend=.data$Prop, x=0, yend=.data$Ticker, y=.data$Ticker)) +
+        geom_point(size = 3) +
+        scale_x_continuous(limits = c(-abs(max(amt$Prop)), max(amt$Prop)),
+                           labels = scales::percent,
+                           breaks = scales::pretty_breaks(n = 10)) +
+        scale_colour_gradient2(midpoint = 0, low = "red4", high = "green4",
+                               mid = "grey70",
+                               guide = FALSE,
+                               limits = c(-abs(max(amt$Prop)), max(amt$Prop))) +
+        labs(
+            title = "Percentage Change in Price Since you Interacted with the Token",
+            subtitle = "For Swaps on the Uniswap Platform",
+            x = "Percentage Change in Price",
+            y = "Ticker"
+        )
+
+    p1
+}
