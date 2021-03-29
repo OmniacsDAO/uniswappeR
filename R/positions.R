@@ -497,8 +497,6 @@ cmc_data_new <- function(ticker, start_date = "20130329", end_date = gsub("-", "
     ) %>%
         mutate(Date = as_date(ymd_hms(.data$Date)))
 
-    print(my_tbl)
-
     return(my_tbl)
 }
 
