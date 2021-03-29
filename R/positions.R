@@ -431,6 +431,9 @@ swap_visualizations <- function(swap_data) {
             subtitle = "For Swaps on the Uniswap Platform",
             x = "Pair",
             y = "Number of Swaps"
+        ) +
+        theme(
+            axis.text.x = element_text(angle=20, hjust=1)
         )
 
     unique_tokens <- tibble(
@@ -450,6 +453,9 @@ swap_visualizations <- function(swap_data) {
             subtitle = "For Swaps on the Uniswap Platform",
             x = "Token",
             y = "Number of Swaps"
+        ) +
+        theme(
+            axis.text.x = element_text(angle=20, hjust=1)
         )
 
     (p1 + p2) / (p3 + p4)
