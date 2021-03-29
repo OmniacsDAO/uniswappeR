@@ -2,7 +2,7 @@
 
 R Package for Exploration of Uniswap Positions and Trades
 
-<img src="man/figures/example_performance.png" align="center"/>
+<img src="man/figures/example_performance.png" width="300px" align="center"/>
 
 ## Description
 
