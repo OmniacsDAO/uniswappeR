@@ -15,7 +15,7 @@ Our `uniswappeR` R package abstracts away the GraphQL layer of querying for unis
 
 Install the R package with:
 
-`devtools::install_github("Omni-Analytics-Group/uniswappeR`
+`devtools::install_github("Omni-Analytics-Group/uniswappeR")`
 
 ## Walkthrough
 
