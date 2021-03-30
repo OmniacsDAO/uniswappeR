@@ -37,19 +37,19 @@ Our `uniswappeR` R package abstracts away the GraphQL layer of querying for unis
 
 - `swap_data <- swaps(addresses)`
 
-<img src="man/figures/example1_dataframe.png" width="600px" align="center"/>
+<img src="man/figures/example1_dataframe.png"  align="center"/>
 
 ### 4. Produce visualizations of the swap data
 
 - `swap_visualizations(swap_data)`
 
-<img src="man/figures/example2_report_card.png" width="600px" align="center"/>
+<img src="man/figures/example2_report_card.png"  align="center"/>
 
 ### 5. Produce a visualization of the performance of the swaps
 
 - `swap_performance(swap_data)`
 
-<img src="man/figures/example3_pricechange.png" width="600px" align="center"/>
+<img src="man/figures/example3_pricechange.png"  align="center"/>
 
 
 
