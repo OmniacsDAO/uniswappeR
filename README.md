@@ -31,7 +31,7 @@ Our `uniswappeR` R package abstracts away the GraphQL layer of querying for unis
 
 ### 2. Define an address or vector of addresses of interest
 
-- `addresses <- c("0x2e3381202988d535e8185e7089f633f7c9998e83", "0x4041E9d98f794EE7d952d266C1A10707A0Af5332", "0x4d9c274ADF71e4201B4aB1f28BF05D44eE4bA261")`
+- `addresses <- c("0x2e3381202988d535e8185e7089f633f7c9998e83", "0x4d9c274ADF71e4201B4aB1f28BF05D44eE4bA261")`
 
 ### 3. Get the swap data for those addresses
 
