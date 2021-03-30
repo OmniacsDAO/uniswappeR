@@ -4,6 +4,10 @@ R Package for Exploration of Uniswap Positions and Trades
 
 <img src="man/figures/example_plot.png" width="600px" align="center"/>
 
+<div align="center">
+Uniswap Trading Report
+</div>
+
 ## Description
 
 Our `uniswappeR` R package abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package. This package includes a number of high level functions for interacting with this data:
@@ -13,11 +17,13 @@ Our `uniswappeR` R package abstracts away the GraphQL layer of querying for unis
 - swap_visualizations: A series of ggplot2 visualizations about swap performance
 - swap_performance: A ggplot2 visualization for assessing the performance of your swaps
 
-Install the R package with:
+## Walkthrough
+
+[Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
+
+### 0. Install the package.
 
 `devtools::install_github("Omni-Analytics-Group/uniswappeR")`
-
-## Walkthrough
 
 ### 1. Load the package.
 
@@ -31,13 +37,21 @@ Install the R package with:
 
 - `swap_data <- swaps(addresses)`
 
+<img src="man/figures/example1_dataframe.png" width="600px" align="center"/>
+
 ### 4. Produce visualizations of the swap data
 
 - `swap_visualizations(swap_data)`
 
+<img src="man/figures/example2_report_card.png" width="600px" align="center"/>
+
 ### 5. Produce a visualization of the performance of the swaps
 
 - `swap_performance(swap_data)`
+
+<img src="man/figures/example3_pricechange.png" width="600px" align="center"/>
+
+
 
 ## About Us
 
