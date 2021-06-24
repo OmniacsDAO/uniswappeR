@@ -135,105 +135,120 @@ initialize_queries <- function() {
     )
 
     ## Add Transactions Query
-    qry$query('transactions',
-              'query transactions($user: String!)
-	{
-		mints(orderBy: timestamp, orderDirection: desc, where:{ to:$user })
-		{
-  			id
-  			transaction
-  			{
-  				id
-  				timestamp
-  			}
-  			pair
-  			{
-  				id
-  				token0
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  				token1
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  			}
-  			sender
-  			to
-  			liquidity
-  			amount0
-  			amount1
-  			amountUSD
-  		}
-  		burns(orderBy: timestamp, orderDirection: desc, where:{ sender:$user })
-		{
-  			id
-  			transaction
-  			{
-  				id
-  				timestamp
-  			}
-  			pair
-  			{
-  				id
-  				token0
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  				token1
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  			}
-  			sender
-  			to
-  			liquidity
-  			amount0
-  			amount1
-  			amountUSD
-  		}
-  		swaps(orderBy: timestamp, orderDirection: desc, where:{ to:$user })
-		{
-  			id
-  			transaction
-  			{
-  				id
-  				timestamp
-  			}
-  			pair
-  			{
-  				id
-  				token0
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  				token1
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  			}
-  			sender
-  			to
-  			amount0In
-  			amount0Out
-  			amount1In
-  			amount1Out
-  			amountUSD
-  		}
+    qry$query('transactions_swaps',
+              'query transactions($user: String!,$timestamp: Int!)
+    {
+        swaps(orderBy: timestamp, orderDirection: desc,first:1000, where:{ to:$user,timestamp_lt:$timestamp })
+        {
+            id
+            timestamp
+            transaction
+            {
+                id
+                timestamp
+            }
+            pair
+            {
+                id
+                token0
+                {
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    symbol
+                    name
+                    decimals
+                }
+            }
+            sender
+            to
+            amount0In
+            amount0Out
+            amount1In
+            amount1Out
+            amountUSD
+        }
 
-	}'
+    }'
+    )
+    qry$query('transactions_mints',
+              'query transactions($user: String!,$timestamp: Int!)
+    {
+        mints(orderBy: timestamp, orderDirection: desc,first:1000, where:{ to:$user,timestamp_lt:$timestamp })
+        {
+            id
+            timestamp
+            transaction
+            {
+                id
+                timestamp
+            }
+            pair
+            {
+                id
+                token0
+                {
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    symbol
+                    name
+                    decimals
+                }
+            }
+            sender
+            to
+            liquidity
+            amount0
+            amount1
+            amountUSD
+        }
+
+    }'
+    )
+    qry$query('transactions_burns',
+              'query transactions($user: String!,$timestamp: Int!)
+    {
+        burns(orderBy: timestamp, orderDirection: desc,first:1000, where:{ sender:$user,timestamp_lt:$timestamp})
+        {
+            id
+            timestamp
+            transaction
+            {
+                id
+                timestamp
+            }
+            pair
+            {
+                id
+                token0
+                {
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    symbol
+                    name
+                    decimals
+                }
+            }
+            sender
+            to
+            liquidity
+            amount0
+            amount1
+            amountUSD
+        }
+
+    }'
     )
 
     ## Add Liquidity historical plot data
@@ -291,29 +306,39 @@ initialize_queries <- function() {
 #' swaps(addresses)
 swaps <- function(address) {
     qcon <- initialize_queries()
-
     con <- qcon[[1]]
     qry <- qcon[[2]]
 
-    user_list <- lapply(address, function(x) list(user = x))
-
-    transactions <- lapply(user_list,function(user) {
-        res <- fromJSON(con$exec(qry$queries$transactions, user))$data
-        lapply(res, function(x) if (!is.data.frame(x)) return(NULL) else x %>% mutate(Address = user))
-    })
-
-    swaps0 <- lapply(transactions, `[[`, 3) %>% bind_rows() %>% as_tibble()
-    token0 <- swaps0$pair$token0 %>% rename_with(function(.) paste0("token0_", .))
-    token1 <- swaps0$pair$token1 %>% rename_with(function(.) paste0("token1_", .))
-    trans <- swaps0$transaction %>% rename(transaction_id = id) %>% mutate(timestamp = as_datetime(as.numeric(.data$timestamp)))
-    swaps1 <- swaps0 %>% select(-.data$pair, -.data$transaction) %>% unnest(.data$Address)
-    swaps <- swaps1 %>% cbind(trans) %>% cbind(token0) %>% cbind(token1) %>% as_tibble() %>%
-        mutate(across(starts_with("amount"), as.numeric)) %>%
-        arrange(desc(.data$timestamp))
-    names(swaps) <- c("amount0In", "amount0Out", "amount1In", "amount1Out", "amountUSD",
-                      "id", "sender", "to", "Address", "transaction_id", "timestamp", "token0_decimals", "token0_name", "token0_symbol",
+    fetch_user_swaps <- function(user_add)
+    {
+        c_timestamp <- as.integer(Sys.time())
+        swap_data <- data.frame()
+        while(TRUE)
+        {
+            swap_data_t <- fromJSON(con$exec(qry$queries$transactions_swaps, list(user = user_add,timestamp=c_timestamp)))$data$swaps
+            if(length(swap_data_t)==0) break()
+            if(is.data.frame(swap_data_t)) swap_data_t <- swap_data_t %>% mutate(Address = user_add)
+            swaps0 <- swap_data_t %>% bind_rows() %>% as_tibble()
+            token0 <- swaps0$pair$token0 %>% rename_with(function(.) paste0("token0_", .))
+            token1 <- swaps0$pair$token1 %>% rename_with(function(.) paste0("token1_", .))
+            trans <- swaps0$transaction %>% rename(transaction_id = id) %>% select(-.data$timestamp)
+            swaps1 <- swaps0 %>% select(-.data$pair, -.data$transaction) %>% unnest(.data$Address)
+            swaps_t <- swaps1 %>% cbind(trans) %>% cbind(token0) %>% cbind(token1) %>% as_tibble() %>%
+            mutate(across(starts_with("amount"), as.numeric)) %>%
+            arrange(desc(.data$timestamp))
+            names(swaps_t) <- c("amount0In", "amount0Out", "amount1In", "amount1Out", "amountUSD",
+                      "id", "sender", "timestamp", "to", "Address", "transaction_id", "token0_decimals", "token0_name", "token0_symbol",
                       "token1_decimals", "token1_name", "token1_symbol")
+            swap_data <- do.call(rbind,list(swap_data,swaps_t))
+            message(paste0("Fetched ",nrow(swap_data)," Swap Records of address ",user_add))
+            if(nrow(swaps_t)<1000) break()
+            c_timestamp <- as.numeric(tail(swaps_t$timestamp,1))
+        }
+        if(nrow(swap_data)>0) swap_data$timestamp <- as_datetime(as.numeric(swap_data$timestamp))
+        return(swap_data)
+    }
 
+    swaps <- lapply(address,fetch_user_swaps) %>% bind_rows() %>% as_tibble()
     return(swaps %>% select(.data$Address, everything()))
 }
 
