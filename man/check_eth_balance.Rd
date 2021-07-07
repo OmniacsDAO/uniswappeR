@@ -6,6 +6,12 @@
 \usage{
 check_eth_balance(u_w)
 }
+\arguments{
+\item{u_w}{Uniswap Session}
+}
+\value{
+Return User ETH Balance
+}
 \description{
 Get your ETH Balance
 }

@@ -91,14 +91,25 @@ uniswap_session <- function(node = get_infura_node(),user_add=NULL,pvt_key=NULL)
 #################################################################
 #' Get your ETH Balance
 #' @export
+#' @param u_w Uniswap Session
+#' @return Return User ETH Balance
 check_eth_balance <- function(u_w) r_num(u_w$get_eth_balance())/(10**18)
 
 #' Check any Token Balance
 #' @export
+#' @param u_w Uniswap Session
+#' @param t_a Token Address
+#' @param t_d Token Decimals
+#' @return Return User Token Balance
 check_tok_balance <- function(t_a,t_d,u_w) r_num(u_w$get_token_balance(t_a))/(10**t_d)
 
 #' Swap ETH for a Token, Given ETH Qty check how much token you would get
 #' @export
+#' @param u_w Uniswap Session
+#' @param t_a Token Address
+#' @param t_d Token Decimals
+#' @param e_q Ethereum Qty.
+#' @return Token Amount one will get
 check_eth.to.tok_eth.fix <- function(t_a,t_d,e_q,u_w) r_num(u_w$get_eth_token_input_price(t_a,py_int(e_q*10**18)))/(10**t_d)
 
 #' Swap ETH for a Token, Given Token Qty check how much ETH you need

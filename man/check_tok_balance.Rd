@@ -6,6 +6,16 @@
 \usage{
 check_tok_balance(t_a, t_d, u_w)
 }
+\arguments{
+\item{t_a}{Token Address}
+
+\item{t_d}{Token Decimals}
+
+\item{u_w}{Uniswap Session}
+}
+\value{
+Return User Token Balance
+}
 \description{
 Check any Token Balance
 }
