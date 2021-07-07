@@ -86,16 +86,39 @@ uniswap_session <- function(node = get_infura_node(),user_add=NULL,pvt_key=NULL)
     uniswap$Uniswap(user_add,pvt_key, version=2)
 }
 
+#################################################################
+## Helper Functions
+#################################################################
+#' Get your ETH Balance
+#' @export
+check_eth_balance <- function(u_w) r_num(u_w$get_eth_balance())/(10**18)
 
+#' Check any Token Balance
+#' @export
+check_tok_balance <- function(t_a,t_d,u_w) r_num(u_w$get_token_balance(t_a))/(10**t_d)
 
+#' Swap ETH for a Token, Given ETH Qty check how much token you would get
+#' @export
+check_eth.to.tok_eth.fix <- function(t_a,t_d,e_q,u_w) r_num(u_w$get_eth_token_input_price(t_a,py_int(e_q*10**18)))/(10**t_d)
 
+#' Swap ETH for a Token, Given Token Qty check how much ETH you need
+#' @export
+check_eth.to.tok_tok.fix <- function(t_a,t_d,t_q,u_w) r_num(u_w$get_eth_token_output_price(t_a,py_int(t_q*10**t_d)))/(10**18)
 
+#' Swap Token for ETH, Given Token Qty check how much ETH you would get
+#' @export
+check_tok.to.eth_tok.fix <- function(t_a,t_d,t_q,u_w) r_num(u_w$get_token_eth_input_price(t_a,py_int(t_q*10**t_d)))/(10**18)
 
+#' Swap Token for ETH, Given ETH Qty check how much Token you need
+#' @export
+check_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) r_num(u_w$get_token_eth_output_price(t_a,py_int(e_q*10**18)))/(10**t_d)
 
+#' Swap Token1 for Token2, Given Token1 Qty check how much Token2 you would get (Use Token1 -> ETH -> Token2 Route)
+#' @export
+check_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) r_num(u_w$get_token_token_input_price(t1_a,t2_a,py_int(t1_q*10**t1_d)))/(10**t2_d)
 
-
-
-
-
-
-
+#' Swap Token1 for Token2, Given Token2 Qty check how much Token1 you would need (Use Token1 -> ETH -> Token2 Route)
+#' @export
+check_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) r_num(u_w$get_token_token_output_price(t1_a,t2_a,py_int(t2_q*10**t2_d)))/(10**t1_d)
+#################################################################
+#################################################################
