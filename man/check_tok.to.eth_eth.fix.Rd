@@ -6,6 +6,18 @@
 \usage{
 check_tok.to.eth_eth.fix(t_a, t_d, e_q, u_w)
 }
+\arguments{
+\item{t_a}{Token Address}
+
+\item{t_d}{Token Decimals}
+
+\item{e_q}{Ethereum Qty.}
+
+\item{u_w}{Uniswap Session}
+}
+\value{
+Token Amount Needed
+}
 \description{
 Swap Token for ETH, Given ETH Qty check how much Token you need
 }

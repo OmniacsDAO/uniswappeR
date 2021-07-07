@@ -16,7 +16,7 @@ check_eth.to.tok_eth.fix(t_a, t_d, e_q, u_w)
 \item{u_w}{Uniswap Session}
 }
 \value{
-Token Amount one will get
+Token Amount you get
 }
 \description{
 Swap ETH for a Token, Given ETH Qty check how much token you would get

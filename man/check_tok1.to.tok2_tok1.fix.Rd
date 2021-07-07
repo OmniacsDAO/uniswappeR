@@ -6,6 +6,22 @@
 \usage{
 check_tok1.to.tok2_tok1.fix(t1_a, t1_d, t2_a, t2_d, t1_q, u_w)
 }
+\arguments{
+\item{t1_a}{Token 1 Address}
+
+\item{t1_d}{Token 1 Decimals}
+
+\item{t2_a}{Token 2 Address}
+
+\item{t2_d}{Token 2 Decimals}
+
+\item{t1_q}{Token 1 Qty.}
+
+\item{u_w}{Uniswap Session}
+}
+\value{
+Token 2 Amount you get
+}
 \description{
 Swap Token1 for Token2, Given Token1 Qty check how much Token2 you would get (Use Token1 -> ETH -> Token2 Route)
 }
