@@ -168,26 +168,60 @@ check_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) r_num(u_w$
 #################################################################
 #' Swap ETH for a Token, Receive Tokens for specified ETH amount
 #' @export
+#' @param u_w Uniswap Session
+#' @param t_a Token Address
+#' @param t_d Token Decimals
+#' @param e_q Ethereum Qty.
+#' @return Transaction Hash
 trade_eth.to.tok_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$'_eth_to_token_swap_input'(t_a,py_int(e_q*10**18),recipient=NULL)$hex())
 
 #' Swap ETH for a Token, Buy specified fixed Token Amount
 #' @export
+#' @param u_w Uniswap Session
+#' @param t_a Token Address
+#' @param t_d Token Decimals
+#' @param t_q Token Qty.
+#' @return Transaction Hash
 trade_eth.to.tok_tok.fix <- function(t_a,t_d,t_q,u_w) as.character(u_w$'_eth_to_token_swap_output'(t_a,py_int(t_q*10**t_d),recipient=NULL)$hex())
 
 #' Swap Token for ETH, Receive ETH after swapping specified token amount
 #' @export
+#' @param u_w Uniswap Session
+#' @param t_a Token Address
+#' @param t_d Token Decimals
+#' @param t_q Token Qty.
+#' @return Transaction Hash
 trade_tok.to.eth_tok.fix <- function(t_a,t_d,t_q,u_w) as.character(u_w$'_token_to_eth_swap_input'(t_a,py_int(t_q*10**t_d),recipient=NULL)$hex())
 
 #' Swap Token for ETH, Swap tokens to receive specified ETH amount
 #' @export
+#' @param u_w Uniswap Session
+#' @param t_a Token Address
+#' @param t_d Token Decimals
+#' @param e_q ETH Qty.
+#' @return Transaction Hash
 trade_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$'_token_to_eth_swap_output'(t_a,py_int(e_q*10**18),recipient=NULL)$hex())
 
 #' Swap Token1 for Token2, Receive Token2 for specified Token1 Amount
 #' @export
+#' @param u_w Uniswap Session
+#' @param t1_a Token 1 Address
+#' @param t1_d Token 1 Decimals
+#' @param t2_a Token 2 Address
+#' @param t2_d Token 2 Decimals
+#' @param t1_q Token 1 Qty.
+#' @return Transaction Hash
 trade_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) as.character(u_w$'_token_to_token_swap_input'(t1_a,py_int(t1_q*10**t1_d),t2_a,recipient=NULL)$hex())
 
 #' Swap Token1 for Token2, Receive Token2 for specified Token1 Amount
 #' @export
+#' @param u_w Uniswap Session
+#' @param t1_a Token 1 Address
+#' @param t1_d Token 1 Decimals
+#' @param t2_a Token 2 Address
+#' @param t2_d Token 2 Decimals
+#' @param t2_q Token 2 Qty.
+#' @return Transaction Hash
 trade_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) as.character(u_w$'_token_to_token_swap_output'(t1_a,py_int(t2_q*10**t2_d),t2_a,recipient=NULL)$hex())
 #################################################################
 #################################################################

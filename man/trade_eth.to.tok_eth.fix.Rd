@@ -6,6 +6,18 @@
 \usage{
 trade_eth.to.tok_eth.fix(t_a, t_d, e_q, u_w)
 }
+\arguments{
+\item{t_a}{Token Address}
+
+\item{t_d}{Token Decimals}
+
+\item{e_q}{Ethereum Qty.}
+
+\item{u_w}{Uniswap Session}
+}
+\value{
+Transaction Hash
+}
 \description{
 Swap ETH for a Token, Receive Tokens for specified ETH amount
 }

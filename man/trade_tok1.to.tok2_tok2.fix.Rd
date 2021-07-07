@@ -6,6 +6,22 @@
 \usage{
 trade_tok1.to.tok2_tok2.fix(t1_a, t1_d, t2_a, t2_d, t2_q, u_w)
 }
+\arguments{
+\item{t1_a}{Token 1 Address}
+
+\item{t1_d}{Token 1 Decimals}
+
+\item{t2_a}{Token 2 Address}
+
+\item{t2_d}{Token 2 Decimals}
+
+\item{t2_q}{Token 2 Qty.}
+
+\item{u_w}{Uniswap Session}
+}
+\value{
+Transaction Hash
+}
 \description{
 Swap Token1 for Token2, Receive Token2 for specified Token1 Amount
 }
