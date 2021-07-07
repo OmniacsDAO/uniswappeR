@@ -4,7 +4,10 @@
 \alias{py_int}
 \title{Python builtin functions}
 \usage{
-py_int()
+py_int(x)
+}
+\arguments{
+\item{x}{The value to pass through the python int function}
 }
 \description{
 Python builtin functions

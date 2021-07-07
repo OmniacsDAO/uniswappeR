@@ -53,8 +53,9 @@ set_infura_node <- function(infura_node) {
 #################################################################
 #' Python builtin functions
 #' @import reticulate
+#' @param x The value to pass through the python int function
 #' @export
-py_int <- function() return(import_builtins(convert = FALSE)$int)
+py_int <- function(x) return(import_builtins(convert = FALSE)$int(x))
 
 #' python object to R
 #' @param val Numeric converter to export
