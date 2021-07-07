@@ -122,3 +122,32 @@ check_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) r_num(u_w$
 check_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) r_num(u_w$get_token_token_output_price(t1_a,t2_a,py_int(t2_q*10**t2_d)))/(10**t1_d)
 #################################################################
 #################################################################
+
+#################################################################
+## Trade Functions
+#################################################################
+#' Swap ETH for a Token, Receive Tokens for specified ETH amount
+#' @export
+trade_eth.to.tok_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$'_eth_to_token_swap_input'(t_a,py_int(e_q*10**18),recipient=NULL)$hex())
+
+#' Swap ETH for a Token, Buy specified fixed Token Amount
+#' @export
+trade_eth.to.tok_tok.fix <- function(t_a,t_d,t_q,u_w) as.character(u_w$'_eth_to_token_swap_output'(t_a,py_int(t_q*10**t_d),recipient=NULL)$hex())
+
+#' Swap Token for ETH, Receive ETH after swapping specified token amount
+#' @export
+trade_tok.to.eth_tok.fix <- function(t_a,t_d,t_q,u_w) as.character(u_w$'_token_to_eth_swap_input'(t_a,py_int(t_q*10**t_d),recipient=NULL)$hex())
+
+#' Swap Token for ETH, Swap tokens to receive specified ETH amount
+#' @export
+trade_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$'_token_to_eth_swap_output'(t_a,py_int(e_q*10**18),recipient=NULL)$hex())
+
+#' Swap Token1 for Token2, Receive Token2 for specified Token1 Amount
+#' @export
+trade_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) as.character(u_w$'_token_to_token_swap_input'(t1_a,py_int(t1_q*10**t1_d),t2_a,recipient=NULL)$hex())
+
+#' Swap Token1 for Token2, Receive Token2 for specified Token1 Amount
+#' @export
+trade_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) as.character(u_w$'_token_to_token_swap_output'(t1_a,py_int(t2_q*10**t2_d),t2_a,recipient=NULL)$hex())
+#################################################################
+#################################################################
