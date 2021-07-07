@@ -29,4 +29,5 @@ Imports:
   ghql,
   jsonlite,
   patchwork,
-  purrr
+  purrr,
+  reticulate
