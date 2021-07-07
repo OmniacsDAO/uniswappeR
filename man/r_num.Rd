@@ -4,7 +4,10 @@
 \alias{r_num}
 \title{python object to R}
 \usage{
-r_num(x)
+r_num(val)
+}
+\arguments{
+\item{val}{Numeric converter to export}
 }
 \description{
 python object to R

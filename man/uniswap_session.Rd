@@ -9,6 +9,8 @@ uniswap_session(node = get_infura_node(), user_add = NULL, pvt_key = NULL)
 \arguments{
 \item{node}{The Infura Node}
 
+\item{user_add}{User Address}
+
 \item{pvt_key}{Private Key of the user Address}
 }
 \value{

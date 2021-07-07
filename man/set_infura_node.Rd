@@ -7,7 +7,7 @@
 set_infura_node(infura_node)
 }
 \arguments{
-\item{pass}{The Infura Node}
+\item{infura_node}{The Infura Node}
 }
 \value{
 A boolean TRUE if the INFURA NODE was successfully set

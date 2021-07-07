@@ -31,7 +31,7 @@ get_infura_node <- function() {
 #' Sets the Infura Node
 #'
 #' @name set_infura_node
-#' @param pass The Infura Node
+#' @param infura_node The Infura Node
 #' @return A boolean TRUE if the INFURA NODE was successfully set
 #' @export
 #' @examples
@@ -53,16 +53,19 @@ set_infura_node <- function(infura_node) {
 #################################################################
 #' Python builtin functions
 #' @import reticulate
+#' @export
 py_int <- function() return(import_builtins(convert = FALSE)$int)
 
 #' python object to R
 #' @param val Numeric converter to export
+#' @export
 r_num <- function(val) as.numeric(as.character(val))
 
 
 #' Start the python session
 #'
 #' @param node The Infura Node
+#' @param user_add User Address
 #' @param pvt_key Private Key of the user Address
 #'
 #' @return The python session uniswap endpoint
