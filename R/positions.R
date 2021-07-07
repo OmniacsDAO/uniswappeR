@@ -296,6 +296,7 @@ initialize_queries <- function() {
 #' @import dplyr
 #' @importFrom lubridate as_datetime
 #' @importFrom tidyr unnest
+#' @importFrom utils tail
 #'
 #' @examples
 #'

@@ -56,7 +56,8 @@ set_infura_node <- function(infura_node) {
 py_int <- function() return(import_builtins(convert = FALSE)$int)
 
 #' python object to R
-r_num <- function(x) as.numeric(as.character(x))
+#' @param val Numeric converter to export
+r_num <- function(val) as.numeric(as.character(val))
 
 
 #' Start the python session
@@ -70,7 +71,7 @@ r_num <- function(x) as.numeric(as.character(x))
 #'
 #' @import reticulate
 #' @import jsonlite
-uniswap_session <- function(node = get_infura_node(),pvt_key){
+uniswap_session <- function(node = get_infura_node(),user_add=NULL,pvt_key=NULL){
     ## Select which python to use
     # use_python("/usr/bin/python3")
 
@@ -79,7 +80,7 @@ uniswap_session <- function(node = get_infura_node(),pvt_key){
 
     ## Initialise uniswap endpooint
     uniswap <- import("uniswap",convert=FALSE)
-    uniswap$Uniswap("0xB5d6801bC3dd17648e66aE22B80757692b1C5a42", pvt_key, version=2)
+    uniswap$Uniswap(user_add,pvt_key, version=2)
 }
 
 

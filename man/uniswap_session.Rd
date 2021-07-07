@@ -4,7 +4,7 @@
 \alias{uniswap_session}
 \title{Start the python session}
 \usage{
-uniswap_session(node = get_infura_node(), pvt_key)
+uniswap_session(node = get_infura_node(), user_add = NULL, pvt_key = NULL)
 }
 \arguments{
 \item{node}{The Infura Node}
