@@ -41,8 +41,7 @@ we need to configure the environment and then we can use the functions to make t
 	`t_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
 	- Uniswap (UNI) Token Decimals<br>
 	`t_d <- 18`
-
-`check_tok_balance(t_a,t_d,u_w)`
+	- `check_tok_balance(t_a,t_d,u_w)`
 
 - Given .5 ETH check how much Uniswap (UNI) Token you would get<br>
 	- Uniswap (UNI) Token Address<br>
@@ -51,6 +50,9 @@ we need to configure the environment and then we can use the functions to make t
 	`t_d <- 18`
 	- Ethereum Quantity<br>
 	`e_q <- .5`
+	- `check_eth.to.tok_eth.fix(t_a,t_d,e_q,u_w)`
+
+- Given .5 ETH check how much Uniswap (UNI) Token you would get<br>
 
 
 
