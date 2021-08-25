@@ -34,25 +34,25 @@ we need to configure the environment and then we can use the functions to make t
 
 #### 4. Helper Functions to check balances and query prices
 
-- `check_eth_balance` : Check Your ETH Balance<br>`check_eth_balance(u_w)`
-
-- `check_tok_balance` : Check Your Uniswap (UNI) Token Balance<br>
-	- Uniswap (UNI) Token Address<br>
+- We would look into Uniswap(UNI)/ETH pair to trade and query <br>
+	- UNI Token Address<br>
 	`t_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
-	- Uniswap (UNI) Token Decimals<br>
 	`t_d <- 18`
+
+- Check Your ETH Balance<br>`check_eth_balance(u_w)`
+
+- Check Your Uniswap (UNI) Token Balance<br>
 	- `check_tok_balance(t_a,t_d,u_w)`
 
-- `check_eth.to.tok_eth.fix` : Given .5 ETH check how much Uniswap (UNI) Token you would get<br>
-	- Uniswap (UNI) Token Address<br>
-	`t_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
-	- Uniswap (UNI) Token Decimals<br>
-	`t_d <- 18`
+- How much UNI Token you would get for .5 ETH<br>
 	- Ethereum Quantity<br>
 	`e_q <- .5`
 	- `check_eth.to.tok_eth.fix(t_a,t_d,e_q,u_w)`
 
-- Given .5 ETH check how much Uniswap (UNI) Token you would get<br>
+- How much ETH you need to get 2 UNI Tokens<br>
+	- Ethereum Quantity<br>
+	`t_q <- 2`
+	- `check_eth.to.tok_tok.fix(t_a,t_d,t_q,u_w)`
 
 
 
