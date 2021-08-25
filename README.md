@@ -13,16 +13,22 @@ we need to configure the environment and then we can use the functions to make t
 [Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
 
 #### 0. (Optional Environment Setup) If you want to use the trade functionality of the package.
-
 Note The following steps are not necessary to perform if you only want to interact with the Uniswap data from the GraphQL.
-
 - Install the reticulate package using<br>`library(reticulate)`
 - Install python to use as backend using<br>`install_python("3.8.7")`
 - Create a Virtual Environment to keep the backend sandboxed using<br>`virtualenv_create("uniswappeR-env", version = "3.8.7")`
 - Install uniswap-python package using<br>`virtualenv_install(envname="uniswappeR-env",packages=c("uniswap-python==0.4.6"))`
 - Use the Virtual Environment using<br>`use_virtualenv("uniswappeR-env",required=TRUE)`
 
-#### 1. 
+#### 1. Use the Virtual Environment generated above
+- `library(reticulate)`
+- `use_virtualenv("uniswappeR-env",required=TRUE)`
+
+#### 2. Use your Infura Node
+`set_infura_node("https://mainnet.infura.io/v3/XXXXXXXXXXXXXXXXXXX")`
+
+#### 2. Setup a uniswap session using your address and private key
+`u_s <- uniswap_session(user_add="******************************************",pvt_key="****************************************************************")`
 
 
 
