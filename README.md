@@ -40,18 +40,22 @@ we need to configure the environment and then we can use the functions to make t
 	- UNI Token Balances<br>
 	`t_d <- 18`
 
+
 - Check Your ETH Balance<br>`check_eth_balance(u_w)`
+
 
 - Check Your Uniswap (UNI) Token Balance<br>
 	- `check_tok_balance(t_a,t_d,u_w)`
+
 
 - How much UNI Token you would get for .5 ETH<br>
 	- Ethereum Quantity<br>
 	`e_q <- .5`
 	- `check_eth.to.tok_eth.fix(t_a,t_d,e_q,u_w)`
 
+
 - How much ETH you need to get 2 UNI Tokens<br>
-	- Ethereum Quantity<br>
+	- UNI Quantity<br>
 	`t_q <- 2`
 	- `check_eth.to.tok_tok.fix(t_a,t_d,t_q,u_w)`
 
