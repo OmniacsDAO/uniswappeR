@@ -82,18 +82,21 @@ we need to configure the environment and then we can use the functions to make t
 	- `check_tok.to.eth_eth.fix(t_a,t_d,e_q,u_w)`
 
 
-- How much DAI Token you would get for 2 UNI, When you Swap UNI for DAI<br>
+- How much DAI Token you would get for 2 UNI, When you Swap UNI for DAI (Uses UNI->ETH->DAI Route)<br>
 	- UNI Quantity<br>
 	`t1_q <- 2`
 	- `check_tok1.to.tok2_tok1.fix(t1_a,t1_d,t2_a,t2_d,t1_q,u_w)`
 
 
-- How much UNI Token you would need to get 50 DAI, When you Swap UNI for DAI<br>
+- How much UNI Token you would need to get 50 DAI, When you Swap UNI for DAI (Uses UNI->ETH->DAI Route)<br>
 	- UNI Quantity<br>
 	`t2_q <- 50`
 	- `check_tok1.to.tok2_tok2.fix(t1_a,t1_d,t2_a,t2_d,t2_q,u_w)`
 
 
+#### 5. Trade Functions to make swaps on Uniswap
+
+#### Trade functionality ends here...
 
 <img src="man/figures/example_plot.png" align="center"/>
 
