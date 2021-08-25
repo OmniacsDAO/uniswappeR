@@ -28,9 +28,7 @@ Note The following steps are not necessary to perform if you only want to intera
 `set_infura_node("https://mainnet.infura.io/v3/XXXXXXXXXXXXXXXXXXX")`
 
 #### 2. Setup a uniswap session using your address and private key
-`u_s <- uniswap_session(
-			user_add="******************************************",
-			pvt_key="****************************************************************")`
+`u_s <- uniswap_session(user_add = "**", pvt_key = "***")`
 
 
 
