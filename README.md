@@ -23,6 +23,7 @@ we need to configure the environment and then we can use the functions to make t
 
 #### 1. Use the Virtual Environment generated above
 - `library(reticulate)`
+- `library(uniswappeR)`
 - `use_virtualenv("uniswappeR-env",required=TRUE)`
 
 #### 2. Use your Infura Node
@@ -32,6 +33,9 @@ we need to configure the environment and then we can use the functions to make t
 `u_w <- uniswap_session(user_add = "**", pvt_key = "***")`
 
 #### 4. Helper Functions to check balances and query prices
+
+- Check Your ETH Balance<br>`check_eth_balance(u_w)`
+
 - Check Your ETH Balance<br>`check_eth_balance(u_w)`
 
 
