@@ -26,8 +26,11 @@ we need to configure the environment and then we can use the functions to make t
 #### 2. Use your Infura Node
 `set_infura_node("https://mainnet.infura.io/v3/XXXXXXXXXXXXXXXXXXX")`
 
-#### 2. Setup a uniswap session using your address and private key
-`u_s <- uniswap_session(user_add = "**", pvt_key = "***")`
+#### 3. Setup a uniswap session using your address and private key
+`u_w <- uniswap_session(user_add = "**", pvt_key = "***")`
+
+#### 4. Helper Functions to check balances and query prices
+- Check Your ETH Balance<br>`check_eth_balance(u_w)`
 
 
 
