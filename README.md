@@ -2,7 +2,17 @@
 
 R Package to Interact and Trade with Uniswap Platform and Exploration of Uniswap data from GraphQL.
 
-## (Optional Environment Setup) If you want to use the trade functionality of the package.
+## Trade Functionality
+
+### Description
+Our `uniswappeR` R package includes the functionality to trade and query prices from the Uniswap Platform. To interact with the Uniswap Platform
+we need to configure the environment and then we can use the functions to make trades on the uniswap platform and query prices.
+
+### Walkthrough
+
+[Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
+
+#### 0. (Optional Environment Setup) If you want to use the trade functionality of the package.
 
 Note The following steps are not necessary to perform if you only want to interact with the Uniswap data from the GraphQL.
 
@@ -11,6 +21,13 @@ Note The following steps are not necessary to perform if you only want to intera
 - Create a Virtual Environment to keep the backend sandboxed using<br>`virtualenv_create("uniswappeR-env", version = "3.8.7")`
 - Install uniswap-python package using<br>`virtualenv_install(envname="uniswappeR-env",packages=c("uniswap-python==0.4.6"))`
 - Use the Virtual Environment using<br>`use_virtualenv("uniswappeR-env",required=TRUE)`
+
+#### 1. 
+
+
+
+
+
 
 <img src="man/figures/example_plot.png" align="center"/>
 
