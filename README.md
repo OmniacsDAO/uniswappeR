@@ -1,6 +1,16 @@
 # uniswappeR
 
-R Package for Exploration of Uniswap Positions and Trades
+R Package to Interact and Trade with Uniswap Platform and Exploration of Uniswap data from GraphQL.
+
+## (Optional Environment Setup) If you want to use the trade functionality of the package.
+
+Note The following steps are not necessary to perform if you only want to interact with the Uniswap data from the GraphQL.
+
+- Install the reticulate package using `library(reticulate)`
+- Install python to use as backend `install_python("3.8.7")`
+- Create a Virtual Environment to keep the backend sandboxed `virtualenv_create("uniswappeR-env", version = "3.8.7")`
+- Install uniswap-python package `virtualenv_install(envname="uniswappeR-env",packages=c("uniswap-python==0.4.6"))`
+- Use the Virtual Environment `use_virtualenv("uniswappeR-env",required=TRUE)`
 
 <img src="man/figures/example_plot.png" align="center"/>
 
@@ -10,7 +20,7 @@ Uniswap Trading Report
 
 ## Description
 
-Our `uniswappeR` R package abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package. This package includes a number of high level functions for interacting with this data:
+Our `uniswappeR` R package includes the backend to interact with the uniswap platform to make swaps and queries right from your R console. Also contains the codebase to abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package. This package includes a number of high level functions for interacting with this data:
 
 - swaps: Returns the swap data for a given set of addresses
 - swap_statistics: High level statistics on swaps
