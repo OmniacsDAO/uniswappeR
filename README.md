@@ -37,6 +37,7 @@ we need to configure the environment and then we can use the functions to make t
 - We would look into Uniswap(UNI)/ETH pair to trade and query <br>
 	- UNI Token Address<br>
 	`t_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
+	- UNI Token Balances<br>
 	`t_d <- 18`
 
 - Check Your ETH Balance<br>`check_eth_balance(u_w)`
