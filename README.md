@@ -37,11 +37,11 @@ we need to configure the environment and then we can use the functions to make t
 - Check Your ETH Balance<br>`check_eth_balance(u_w)`
 
 - Check Your Uniswap (UNI) Token Balance<br>
-* Uniswap (UNI) Token Address
+	* Uniswap (UNI) Token Address
 `t_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
-* Uniswap (UNI) Token Decimals
+	* Uniswap (UNI) Token Decimals
 `t_d <- 18`
-* Check Balance 
+	* Check Balance 
 `check_tok_balance(t_a,t_d,u_w)`
 
 
