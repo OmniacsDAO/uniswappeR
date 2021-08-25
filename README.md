@@ -1,6 +1,8 @@
 # uniswappeR
 
-R Package to Interact and Trade with Uniswap Platform and Exploration of Uniswap data from GraphQL.
+R Package to Interact and Trade with Uniswap Platform and Exploration of Uniswap data from GraphQL.<br>
+Install Using <br>
+`devtools::install_github("Omni-Analytics-Group/uniswappeR")`
 
 ## Trade Functionality
 
