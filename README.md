@@ -6,7 +6,7 @@ R Package to Interact and Trade with Uniswap Platform and Exploration of Uniswap
 
 Note The following steps are not necessary to perform if you only want to interact with the Uniswap data from the GraphQL.
 
-- Install the reticulate package using\ `library(reticulate)`
+- Install the reticulate package using<br> `library(reticulate)`
 - Install python to use as backend\ `install_python("3.8.7")`
 - Create a Virtual Environment to keep the backend sandboxed\ `virtualenv_create("uniswappeR-env", version = "3.8.7")`
 - Install uniswap-python package\ `virtualenv_install(envname="uniswappeR-env",packages=c("uniswap-python==0.4.6"))`
