@@ -20,6 +20,7 @@ we need to configure the environment and then we can use the functions to make t
 - Create a Virtual Environment to keep the backend sandboxed using<br>`virtualenv_create("uniswappeR-env", version = "3.8.7")`
 - Install uniswap-python package using<br>`virtualenv_install(envname="uniswappeR-env",packages=c("uniswap-python==0.4.6"))`
 - Use the Virtual Environment using<br>`use_virtualenv("uniswappeR-env",required=TRUE)`
+- Extract checksum function from Web3 module<br>`Web3_checksum <- import("web3",convert=FALSE)$Web3$toChecksumAddress`
 
 #### 1. Use the Virtual Environment generated above
 - `library(reticulate)`
@@ -31,7 +32,6 @@ we need to configure the environment and then we can use the functions to make t
 
 #### 3. Setup a uniswap session using your address and private key
 `u_w <- uniswap_session(user_add = "**", pvt_key = "***")`<br>
-`Web3_checksum <- import("web3",convert=FALSE)$Web3$toChecksumAddress`
 
 #### 4. Helper Functions to Check Balances and Query Prices
 
