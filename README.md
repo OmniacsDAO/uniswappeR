@@ -32,14 +32,23 @@ we need to configure the environment and then we can use the functions to make t
 #### 3. Setup a uniswap session using your address and private key
 `u_w <- uniswap_session(user_add = "**", pvt_key = "***")`
 
-#### 4. Helper Functions to check balances and query prices
+#### 4. Helper Functions to Check Balances and Query Prices
 
-- We would look into Uniswap(UNI)/ETH pair to trade and query <br>
+- We would use Uniswap(UNI)/ETH pair to trade and query <br>
 	- UNI Token Address<br>
 	`t_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
-	- UNI Token Balances<br>
+	- UNI Token Decimals<br>
 	`t_d <- 18`
 
+- We would use Uniswap(UNI)/ DAI Stablecoin pair to trade and query for Token to Token swap<br>
+	- UNI Token Address<br>
+	`t1_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
+	- UNI Token Decimals<br>
+	`t1_d <- 18`
+	- DAI Token Address<br>
+	`t2_a <- "0x6b175474e89094c44da98b954eedeac495271d0f"`
+	- DAI Token Decimals<br>
+	`t2_d <- 18`
 
 - Check Your ETH Balance<br>`check_eth_balance(u_w)`
 
@@ -48,17 +57,40 @@ we need to configure the environment and then we can use the functions to make t
 	- `check_tok_balance(t_a,t_d,u_w)`
 
 
-- How much UNI Token you would get for .5 ETH<br>
+- How much UNI Token you would get for .5 ETH, When you Swap ETH for UNI<br>
 	- Ethereum Quantity<br>
 	`e_q <- .5`
 	- `check_eth.to.tok_eth.fix(t_a,t_d,e_q,u_w)`
 
 
-- How much ETH you need to get 2 UNI Tokens<br>
-	- UNI Quantity<br>
+- How much ETH you need to get 2 UNI Tokens, When you Swap ETH for UNI<br>
+	- UNI Tokens Quantity<br>
 	`t_q <- 2`
 	- `check_eth.to.tok_tok.fix(t_a,t_d,t_q,u_w)`
 
+
+- How much ETH you would get for 2 UNI Tokens, When you Swap UNI for ETH<br>
+	- Ethereum Quantity<br>
+	`t_q <- 2`
+	- `check_tok.to.eth_tok.fix(t_a,t_d,t_q,u_w)`
+
+
+- How much UNI Token you need to get .5 ETH Tokens, When you Swap UNI for ETH<br>
+	- Ethereum Quantity<br>
+	`e_q <- .5`
+	- `check_tok.to.eth_eth.fix(t_a,t_d,e_q,u_w)`
+
+
+- How much DAI Token you would get for 2 UNI, When you Swap UNI for DAI<br>
+	- UNI Quantity<br>
+	`t1_q <- 2`
+	- `check_tok1.to.tok2_tok1.fix(t1_a,t1_d,t2_a,t2_d,t1_q,u_w)`
+
+
+- How much UNI Token you would need to get 50 DAI, When you Swap UNI for DAI<br>
+	- UNI Quantity<br>
+	`t2_q <- 50`
+	- `check_tok1.to.tok2_tok2.fix(t1_a,t1_d,t2_a,t2_d,t2_q,u_w)`
 
 
 
