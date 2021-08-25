@@ -13,7 +13,6 @@ we need to configure the environment and then we can use the functions to make t
 [Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
 
 #### 0. (Optional Environment Setup) If you want to use the trade functionality of the package.
-Note The following steps are not necessary to perform if you only want to interact with the Uniswap data from the GraphQL.
 - Install the reticulate package using<br>`library(reticulate)`
 - Install python to use as backend using<br>`install_python("3.8.7")`
 - Create a Virtual Environment to keep the backend sandboxed using<br>`virtualenv_create("uniswappeR-env", version = "3.8.7")`
