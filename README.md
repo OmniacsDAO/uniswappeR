@@ -30,23 +30,24 @@ we need to configure the environment and then we can use the functions to make t
 `set_infura_node("https://mainnet.infura.io/v3/XXXXXXXXXXXXXXXXXXX")`
 
 #### 3. Setup a uniswap session using your address and private key
-`u_w <- uniswap_session(user_add = "**", pvt_key = "***")`
+`u_w <- uniswap_session(user_add = "**", pvt_key = "***")`<br>
+`Web3_checksum <- import("web3",convert=FALSE)$Web3$toChecksumAddress`
 
 #### 4. Helper Functions to Check Balances and Query Prices
 
 - We would use Uniswap(UNI)/ETH pair to trade and query <br>
 	- UNI Token Address<br>
-	`t_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
+	`t_a <- Web3_checksum("0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 	- UNI Token Decimals<br>
 	`t_d <- 18`
 
 - We would use Uniswap(UNI)/ DAI Stablecoin pair to trade and query for Token to Token swap<br>
 	- UNI Token Address<br>
-	`t1_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
+	`t1_a <- Web3_checksum("0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 	- UNI Token Decimals<br>
 	`t1_d <- 18`
 	- DAI Token Address<br>
-	`t2_a <- "0x6b175474e89094c44da98b954eedeac495271d0f"`
+	`t2_a <- Web3_checksum("0x6b175474e89094c44da98b954eedeac495271d0f")`
 	- DAI Token Decimals<br>
 	`t2_d <- 18`
 
