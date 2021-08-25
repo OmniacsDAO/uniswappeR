@@ -34,9 +34,9 @@ we need to configure the environment and then we can use the functions to make t
 
 #### 4. Helper Functions to check balances and query prices
 
-A) Check Your ETH Balance<br>`check_eth_balance(u_w)`
+- Check Your ETH Balance<br>`check_eth_balance(u_w)`
 
-B) Check Your Uniswap (UNI) Token Balance<br>
+- Check Your Uniswap (UNI) Token Balance<br>
 
 	- Uniswap (UNI) Token Address<br>
 	`t_a <- "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"`
