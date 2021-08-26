@@ -22,5 +22,4 @@ addresses <- c("0xb1b117a45aD71d408eb55475FC3A65454edCc94A",
 "0x0De20c4bDBE0d0EEFFd2956Be4c148CA86C6cC45")
 
 swap_data <- swaps(addresses)
-swap_performance(swap_data)
 }

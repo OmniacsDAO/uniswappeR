@@ -9,129 +9,129 @@ initialize_queries <- function() {
     ## Add Position data query
     qry$query('position_data',
               'query position_data($user: String!, $pair: String!)
-	{
-		mints(where: {to: $user, pair: $pair})
-		{
-			amountUSD
-			amount0
-			amount1
-			timestamp
-  			pair
-  			{
-  				id
-  				token0
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  				token1
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  			}
-		}
-		burns(where: {sender: $user, pair: $pair})
-		{
-			amountUSD
-			amount0
-			amount1
-			timestamp
-  			pair
-  			{
-  				id
-  				token0
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  				token1
-  				{
-  					symbol
-  					name
-  					decimals
-  				}
-  			}
-		}
-	}'
+    {
+        mints(where: {to: $user, pair: $pair})
+        {
+            amountUSD
+            amount0
+            amount1
+            timestamp
+            pair
+            {
+                id
+                token0
+                {
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    symbol
+                    name
+                    decimals
+                }
+            }
+        }
+        burns(where: {sender: $user, pair: $pair})
+        {
+            amountUSD
+            amount0
+            amount1
+            timestamp
+            pair
+            {
+                id
+                token0
+                {
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    symbol
+                    name
+                    decimals
+                }
+            }
+        }
+    }'
     )
 
     ## Add Position query
     qry$query('liquidity_positions',
               'query liquidity_positions($user: String!)
-	{
-		liquidityPositions(where:{ user:$user })
-			{
-  				id
-  				user
-  				pair
-  				{
-  					id
-  					reserve0
-  					reserve1
-  					reserveUSD
-  					totalSupply
-  					token0
-  					{
-  						symbol
-  						name
-  						decimals
-  						derivedETH
-  					}
-  					token1
-  					{
-  						symbol
-  						name
-  						decimals
-  						derivedETH
-  					}
-  				}
-  				liquidityTokenBalance
-			}
-	}'
+    {
+        liquidityPositions(where:{ user:$user })
+            {
+                id
+                user
+                pair
+                {
+                    id
+                    reserve0
+                    reserve1
+                    reserveUSD
+                    totalSupply
+                    token0
+                    {
+                        symbol
+                        name
+                        decimals
+                        derivedETH
+                    }
+                    token1
+                    {
+                        symbol
+                        name
+                        decimals
+                        derivedETH
+                    }
+                }
+                liquidityTokenBalance
+            }
+    }'
     )
 
     ## Add Liquidity Position Snapshot query
     qry$query('liquidity_position_snapshots',
               'query liquidity_position_snapshots($user: String!)
-	{
-		liquidityPositionSnapshots(where:{ user:$user })
-			{
-  				id
-  				timestamp
-  				block
-  				user
-  				pair
-  				{
-  					id
-  					reserve0
-  					reserve1
-  					reserveUSD
-  					token0
-  					{
-  						symbol
-  						name
-  						decimals
-  					}
-  					token1
-  					{
-  						symbol
-  						name
-  						decimals
-  					}
-  				}
-  				token0PriceUSD
-  				token1PriceUSD
-  				reserve0
-  				reserve1
-  				reserveUSD
-  				liquidityTokenTotalSupply
-  				liquidityTokenBalance
-			}
-	}'
+    {
+        liquidityPositionSnapshots(where:{ user:$user })
+            {
+                id
+                timestamp
+                block
+                user
+                pair
+                {
+                    id
+                    reserve0
+                    reserve1
+                    reserveUSD
+                    token0
+                    {
+                        symbol
+                        name
+                        decimals
+                    }
+                    token1
+                    {
+                        symbol
+                        name
+                        decimals
+                    }
+                }
+                token0PriceUSD
+                token1PriceUSD
+                reserve0
+                reserve1
+                reserveUSD
+                liquidityTokenTotalSupply
+                liquidityTokenBalance
+            }
+    }'
     )
 
     ## Add Transactions Query
@@ -254,36 +254,35 @@ initialize_queries <- function() {
     ## Add Liquidity historical plot data
     qry$query('liquidity_historical',
               'query liquidity_historical($pair: String!, $date: Int!)
-	{
-		pairDayDatas(first: 1000, orderBy: date, orderDirection: asc, where: {pairAddress: $pair , date_gt: $date})
-		{
-  			id
-    		pairAddress
-    		date
-    		dailyVolumeToken0
-    		dailyVolumeToken1
-    		dailyVolumeUSD
-    		totalSupply
-    		reserveUSD
-    		token0
-  			{
-  				symbol
-  				name
-  				decimals
-  			}
-  			token1
-  			{
-  				symbol
-  				name
-  				decimals
-  			}
-    	}
+    {
+        pairDayDatas(first: 1000, orderBy: date, orderDirection: asc, where: {pairAddress: $pair , date_gt: $date})
+        {
+            id
+            pairAddress
+            date
+            dailyVolumeToken0
+            dailyVolumeToken1
+            dailyVolumeUSD
+            totalSupply
+            reserveUSD
+            token0
+            {
+                symbol
+                name
+                decimals
+            }
+            token1
+            {
+                symbol
+                name
+                decimals
+            }
+        }
     }'
     )
 
     return(list(con, qry))
 }
-
 #' Get all the swaps data for a given address or addresses
 #'
 #' @param address A wallet address (or vector of addresses) for the account owner's account
@@ -546,7 +545,7 @@ cmc_data_new <- function(ticker, start_date = "20130329", end_date = gsub("-", "
 #' "0x0De20c4bDBE0d0EEFFd2956Be4c148CA86C6cC45")
 #'
 #' swap_data <- swaps(addresses)
-#' swap_performance(swap_data)
+# swap_performance(swap_data)
 swap_performance <- function(swap_data) {
     all_tokens <- unique(c(swap_data$token0_symbol, swap_data$token1_symbol))
     hist_data <- lapply(all_tokens, cmc_data_new)

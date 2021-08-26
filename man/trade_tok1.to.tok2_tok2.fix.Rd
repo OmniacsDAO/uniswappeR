@@ -2,7 +2,7 @@
 % Please edit documentation in R/trade.R
 \name{trade_tok1.to.tok2_tok2.fix}
 \alias{trade_tok1.to.tok2_tok2.fix}
-\title{Swap Token1 for Token2, Receive Token2 for specified Token1 Amount}
+\title{Swap Token1 for Token2, Receive specified Token2 Amount}
 \usage{
 trade_tok1.to.tok2_tok2.fix(t1_a, t1_d, t2_a, t2_d, t2_q, u_w)
 }
@@ -23,5 +23,5 @@ trade_tok1.to.tok2_tok2.fix(t1_a, t1_d, t2_a, t2_d, t2_q, u_w)
 Transaction Hash
 }
 \description{
-Swap Token1 for Token2, Receive Token2 for specified Token1 Amount
+Swap Token1 for Token2, Receive specified Token2 Amount
 }

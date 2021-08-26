@@ -1,7 +1,7 @@
 Package: uniswappeR
 Type: Package
-Title: Uniswap Position and Trading Explorer
-Version: 0.1.0
+Title: R Package to interact with the Uniswap Platform
+Version: 0.2.0
 Authors@R: c(
     person("Omni Analytics Group", email = "services@omnianalytics.io", role = "aut"),
     person("Eric Hare", email = "eric@omnianalytics.io", role = "cre"))
