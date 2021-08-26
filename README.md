@@ -9,6 +9,7 @@ The package has 3 Functionalities
 - [Pull Data : To pull all types data from Uniswap GraphQL to explore yourself](https://github.com/Omni-Analytics-Group/uniswappeR#pull-data-functionality)
 - [Explore Data : To Analyse and explore the uniswap data](https://github.com/Omni-Analytics-Group/uniswappeR#data-exploration-functionality)
 
+<hr>
 
 ## Trade Functionality
 
@@ -207,7 +208,7 @@ Our `uniswappeR` R package includes the backend to interact with the uniswap pla
 
 <img src="man/figures/example3_pricechange.png"  align="center"/>
 
-
+<hr>
 
 ## About Us
 
