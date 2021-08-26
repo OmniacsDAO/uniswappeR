@@ -172,6 +172,9 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 
 - `factory_stats()`
 
+#### 3. View Stats for a specific token across all pairs that token is included in
+
+- `token_stats(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
 <hr>
 

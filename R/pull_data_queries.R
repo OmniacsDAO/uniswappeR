@@ -22,8 +22,7 @@ initialize_queries <- function()
                 totalVolumeETH
                 totalLiquidityUSD
                 totalLiquidityETH
-                txCount
-                
+                txCount   
             }
         }'
     )
@@ -32,9 +31,29 @@ initialize_queries <- function()
 
 
     ##################################################################
-    ## Stats of Uniswap Factory
+    ## Stats of a particular token
     ##################################################################
-    
+    qry$query(
+        'token_stats',
+        'query token_stats($tokenAdd: String!)
+        {
+            tokens(where: {id: $tokenAdd})
+            {
+                id
+                symbol
+                name
+                decimals
+                tradeVolume
+                tradeVolumeUSD
+                untrackedVolumeUSD
+                txCount
+                totalLiquidity
+                derivedETH
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
 
 
 
