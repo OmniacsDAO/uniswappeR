@@ -214,7 +214,7 @@ trade_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$'_token_t
 #' @return Transaction Hash
 trade_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) as.character(u_w$'_token_to_token_swap_input'(t1_a,py_int(t1_q*10**t1_d),t2_a,recipient=NULL)$hex())
 
-#' Swap Token1 for Token2, Receive Token2 for specified Token1 Amount
+#' Swap Token1 for Token2, Receive specified Token2 Amount
 #' @export
 #' @param u_w Uniswap Session
 #' @param t1_a Token 1 Address

@@ -119,20 +119,32 @@ we need to configure the environment and then we can use the functions to make t
 
 
 - Swap as much ETH required to get 2 UNI Tokens<br>
-	- Ethereum Quantity<br>
+	- UNI Quantity<br>
 	`t_q <- .5`
 	- `trade_eth.to.tok_tok.fix(t_a,t_d,t_q,u_w)`
 
 
 - Swap 2 UNI Tokens for ETH<br>
-	- Ethereum Quantity<br>
+	- UNI Quantity<br>
 	`t_q <- 2`
 	- `trade_tok.to.eth_tok.fix(t_a,t_d,t_q,u_w)`
+
 
 - Swap as much UNI Tokens required to get .5 ETH<br>
 	- Ethereum Quantity<br>
 	`e_q <- .5`
 	- `trade_tok.to.eth_eth.fix(t_a,t_d,e_q,u_w)`
+
+
+- Swap 2 UNI Tokens for DAI Tokens<br>
+	- UNI Quantity<br>
+	`t1_q <- 2`
+	- `trade_tok1.to.tok2_tok1.fix(t1_a,t1_d,t2_a,t2_d,t1_q,u_w)`
+
+- Swap as much UNI Tokens required to get 20 DAI Tokens<br>
+	- DAI Quantity<br>
+	`t2_q <- 20`
+	- `trade_tok1.to.tok2_tok2.fix(t1_a,t1_d,t2_a,t2_d,t2_q,u_w)`
 
 
 
