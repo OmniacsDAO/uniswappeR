@@ -147,7 +147,7 @@ we need to configure the environment and then we can use the functions to make t
 	- `trade_tok1.to.tok2_tok2.fix(t1_a,t1_d,t2_a,t2_d,t2_q,u_w)`
 
 
-
+<hr>
 ## Data Exploration Functionality
 
 <img src="man/figures/example_plot.png" align="center"/>
