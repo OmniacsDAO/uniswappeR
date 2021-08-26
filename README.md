@@ -4,6 +4,12 @@ R Package to Interact and Trade with Uniswap Platform and Exploration of Uniswap
 Install Using <br>
 `devtools::install_github("Omni-Analytics-Group/uniswappeR")`
 
+The package has 3 Functionalities
+- [Trade : To query prices and make trades on Uniswap from R console](https://github.com/Omni-Analytics-Group/uniswappeR#trade-functionality)
+- [Pull Data : To pull all types data from Uniswap GraphQL to explore yourself](https://github.com/Omni-Analytics-Group/uniswappeR#pull-data-functionality)
+- [Explore Data : To Analyse and explore the uniswap data](https://github.com/Omni-Analytics-Group/uniswappeR#data-exploration-functionality)
+
+
 ## Trade Functionality
 
 ### Description
@@ -146,6 +152,12 @@ we need to configure the environment and then we can use the functions to make t
 	`t2_q <- 20`
 	- `trade_tok1.to.tok2_tok2.fix(t1_a,t1_d,t2_a,t2_d,t2_q,u_w)`
 
+
+<hr>
+
+## Pull Data Functionality
+
+
 <hr>
 
 ## Data Exploration Functionality
@@ -168,10 +180,6 @@ Our `uniswappeR` R package includes the backend to interact with the uniswap pla
 ### Walkthrough
 
 [Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
-
-#### 0. Install the package.
-
-`devtools::install_github("Omni-Analytics-Group/uniswappeR")`
 
 #### 1. Load the package.
 
