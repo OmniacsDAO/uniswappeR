@@ -12,8 +12,6 @@ we need to configure the environment and then we can use the functions to make t
 
 ### Walkthrough
 
-[Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
-
 #### 0. (Optional Environment Setup) If you want to use the trade functionality of the package.
 - Install the reticulate package using<br>`library(reticulate)`
 - Install python to use as backend using<br>`install_python("3.8.7")`
@@ -35,13 +33,13 @@ we need to configure the environment and then we can use the functions to make t
 
 #### 4. Helper Functions to Check Balances and Query Prices
 
-- We would use Uniswap(UNI)/ETH pair to trade and query <br>
+- We would use Uniswap(UNI)/ETH pair to query on <br>
 	- UNI Token Address<br>
 	`t_a <- Web3_checksum("0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 	- UNI Token Decimals<br>
 	`t_d <- 18`
 
-- We would use Uniswap(UNI)/ DAI Stablecoin pair to trade and query for Token to Token swap<br>
+- We would use Uniswap(UNI)/ DAI Stablecoin pair to query for Token to Token swap<br>
 	- UNI Token Address<br>
 	`t1_a <- Web3_checksum("0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 	- UNI Token Decimals<br>
@@ -50,6 +48,7 @@ we need to configure the environment and then we can use the functions to make t
 	`t2_a <- Web3_checksum("0x6b175474e89094c44da98b954eedeac495271d0f")`
 	- DAI Token Decimals<br>
 	`t2_d <- 18`
+
 
 - Check Your ETH Balance<br>`check_eth_balance(u_w)`
 
@@ -95,6 +94,47 @@ we need to configure the environment and then we can use the functions to make t
 
 
 #### 5. Trade Functions to make swaps on Uniswap
+
+- We would use Uniswap(UNI)/ETH pair to make swaps<br>
+	- UNI Token Address<br>
+	`t_a <- Web3_checksum("0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+	- UNI Token Decimals<br>
+	`t_d <- 18`
+
+- We would use Uniswap(UNI)/ DAI Stablecoin pair for Token to Token swap<br>
+	- UNI Token Address<br>
+	`t1_a <- Web3_checksum("0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+	- UNI Token Decimals<br>
+	`t1_d <- 18`
+	- DAI Token Address<br>
+	`t2_a <- Web3_checksum("0x6b175474e89094c44da98b954eedeac495271d0f")`
+	- DAI Token Decimals<br>
+	`t2_d <- 18`
+
+
+- Swap .5 ETH for UNI Tokens<br>
+	- Ethereum Quantity<br>
+	`e_q <- .5`
+	- `trade_eth.to.tok_eth.fix(t_a,t_d,e_q,u_w)`
+
+
+- Swap as much ETH required to get 2 UNI Tokens<br>
+	- Ethereum Quantity<br>
+	`t_q <- .5`
+	- `trade_eth.to.tok_tok.fix(t_a,t_d,t_q,u_w)`
+
+
+- Swap 2 UNI Tokens for ETH<br>
+	- Ethereum Quantity<br>
+	`t_q <- 2`
+	- `trade_tok.to.eth_tok.fix(t_a,t_d,t_q,u_w)`
+
+- Swap as much UNI Tokens required to get .5 ETH<br>
+	- Ethereum Quantity<br>
+	`e_q <- .5`
+	- `trade_tok.to.eth_eth.fix(t_a,t_d,e_q,u_w)`
+
+
 
 #### Trade functionality ends here...
 
