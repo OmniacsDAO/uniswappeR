@@ -148,15 +148,15 @@ we need to configure the environment and then we can use the functions to make t
 
 
 
-#### Trade functionality ends here...
+## Data Exploration Functionality
 
 <img src="man/figures/example_plot.png" align="center"/>
-
 <div align="center">
 Uniswap Trading Report
 </div>
 
-## Description
+
+### Description
 
 Our `uniswappeR` R package includes the backend to interact with the uniswap platform to make swaps and queries right from your R console. Also contains the codebase to abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package. This package includes a number of high level functions for interacting with this data:
 
@@ -165,35 +165,35 @@ Our `uniswappeR` R package includes the backend to interact with the uniswap pla
 - swap_visualizations: A series of ggplot2 visualizations about swap performance
 - swap_performance: A ggplot2 visualization for assessing the performance of your swaps
 
-## Walkthrough
+### Walkthrough
 
 [Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
 
-### 0. Install the package.
+#### 0. Install the package.
 
 `devtools::install_github("Omni-Analytics-Group/uniswappeR")`
 
-### 1. Load the package.
+#### 1. Load the package.
 
 - `library(uniswappeR)`
 
-### 2. Define an address or vector of addresses of interest
+#### 2. Define an address or vector of addresses of interest
 
 - `addresses <- c("0x2e3381202988d535e8185e7089f633f7c9998e83", "0x4d9c274ADF71e4201B4aB1f28BF05D44eE4bA261")`
 
-### 3. Get the swap data for those addresses
+#### 3. Get the swap data for those addresses
 
 - `swap_data <- swaps(addresses)`
 
 <img src="man/figures/example1_dataframe.png"  align="center"/>
 
-### 4. Produce visualizations of the swap data
+#### 4. Produce visualizations of the swap data
 
 - `swap_visualizations(swap_data)`
 
 <img src="man/figures/example2_report_card.png"  align="center"/>
 
-### 5. Produce a visualization of the performance of the swaps
+#### 5. Produce a visualization of the performance of the swaps
 
 - `swap_performance(swap_data)`
 
