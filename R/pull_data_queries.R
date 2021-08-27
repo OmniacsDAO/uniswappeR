@@ -56,6 +56,52 @@ initialize_queries <- function()
     ##################################################################
 
 
+    ##################################################################
+    ## Stats of a particular pair
+    ##################################################################
+    qry$query(
+        'pair_stats',
+        'query pair_stats($pairAdd: String!)
+        {
+            pairs(where: {id: $pairAdd})
+            {
+                id
+                token0
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                reserve0
+                reserve1
+                totalSupply
+                reserveUSD
+                reserveETH
+                trackedReserveETH
+                token0Price
+                token1Price
+                volumeToken0
+                volumeToken1
+                volumeUSD
+                untrackedVolumeUSD
+                txCount
+                createdAtTimestamp
+                createdAtBlockNumber
+                liquidityProviderCount
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
 
 
 
