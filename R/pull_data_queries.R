@@ -57,6 +57,35 @@ initialize_queries <- function()
 
 
     ##################################################################
+    ## Historical Stats of a particular token
+    ##################################################################
+    qry$query(
+        'token_stats_hist',
+        'query token_stats_hist($tokenAdd: String!)
+        {
+            tokens(where: {id: $tokenAdd})
+            {
+                tokenDayData(orderBy: date, orderDirection: desc,first:1000)
+                {
+                    date
+                    dailyVolumeToken
+                    dailyVolumeETH
+                    dailyVolumeUSD
+                    dailyTxns
+                    totalLiquidityToken
+                    totalLiquidityETH
+                    totalLiquidityUSD
+                    priceUSD
+                }
+
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
     ## Stats of a particular pair
     ##################################################################
     qry$query(

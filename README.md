@@ -176,7 +176,11 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 
 - `token_stats(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
-#### 4. View Stats for a specific pair
+#### 4. View Historicsl Stats for a specific token across all pairs that token is included in (Max 1000 Entries)
+
+- `token_stats_hist(token_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")`
+
+#### 6. View Stats for a Pair
 
 - `pair_stats(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")`
 

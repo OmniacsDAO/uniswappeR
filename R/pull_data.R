@@ -16,6 +16,7 @@ factory_stats <- function()
     fromJSON(con$exec(qry$queries$factory_stats))$data$uniswapFactories
 }
 
+
 #' Get Token Stats
 #' @param token_address Token's Address
 #' @return Data on a particular Token
@@ -35,8 +36,28 @@ token_stats <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f
     fromJSON(con$exec(qry$queries$token_stats,list(tokenAdd = token_address)))$data$tokens
 }
 
+
+#' Get Token Historical Stats (Max 1000 Entries)
+#' @param token_address Token's Address
+#' @return Historical Data on a particular Token
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#'
+#' @examples
+#'
+#' token_stats_hist(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+token_stats_hist <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    fromJSON(con$exec(qry$queries$token_stats_hist,list(tokenAdd = token_address)))$data$tokens$tokenDayData[[1]]
+}
+
+
 #' Get Pair Stats
-#' @import jsonlite
 #' @param pair_address Pair's Address
 #' @return Data on a particular Pair
 #'
@@ -52,5 +73,5 @@ pair_stats <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a1
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
-    flatten(fromJSON(con$exec(qry$queries$pair_stats,list(pairAdd = pair_address)))$data$pairs)
+    fromJSON(con$exec(qry$queries$pair_stats,list(pairAdd = pair_address)))$data$pairs
 }
