@@ -2,7 +2,7 @@
 initialize_queries <- function() 
 {
     ## Initialize Client Connection
-    con <- GraphqlClient$new("https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2")
+    con <- GraphqlClient$new("https://api.thegraph.com/subgraphs/name/ianlapham/uniswapv2")
 
     ## Prepare New Query
     qry <- Query$new()
