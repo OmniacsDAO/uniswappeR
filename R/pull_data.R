@@ -7,8 +7,8 @@
 #'
 #' @examples
 #'
-#' factory_stats()
-factory_stats <- function() 
+#' factory_stats_v2()
+factory_stats_v2 <- function() 
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -27,8 +27,8 @@ factory_stats <- function()
 #'
 #' @examples
 #'
-#' token_stats(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
-token_stats <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+#' token_stats_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -47,8 +47,8 @@ token_stats <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f
 #'
 #' @examples
 #'
-#' token_stats_hist(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
-token_stats_hist <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+#' token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -67,8 +67,8 @@ token_stats_hist <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc
 #'
 #' @examples
 #'
-#' pair_stats(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
-pair_stats <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17") 
+#' pair_stats_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+pair_stats_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17") 
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
