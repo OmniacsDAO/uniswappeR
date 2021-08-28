@@ -5,7 +5,7 @@
 \title{Get Hourly Pair Historical Stats}
 \usage{
 pair_stats_hist_hourly_v2(
-  pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17"
+  pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8"
 )
 }
 \arguments{
@@ -19,5 +19,5 @@ Get Hourly Pair Historical Stats
 }
 \examples{
 
-pair_stats_hist_hourly_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+pair_stats_hist_hourly_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
 }

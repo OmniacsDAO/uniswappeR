@@ -411,6 +411,169 @@ initialize_queries <- function()
     ##################################################################
 
 
+    ##################################################################
+    ## Mint Transactions in a pair
+    ##################################################################
+    qry$query(
+        'mints_pair',
+        'query mints_pair($pairAdd: String!,$timestamp: Int!)
+        {
+            pairs(where:{id:$pairAdd})
+            {
+                mints(orderBy: timestamp, orderDirection: desc,first:1000,where:{timestamp_lt:$timestamp})
+                {
+                    id
+                    timestamp
+                    to
+                    liquidity
+                    sender
+                    amount0
+                    amount1
+                    logIndex
+                    amountUSD
+                    feeTo
+                    feeLiquidity
+                    transaction
+                    {
+                        id
+                    }
+                    pair
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## Burn Transactions in a pair
+    ##################################################################
+    qry$query(
+        'burns_pair',
+        'query burns_pair($pairAdd: String!,$timestamp: Int!)
+        {
+            pairs(where:{id:$pairAdd})
+            {
+                burns(orderBy: timestamp, orderDirection: desc,first:1000,where:{timestamp_lt:$timestamp})
+                {
+                    id
+                    timestamp
+                    liquidity
+                    sender
+                    amount0
+                    amount1
+                    to
+                    logIndex
+                    amountUSD
+                    needsComplete
+                    feeTo
+                    feeLiquidity
+                    transaction
+                    {
+                        id
+                    }
+                    pair
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## Swap Transactions in a pair
+    ##################################################################
+    qry$query(
+        'swaps_pair',
+        'query swaps_pair($pairAdd: String!,$timestamp: Int!)
+        {
+            pairs(where:{id:$pairAdd})
+            {
+                swaps(orderBy: timestamp, orderDirection: desc,first:1000,where:{timestamp_lt:$timestamp})
+                {
+                    id
+                    timestamp
+                    sender
+                    from
+                    amount0In
+                    amount0Out
+                    amount1In
+                    amount1Out
+                    to
+                    logIndex
+                    amountUSD
+                    transaction
+                    {
+                        id
+                    }
+                    pair
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+
+
+
+
+
+
 
 
 

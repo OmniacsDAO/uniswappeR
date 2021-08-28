@@ -159,8 +159,8 @@ token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 #'
 #' @examples
 #'
-#' pair_stats_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
-pair_stats_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17") 
+#' pair_stats_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_stats_v2 <- function(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8") 
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -180,8 +180,8 @@ pair_stats_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e51303
 #'
 #' @examples
 #'
-#' pair_stats_hist_hourly_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
-pair_stats_hist_hourly_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+#' pair_stats_hist_hourly_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_stats_hist_hourly_v2 <- function(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -213,8 +213,8 @@ pair_stats_hist_hourly_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199
 #'
 #' @examples
 #'
-#' pair_stats_hist_daily_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
-pair_stats_hist_daily_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+#' pair_stats_hist_daily_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_stats_hist_daily_v2 <- function(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -245,8 +245,8 @@ pair_stats_hist_daily_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d
 #'
 #' @examples
 #'
-#' pair_liq_positions_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
-pair_liq_positions_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+#' pair_liq_positions_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_liq_positions_v2 <- function(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -277,8 +277,8 @@ pair_liq_positions_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d388
 #'
 #' @examples
 #'
-#' pair_liq_positions_hist_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
-pair_liq_positions_hist_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+#' pair_liq_positions_hist_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_liq_positions_hist_v2 <- function(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -293,6 +293,105 @@ pair_liq_positions_hist_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca62319
         if(length(pair_data_t)==0) break()
         pair_data <- bind_rows(pair_data,pair_data_t)
         id_last <- tail(pair_data_t$id,1)
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+
+#' Get Mint Transactions in a pair
+#' @param pair_address Pair's Address
+#' @return Mint Transactions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_mint_txs_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_mint_txs_v2 <- function(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$mints_pair,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pairs$mints[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$timestamp,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+
+#' Get Burn Transactions in a pair
+#' @param pair_address Pair's Address
+#' @return Burn Transactions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_burn_txs_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_burn_txs_v2 <- function(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$burns_pair,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pairs$burns[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$timestamp,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+
+#' Get Swap Transactions in a pair
+#' @param pair_address Pair's Address
+#' @return Swap Transactions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_swap_txs_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_swap_txs_v2 <- function(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$swaps_pair,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pairs$swaps[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$timestamp,1))
         message(paste0("Fetched ",nrow(pair_data)," Entries"))
     }
     return(pair_data)
