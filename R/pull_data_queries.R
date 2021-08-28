@@ -234,6 +234,49 @@ initialize_queries <- function()
     ##################################################################
 
 
+    ##################################################################
+    ## Historical Stats of a particular pair
+    ##################################################################
+    qry$query(
+        'pair_stats_hist',
+        'query pair_stats_hist($pairAdd: String!,$timestamp: Int!)
+        {
+            pairs(where: {id: $pairAdd})
+            {
+                pairHourData(orderBy: hourStartUnix, orderDirection: desc,first:1000,where:{hourStartUnix_lt:$timestamp })
+                {
+                    hourStartUnix
+                    reserve0
+                    reserve1
+                    reserveUSD
+                    hourlyVolumeToken0
+                    hourlyVolumeToken1
+                    hourlyVolumeUSD
+                    hourlyTxns
+                    pair
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
 
 
 

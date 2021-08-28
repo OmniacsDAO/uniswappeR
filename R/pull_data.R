@@ -121,3 +121,38 @@ pair_stats_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e51303
     qry <- qcon[[2]]
     fromJSON(con$exec(qry$queries$pair_stats,list(pairAdd = pair_address)))$data$pairs
 }
+
+
+#' Get Pair Historical Stats
+#' @param pair_address Pair's Address
+#' @return Historical Data on a particular Pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#'
+#' @examples
+#'
+#' pair_stats_hist_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+pair_stats_hist_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$pair_stats_hist,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pairs$pairHourData[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$hourStartUnix,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries\n"))
+    }
+    return(pair_data)
+}
+
+
+
