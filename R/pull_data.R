@@ -37,13 +37,14 @@ token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 }
 
 
-#' Get Token Historical Stats (Max 1000 Entries)
+#' Get Token Historical Stats
 #' @param token_address Token's Address
 #' @return Historical Data on a particular Token
 #'
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @import dplyr
 #'
 #' @examples
 #'
@@ -53,7 +54,20 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
-    fromJSON(con$exec(qry$queries$token_stats_hist,list(tokenAdd = token_address)))$data$tokens$tokenDayData[[1]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    token_data <- data.frame()
+    while(TRUE)
+    {
+        token_data_t <- fromJSON(con$exec(qry$queries$token_stats_hist,list(tokenAdd = token_address,timestamp=c_timestamp)))$data$tokens$tokenDayData[[1]]
+        if(length(token_data_t)==0) break()
+        token_data <- bind_rows(token_data,token_data_t)
+        c_timestamp <- as.numeric(tail(token_data_t$date,1))
+        message(paste0("Fetched ",nrow(token_data)," Entries"))
+    }
+    return(token_data)
+    
 }
 
 
@@ -64,6 +78,7 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @import dplyr
 #'
 #' @examples
 #'
@@ -83,7 +98,7 @@ token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
         if(length(base_data_t)==0) break()
         base_data <- bind_rows(base_data,base_data_t)
         c_timestamp <- as.numeric(tail(base_data_t$createdAtTimestamp,1))
-        message(paste0("Fetched ",nrow(base_data)," Base Entries\n"))
+        message(paste0("Fetched ",nrow(base_data)," Base Entries"))
     }
 
     ## Token as Quote
@@ -95,7 +110,7 @@ token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
         if(length(quote_data_t)==0) break()
         quote_data <- bind_rows(quote_data,quote_data_t)
         c_timestamp <- as.numeric(tail(quote_data_t$createdAtTimestamp,1))
-        message(paste0("Fetched ",nrow(quote_data)," Quote Entries\n"))
+        message(paste0("Fetched ",nrow(quote_data)," Quote Entries"))
     }
 
     ## Return
@@ -130,6 +145,7 @@ pair_stats_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e51303
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @import dplyr
 #'
 #' @examples
 #'
@@ -149,7 +165,7 @@ pair_stats_hist_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e
         if(length(pair_data_t)==0) break()
         pair_data <- bind_rows(pair_data,pair_data_t)
         c_timestamp <- as.numeric(tail(pair_data_t$hourStartUnix,1))
-        message(paste0("Fetched ",nrow(pair_data)," Entries\n"))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
     }
     return(pair_data)
 }

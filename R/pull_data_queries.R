@@ -61,11 +61,11 @@ initialize_queries <- function()
     ##################################################################
     qry$query(
         'token_stats_hist',
-        'query token_stats_hist($tokenAdd: String!)
+        'query token_stats_hist($tokenAdd: String!,$timestamp: Int!)
         {
             tokens(where: {id: $tokenAdd})
             {
-                tokenDayData(orderBy: date, orderDirection: desc,first:1000)
+                tokenDayData(orderBy: date, orderDirection: desc,first:1000,where:{date_lt:$timestamp})
                 {
                     date
                     dailyVolumeToken
