@@ -57,6 +57,52 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 }
 
 
+#' Get Token's associated pairs
+#' @param token_address Token's Address
+#' @return Sssociated Pairs of a particular Token
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#'
+#' @examples
+#'
+#' token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    
+    ## Token as Base
+    c_timestamp <- as.integer(Sys.time())
+    base_data <- data.frame()
+    while(TRUE)
+    {
+        base_data_t <- fromJSON(con$exec(qry$queries$token_pairBase_map,list(tokenAdd = token_address,timestamp=c_timestamp)))$data$tokens$pairBase[[1]]
+        if(length(base_data_t)==0) break()
+        base_data <- bind_rows(base_data,base_data_t)
+        c_timestamp <- as.numeric(tail(base_data_t$createdAtTimestamp,1))
+        message(paste0("Fetched ",nrow(base_data)," Base Entries\n"))
+    }
+
+    ## Token as Quote
+    c_timestamp <- as.integer(Sys.time())
+    quote_data <- data.frame()
+    while(TRUE)
+    {
+        quote_data_t <- fromJSON(con$exec(qry$queries$token_pairBase_map,list(tokenAdd = token_address,timestamp=c_timestamp)))$data$tokens$pairBase[[1]]
+        if(length(quote_data_t)==0) break()
+        quote_data <- bind_rows(base_data,quote_data_t)
+        c_timestamp <- as.numeric(tail(quote_data_t$createdAtTimestamp,1))
+        message(paste0("Fetched ",nrow(quote_data)," Quote Entries\n"))
+    }
+
+    ## Return
+    return(bind_rows(base_data,quote_data))
+}
+
+
 #' Get Pair Stats
 #' @param pair_address Pair's Address
 #' @return Data on a particular Pair

@@ -86,6 +86,108 @@ initialize_queries <- function()
 
 
     ##################################################################
+    ## Check pair associated with a token as a base
+    ##################################################################
+    qry$query(
+        'token_pairBase_map',
+        'query token_pairBase_map($tokenAdd: String!,$timestamp: Int!)
+        {
+            tokens(where: {id: $tokenAdd})
+            {
+                pairBase(orderBy: createdAtTimestamp, orderDirection: desc, first: 1000, where:{createdAtTimestamp_lt:$timestamp })
+                {
+                    id
+                    token0
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    token1
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    reserve0
+                    reserve1
+                    totalSupply
+                    reserveUSD
+                    reserveETH
+                    trackedReserveETH
+                    token0Price
+                    token1Price
+                    volumeToken0
+                    volumeToken1
+                    volumeUSD
+                    untrackedVolumeUSD
+                    txCount
+                    createdAtTimestamp
+                    createdAtBlockNumber
+                    liquidityProviderCount
+                }
+
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## Check pair associated with a token as a Quote
+    ##################################################################
+    qry$query(
+        'token_pairQuote_map',
+        'query token_pairQuote_map($tokenAdd: String!,$timestamp: Int!)
+        {
+            tokens(where: {id: $tokenAdd})
+            {
+                pairQuote(orderBy: createdAtTimestamp, orderDirection: desc, first: 1000, where:{createdAtTimestamp_lt:$timestamp })
+                {
+                    id
+                    token0
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    token1
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    reserve0
+                    reserve1
+                    totalSupply
+                    reserveUSD
+                    reserveETH
+                    trackedReserveETH
+                    token0Price
+                    token1Price
+                    volumeToken0
+                    volumeToken1
+                    volumeUSD
+                    untrackedVolumeUSD
+                    txCount
+                    createdAtTimestamp
+                    createdAtBlockNumber
+                    liquidityProviderCount
+                }
+
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
     ## Stats of a particular pair
     ##################################################################
     qry$query(

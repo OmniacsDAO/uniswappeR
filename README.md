@@ -180,6 +180,10 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 
 - `token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
+#### 5. For a particular Token get stats for all pairs the Token is withe Base or Quote
+
+- `token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+
 #### 6. View Stats for a Pair
 
 - `pair_stats_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")`
