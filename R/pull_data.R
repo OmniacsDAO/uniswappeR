@@ -91,9 +91,9 @@ token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
     quote_data <- data.frame()
     while(TRUE)
     {
-        quote_data_t <- fromJSON(con$exec(qry$queries$token_pairBase_map,list(tokenAdd = token_address,timestamp=c_timestamp)))$data$tokens$pairBase[[1]]
+        quote_data_t <- fromJSON(con$exec(qry$queries$token_pairQuote_map,list(tokenAdd = token_address,timestamp=c_timestamp)))$data$tokens$pairQuote[[1]]
         if(length(quote_data_t)==0) break()
-        quote_data <- bind_rows(base_data,quote_data_t)
+        quote_data <- bind_rows(quote_data,quote_data_t)
         c_timestamp <- as.numeric(tail(quote_data_t$createdAtTimestamp,1))
         message(paste0("Fetched ",nrow(quote_data)," Quote Entries\n"))
     }
