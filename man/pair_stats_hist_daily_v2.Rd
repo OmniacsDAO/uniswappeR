@@ -5,7 +5,7 @@
 \title{Get Daily Pair Historical Stats}
 \usage{
 pair_stats_hist_daily_v2(
-  pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8"
+  pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee"
 )
 }
 \arguments{
@@ -19,5 +19,5 @@ Get Daily Pair Historical Stats
 }
 \examples{
 
-pair_stats_hist_daily_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 }

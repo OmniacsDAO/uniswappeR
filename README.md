@@ -184,20 +184,20 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 
 #### 5. View Stats or Historical Stats for a specific Pair
 
-- `pair_stats_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")`
-- `pair_stats_hist_hourly_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")`
-- `pair_stats_hist_daily_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")`
+- `pair_stats_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
+- `pair_stats_hist_hourly_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
+- `pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 #### 6. View Liquidity Positions or Historical LPs for a specific Pair
 
-- `pair_liq_positions_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")`
-- `pair_liq_positions_hist_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")`
+- `pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
+- `pair_liq_positions_hist_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 #### 7. Get Mints/Burns/Swaps Txs from a specific Pair
 
-- `pair_mint_txs_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")`
-- `pair_burn_txs_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")`
-- `pair_swap_txs_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")`
+- `pair_mint_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
+- `pair_burn_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
+- `pair_swap_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 
 <hr>

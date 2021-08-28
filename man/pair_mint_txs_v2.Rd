@@ -4,7 +4,7 @@
 \alias{pair_mint_txs_v2}
 \title{Get Mint Transactions in a pair}
 \usage{
-pair_mint_txs_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_mint_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 }
 \arguments{
 \item{pair_address}{Pair's Address}
@@ -17,5 +17,5 @@ Get Mint Transactions in a pair
 }
 \examples{
 
-pair_mint_txs_v2(pair_address = "0x360b9726186c0f62cc719450685ce70280774dc8")
+pair_mint_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 }
