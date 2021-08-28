@@ -345,7 +345,70 @@ initialize_queries <- function()
     ##################################################################
 
 
+    ##################################################################
+    ## Liquidity Positions in a pair
+    ##################################################################
+    qry$query(
+        'liq_positions',
+        'query liq_positions($pairAdd: String!,$idlast: String!)
+        {
+            pairs(where:{id:$pairAdd})
+            {
+                liquidityPositions(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast})
+                {
+                    id
+                    user
+                    {
+                        id
+                    }
+                    pair
+                    {
+                        id
+                    }
+                    liquidityTokenBalance
+                }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
 
+
+    ##################################################################
+    ## Historical Liquidity Positions in a pair
+    ##################################################################
+    qry$query(
+        'liq_positions_hist',
+        'query liq_positions_hist($pairAdd: String!,$idlast: String!)
+        {
+            pairs(where:{id:$pairAdd})
+            {
+                liquidityPositionSnapshots(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast})
+                {
+                    id
+                    timestamp
+                    block
+                    user
+                    {
+                        id
+                    }
+                    pair
+                    {
+                        id
+                    }
+                    token0PriceUSD
+                    token1PriceUSD
+                    reserve0
+                    reserve1
+                    reserveUSD
+                    liquidityTokenTotalSupply
+                    liquidityTokenBalance
+                }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
 
 
 

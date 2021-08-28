@@ -234,3 +234,66 @@ pair_stats_hist_daily_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d
     return(pair_data)
 }
 
+#' Get Current Liquidity Positions in a pair
+#' @param pair_address Pair's Address
+#' @return Current Liquidity Positions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_liq_positions_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+pair_liq_positions_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    id_last = ""
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$liq_positions,list(pairAdd = pair_address,idlast=id_last)))$data$pairs$liquidityPositions[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        id_last <- tail(pair_data_t$id,1)
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+#' Get Historical Liquidity Positions in a pair
+#' @param pair_address Pair's Address
+#' @return Historical Liquidity Positions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_liq_positions_hist_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+pair_liq_positions_hist_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    id_last = ""
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$liq_positions_hist,list(pairAdd = pair_address,idlast=id_last)))$data$pairs$liquidityPositionSnapshots[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        id_last <- tail(pair_data_t$id,1)
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}

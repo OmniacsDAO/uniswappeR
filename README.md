@@ -188,6 +188,11 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 - `pair_stats_hist_hourly_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")`
 - `pair_stats_hist_daily_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")`
 
+#### 6. View Liquidity Positions or Historical LPs for a specific Pair
+
+- `pair_liq_positions_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")`
+- `pair_liq_positions_hist_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")`
+
 
 <hr>
 
