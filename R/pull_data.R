@@ -17,6 +17,37 @@ factory_stats_v2 <- function()
 }
 
 
+#' Get Uniswap Historical Stats
+#' @return Historical Data on the Uniswap Platform
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' uniswap_stats_hist_v2()
+uniswap_stats_hist_v2 <- function() 
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    uni_data <- data.frame()
+    while(TRUE)
+    {
+        uni_data_t <- fromJSON(con$exec(qry$queries$uni_stats_hist,list(timestamp=c_timestamp)))$data$uniswapDayDatas
+        if(length(uni_data_t)==0) break()
+        uni_data <- bind_rows(uni_data,uni_data_t)
+        c_timestamp <- as.numeric(tail(uni_data_t$date,1))
+        message(paste0("Fetched ",nrow(uni_data)," Entries"))
+    }
+    return(uni_data)
+}
+
 #' Get Token Stats
 #' @param token_address Token's Address
 #' @return Data on a particular Token
@@ -138,9 +169,9 @@ pair_stats_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e51303
 }
 
 
-#' Get Pair Historical Stats
+#' Get Hourly Pair Historical Stats
 #' @param pair_address Pair's Address
-#' @return Historical Data on a particular Pair
+#' @return Hourly Historical Data on a particular Pair
 #'
 #' @export
 #'
@@ -149,8 +180,8 @@ pair_stats_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e51303
 #'
 #' @examples
 #'
-#' pair_stats_hist_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
-pair_stats_hist_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+#' pair_stats_hist_hourly_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+pair_stats_hist_hourly_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -161,7 +192,7 @@ pair_stats_hist_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e
     pair_data <- data.frame()
     while(TRUE)
     {
-        pair_data_t <- fromJSON(con$exec(qry$queries$pair_stats_hist,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pairs$pairHourData[[1]]
+        pair_data_t <- fromJSON(con$exec(qry$queries$pair_stats_hist_hourly,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pairs$pairHourData[[1]]
         if(length(pair_data_t)==0) break()
         pair_data <- bind_rows(pair_data,pair_data_t)
         c_timestamp <- as.numeric(tail(pair_data_t$hourStartUnix,1))
@@ -171,4 +202,35 @@ pair_stats_hist_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e
 }
 
 
+#' Get Daily Pair Historical Stats
+#' @param pair_address Pair's Address
+#' @return Daily Historical Data on a particular Pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_stats_hist_daily_v2(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+pair_stats_hist_daily_v2 <- function(pair_address = "0xd3d2e2692501a5c9ca623199d38826e513033a17")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$pair_stats_hist_daily,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pairDayDatas
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$date,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
 

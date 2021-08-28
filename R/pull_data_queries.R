@@ -31,6 +31,31 @@ initialize_queries <- function()
 
 
     ##################################################################
+    ## Historical Stats of Uniswap Platform
+    ##################################################################
+    qry$query(
+        'uni_stats_hist',
+        'query uni_stats_hist($timestamp: Int!)
+        {
+            uniswapDayDatas(orderBy: date, orderDirection: desc,first:1000,where:{date_lt:$timestamp})
+            {
+                date
+                dailyVolumeETH
+                dailyVolumeUSD
+                dailyVolumeUntracked
+                totalVolumeETH
+                totalLiquidityETH
+                totalVolumeUSD
+                totalLiquidityUSD
+                txCount  
+            }
+        }'
+    )
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
     ## Stats of a particular token
     ##################################################################
     qry$query(
@@ -235,11 +260,11 @@ initialize_queries <- function()
 
 
     ##################################################################
-    ## Historical Stats of a particular pair
+    ## Historical Stats Hourly of a particular pair
     ##################################################################
     qry$query(
-        'pair_stats_hist',
-        'query pair_stats_hist($pairAdd: String!,$timestamp: Int!)
+        'pair_stats_hist_hourly',
+        'query pair_stats_hist_hourly($pairAdd: String!,$timestamp: Int!)
         {
             pairs(where: {id: $pairAdd})
             {
@@ -277,6 +302,50 @@ initialize_queries <- function()
     )    
     ##################################################################
     ##################################################################
+
+
+
+    ##################################################################
+    ## Historical Stats Daily of a particular pair
+    ##################################################################
+    qry$query(
+        'pair_stats_hist_daily',
+        'query pair_stats_hist_daily($pairAdd: String!,$timestamp: Int!)
+        {
+            pairDayDatas(orderBy: date, orderDirection: desc,first:1000,where:{date_lt:$timestamp, pairAddress:$pairAdd})
+            {
+                date
+                pairAddress
+                token0
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                reserve0
+                reserve1
+                totalSupply
+                reserveUSD
+                dailyVolumeToken0
+                dailyVolumeToken1
+                dailyVolumeUSD
+                dailyTxns
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+
 
 
 
