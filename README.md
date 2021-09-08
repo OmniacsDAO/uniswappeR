@@ -207,8 +207,8 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 #### 9. Get Mints/Burns/Swaps Txs from a specific Pair
 
 - `user_swaps_v2(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C09116")`
-- `user_mints_v2(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C09116")`
-- `user_burns_v2(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C09116")`
+- `user_mints_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
+- `user_burns_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
 
 <hr>
 

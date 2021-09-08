@@ -757,7 +757,7 @@ initialize_queries <- function()
         'burn_user',
         'query burn_user($userAdd: String!,$idlast: String!)
         {
-            burns(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,to:$userAdd})
+            burns(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,sender:$userAdd})
             {
                 id
                 timestamp
