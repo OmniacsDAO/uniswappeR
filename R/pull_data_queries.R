@@ -568,6 +568,113 @@ initialize_queries <- function()
     ##################################################################
 
 
+    ##################################################################
+    ## User Liquidity Positions Current
+    ##################################################################
+    qry$query(
+        'lps_user',
+        'query lps_user($userAdd: String!,$idlast: String!)
+        {
+            liquidityPositions(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,user:$userAdd})
+            {
+                id
+                user
+                liquidityTokenBalance
+                pair
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## User Liquidity Positions Historical
+    ##################################################################
+    qry$query(
+        'lps_hist_user',
+        'query lps_hist_user($userAdd: String!,$idlast: String!)
+        {
+            liquidityPositionSnapshots(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,user:$userAdd})
+            {
+                id
+                user
+                liquidityTokenBalance
+                pair
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

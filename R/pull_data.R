@@ -396,3 +396,41 @@ pair_swap_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
     }
     return(pair_data)
 }
+
+
+#' Get User Liquidity Positions
+#' @param user_address User's Address
+#' @return User User Liquidity Positions
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' user_lps_v2(user_address = "0x2e3381202988d535e8185e7089f633f7c9998e83")
+user_lps_v2 <- function(user_address = "0x2e3381202988d535e8185e7089f633f7c9998e83")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    id_last = ""
+    lp_data <- data.frame()
+    while(TRUE)
+    {
+        lp_data_t <- fromJSON(con$exec(qry$queries$lps_user,list(userAdd = user_address,idlast=id_last)))$data$liquidityPositions
+        if(length(lp_data_t)==0) break()
+        lp_data <- bind_rows(lp_data,lp_data_t)
+        id_last <- tail(lp_data_t$id,1)
+        message(paste0("Fetched ",nrow(lp_data)," Entries"))
+    }
+    return(lp_data)
+}
+
+
+
+
+
+

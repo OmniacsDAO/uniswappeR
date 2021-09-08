@@ -199,6 +199,11 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 - `pair_burn_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 - `pair_swap_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
+#### 8. View Liquidity Positions or Historical LPs for a specific User
+
+- `user_lps_v2(user_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
+
+
 
 <hr>
 
