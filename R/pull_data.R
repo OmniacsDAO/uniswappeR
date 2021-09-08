@@ -526,3 +526,35 @@ user_mints_v2 <- function(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C0
 }
 
 
+#' Get User Burn Txs
+#' @param user_address User's Address
+#' @return User Burn Txs
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' user_burns_v2(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C09116")
+user_burns_v2 <- function(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C09116")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    id_last = ""
+    tx_data <- data.frame()
+    while(TRUE)
+    {
+        tx_data_t <- fromJSON(con$exec(qry$queries$burn_user,list(userAdd = user_address,idlast=id_last)))$data$burns
+        if(length(tx_data_t)==0) break()
+        tx_data <- bind_rows(tx_data,tx_data_t)
+        id_last <- tail(tx_data$id,1)
+        message(paste0("Fetched ",nrow(tx_data)," Entries"))
+    }
+    return(tx_data)
+}
+
+

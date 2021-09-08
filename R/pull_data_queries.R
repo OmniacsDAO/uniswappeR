@@ -708,7 +708,56 @@ initialize_queries <- function()
         'mint_user',
         'query mint_user($userAdd: String!,$idlast: String!)
         {
-            swaps(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,to:$userAdd})
+            mints(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,to:$userAdd})
+            {
+                id
+                timestamp
+                transaction
+                {
+                    id
+                    timestamp
+                }
+                pair
+                {
+                    id
+                    token0
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    token1
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                }
+                sender
+                to
+                liquidity
+                amount0
+                amount1
+                amountUSD
+                feeTo
+                feeLiquidity
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## User Burn Transactions
+    ##################################################################
+    qry$query(
+        'burn_user',
+        'query burn_user($userAdd: String!,$idlast: String!)
+        {
+            burns(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,to:$userAdd})
             {
                 id
                 timestamp
