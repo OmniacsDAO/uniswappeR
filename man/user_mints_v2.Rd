@@ -4,7 +4,7 @@
 \alias{user_mints_v2}
 \title{Get User Mint Txs}
 \usage{
-user_mints_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
+user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 }
 \arguments{
 \item{user_address}{User's Address}
@@ -17,5 +17,5 @@ Get User Mint Txs
 }
 \examples{
 
-user_mints_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
+user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 }

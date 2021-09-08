@@ -505,8 +505,8 @@ user_swaps_v2 <- function(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C0
 #'
 #' @examples
 #'
-#' user_mints_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
-user_mints_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
+#' user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
+user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -537,8 +537,8 @@ user_mints_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f927227045409
 #'
 #' @examples
 #'
-#' user_burns_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
-user_burns_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
+#' user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
+user_burns_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
