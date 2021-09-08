@@ -616,7 +616,15 @@ initialize_queries <- function()
             liquidityPositionSnapshots(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,user:$userAdd})
             {
                 id
+                timestamp
+                block
                 user
+                token0PriceUSD
+                token1PriceUSD
+                reserve0
+                reserve1
+                reserveUSD
+                liquidityTokenTotalSupply
                 liquidityTokenBalance
                 pair
                     {

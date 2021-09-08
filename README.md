@@ -201,8 +201,8 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 
 #### 8. View Liquidity Positions or Historical LPs for a specific User
 
-- `user_lps_v2(user_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
-
+- `user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
+- `user_hist_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
 
 
 <hr>
