@@ -705,8 +705,8 @@ initialize_queries <- function()
     ## User Mint Transactions
     ##################################################################
     qry$query(
-        'swap_user',
-        'query swap_user($userAdd: String!,$idlast: String!)
+        'mint_user',
+        'query mint_user($userAdd: String!,$idlast: String!)
         {
             swaps(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,to:$userAdd})
             {
