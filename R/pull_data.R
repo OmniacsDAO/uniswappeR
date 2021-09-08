@@ -462,6 +462,37 @@ user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f927227045
 }
 
 
+#' Get User Swap Txs
+#' @param user_address User's Address
+#' @return User Swap Txs
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' user_swaps_v2(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C09116")
+user_swaps_v2 <- function(user_address = "0x911605012f87A3017322c81fCB4C90ADA7C09116")
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    id_last = ""
+    tx_data <- data.frame()
+    while(TRUE)
+    {
+        tx_data_t <- fromJSON(con$exec(qry$queries$swap_user,list(userAdd = user_address,idlast=id_last)))$data$swaps
+        if(length(tx_data_t)==0) break()
+        tx_data <- bind_rows(tx_data,tx_data_t)
+        id_last <- tail(tx_data$id,1)
+        message(paste0("Fetched ",nrow(tx_data)," Entries"))
+    }
+    return(tx_data)
+}
+
 
 
 
