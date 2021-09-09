@@ -26,7 +26,7 @@ vis_uniswap_stats_hist_v2 <- function()
                             "totalLiquidityUSD" = "Total Liquidity (USD)",
                             "txCount"  = "Transaction Count"
                         )
-    variable_labeller <- function(variable,met_val) return(variable_names[met_val])
+    variable_labeller <- function(variable,value) return(variable_names[value])
 
     ggplot(plot_data_long, aes(x=Date, y=met_val)) +
         geom_line()+
