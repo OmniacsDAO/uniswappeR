@@ -237,7 +237,20 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_uniswap_stats_hist_v2.png" align="center"/>
 <div align="center">Uniswap Platform Growth</div>
 
-#### 2. Uniswap Platform Growth
+#### 2. Token Growth
+
+- `vis_token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+
+<img src="man/figures/vis_token_stats_hist_v2.png" align="center"/>
+<div align="center">Token Growth</div>
+
+#### 2. ..
+
+
+
+
+
+
 
 
 [Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
