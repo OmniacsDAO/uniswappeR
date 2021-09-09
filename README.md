@@ -220,22 +220,21 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 
 ## Data Exploration Functionality
 
-<img src="man/figures/example_plot.png" align="center"/>
-<div align="center">
-Uniswap Trading Report
-</div>
-
-
 ### Description
 
-Our `uniswappeR` R package includes the backend to interact with the uniswap platform to make swaps and queries right from your R console. Also contains the codebase to abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package. This package includes a number of high level functions for interacting with this data:
-
-- swaps: Returns the swap data for a given set of addresses
-- swap_statistics: High level statistics on swaps
-- swap_visualizations: A series of ggplot2 visualizations about swap performance
-- swap_performance: A ggplot2 visualization for assessing the performance of your swaps
+Our `uniswappeR` R package includes a number of high level functions for interacting and visualise the data from uniswap:
 
 ### Walkthrough
+
+#### 1. Uniswap Platform Growth
+
+- `vis_uniswap_stats_hist_v2()`
+
+<img src="man/figures/example_plot.png" align="center"/>
+<div align="center">Uniswap Trading Report</div>
+
+#### 2. Uniswap Platform Growth
+
 
 [Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
 
