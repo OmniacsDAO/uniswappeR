@@ -262,7 +262,7 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 - `vis_pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
-<img src="man/figures/vis_vis_pair_liq_positions_v2.png" align="center"/>
+<img src="man/figures/vis_pair_liq_positions_v2.png" align="center"/>
 <div align="center">Liquidity Token Distribution</div>
 
 
