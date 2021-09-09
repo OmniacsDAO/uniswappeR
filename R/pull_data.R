@@ -1,3 +1,23 @@
+#' Write out the data object given file name
+#' @param data_to_export Object containing data we want to export
+#' @param path_to_export Path of the CSV file, we want to export to
+#' @return Status of the write
+#'
+#' @export
+#'
+#' @import readr
+#'
+#' @examples
+#' data_to_export <- token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+#' path_to_export <- "~/Desktop/uniswappeR_export.csv"
+#' export_data(data_to_export,path_to_export)
+export_data <- function(data_to_export,path_to_export) 
+{
+    write_csv(data_to_export,path_to_export)
+    return("Data Export Complete")
+}
+
+
 #' Get Uniswap Factory Stats
 #' @return Data on the Uniswap Factory contract
 #'

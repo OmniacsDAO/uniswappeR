@@ -210,6 +210,12 @@ Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL l
 - `user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
 - `user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
 
+#### 10. Export any of the pulled data as CSV file
+
+- `data_to_export <- token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+- `path_to_export <- "~/Desktop/uniswappeR_export.csv"`
+- `export_data(data_to_export,path_to_export)`
+
 <hr>
 
 ## Data Exploration Functionality

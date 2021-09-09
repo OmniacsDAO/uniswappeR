@@ -30,4 +30,5 @@ Imports:
   jsonlite,
   patchwork,
   purrr,
-  reticulate
+  reticulate,
+  readr
