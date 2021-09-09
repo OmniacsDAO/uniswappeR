@@ -17,6 +17,8 @@ The package has 3 Functionalities
 Our `uniswappeR` R package includes the functionality to trade and query prices from the Uniswap Platform. To interact with the Uniswap Platform
 we need to configure the environment and then we can use the functions to make trades on the uniswap platform and query prices.
 
+View the [video walkthrough](https://www.youtube.com/watch?v=GpWZLMB2lvM) on how to conduct trades through UniswappeR here.
+
 ### Walkthrough
 
 #### 0. (Optional Environment Setup) If you want to use the trade functionality of the package.
@@ -161,6 +163,8 @@ we need to configure the environment and then we can use the functions to make t
 ### Description
 
 Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package.
+
+View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how to pull data into R using UniswappeR.
 
 ### Walkthrough
 
