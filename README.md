@@ -270,7 +270,8 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 - `addresses <- c("0x2e3381202988d535e8185e7089f633f7c9998e83", "0x4d9c274ADF71e4201B4aB1f28BF05D44eE4bA261")`
 - `swap_data <- swaps(addresses)`
 - `swap_visualizations(swap_data)`
-<img src="man/figures/swap_visualizations.png.png"  align="center"/>
+<img src="man/figures/swap_visualizations.png"  align="center"/>
+
 - `swap_performance(swap_data)`
 <img src="man/figures/example3_pricechange.png"  align="center"/>
 
