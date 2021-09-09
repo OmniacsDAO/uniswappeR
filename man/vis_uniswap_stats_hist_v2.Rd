@@ -13,7 +13,5 @@ Plot of growth metrics of the Uniswap Platform
 Visualise various growth metrics of the Uniswap Platform
 }
 \examples{
-data_to_export <- token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
-path_to_export <- "~/Desktop/uniswappeR_export.csv"
 vis_uniswap_stats_hist_v2()
 }

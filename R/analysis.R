@@ -8,8 +8,6 @@
 #' @import tidyr
 #'
 #' @examples
-#' data_to_export <- token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
-#' path_to_export <- "~/Desktop/uniswappeR_export.csv"
 #' vis_uniswap_stats_hist_v2()
 vis_uniswap_stats_hist_v2 <- function() 
 {
