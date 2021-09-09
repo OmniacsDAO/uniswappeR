@@ -258,6 +258,12 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_pair_stats_hist_daily_v2.png" align="center"/>
 <div align="center">Pair Growth</div>
 
+#### 5. Liquidity Token Distribution
+
+- `vis_pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
+
+<img src="man/figures/vis_vis_pair_liq_positions_v2.png" align="center"/>
+<div align="center">Liquidity Token Distribution</div>
 
 
 

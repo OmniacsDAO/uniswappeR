@@ -161,3 +161,31 @@ vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa2
         theme(plot.title = element_text(hjust = 0.5))
 
 }
+
+
+#' Visualise Liquidity Positions spread in a given pair
+#' @param pair_address Pair's Address
+#' @return Plot of Liquidity Positions spread in a given pair
+#'
+#' @export
+#'
+#' @import lubridate
+#' @import ggplot2
+#' @import tidyr
+#'
+#' @examples
+#' vis_pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee") 
+{
+    plot_data <- pair_liq_positions_v2(pair_address)
+    plot_data$liquidityTokenBalance <- as.numeric(plot_data$liquidityTokenBalance)
+    plot_data <- plot_data[plot_data$liquidityTokenBalance>0,]
+
+    ggplot(plot_data, aes(x=liquidityTokenBalance)) +
+        geom_histogram()+
+        scale_x_continuous(breaks = pretty(plot_data$liquidityTokenBalance, n = 20))+
+        labs(x = "Liquidity Token Balance", y = "Number of Holders")+
+        ggtitle("Liquidity Token Distribution")+
+        theme(plot.title = element_text(hjust = 0.5))
+
+}
