@@ -1,14 +1,13 @@
 Package: uniswappeR
 Type: Package
 Title: R Package to interact with the Uniswap Platform
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: c(
     person("Omni Analytics Group", email = "services@omnianalytics.io", role = "aut"),
     person("Eric Hare", email = "eric@omnianalytics.io", role = "cre"))
-Description: Routines to interact with the Uniswap trading platform API <https://uniswap.org>.
-  Analytics on the opened and closed positions, as well as trader level statistics, are
-  available when an address is provided. Tabular results and visualizations are both
-  provided.
+Description: Routines to interact with the Uniswap trading platform and its API <https://uniswap.org>.
+  The package contains codebase to interact with the uniswap platform directly from R console, Ability 
+  to pull and export data related to the platform and analyse some aspects.
 Depends: R (>= 3.1)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
@@ -31,4 +30,4 @@ Imports:
   patchwork,
   purrr,
   reticulate,
-  readr
+  utils

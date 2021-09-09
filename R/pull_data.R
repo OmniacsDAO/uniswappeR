@@ -4,8 +4,7 @@
 #' @return Status of the write
 #'
 #' @export
-#'
-#' @import readr
+#' @importFrom utils write.csv
 #'
 #' @examples
 #' data_to_export <- token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
@@ -13,7 +12,7 @@
 #' export_data(data_to_export,path_to_export)
 export_data <- function(data_to_export,path_to_export) 
 {
-    write_csv(data_to_export,path_to_export)
+    write.csv(data_to_export,path_to_export,row.names=FALSE)
     return("Data Export Complete")
 }
 
