@@ -265,35 +265,13 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_pair_liq_positions_v2.png" align="center"/>
 <div align="center">Liquidity Token Distribution</div>
 
-
-
-
-[Video Walkthrough](https://www.youtube.com/watch?v=OJdKNm8W9ik)
-
-#### 1. Load the package.
-
-- `library(uniswappeR)`
-
-#### 2. Define an address or vector of addresses of interest
+#### 6. User Swap Performance
 
 - `addresses <- c("0x2e3381202988d535e8185e7089f633f7c9998e83", "0x4d9c274ADF71e4201B4aB1f28BF05D44eE4bA261")`
-
-#### 3. Get the swap data for those addresses
-
 - `swap_data <- swaps(addresses)`
-
-<img src="man/figures/example1_dataframe.png"  align="center"/>
-
-#### 4. Produce visualizations of the swap data
-
 - `swap_visualizations(swap_data)`
-
-<img src="man/figures/example2_report_card.png"  align="center"/>
-
-#### 5. Produce a visualization of the performance of the swaps
-
+<img src="man/figures/swap_visualizations.png.png"  align="center"/>
 - `swap_performance(swap_data)`
-
 <img src="man/figures/example3_pricechange.png"  align="center"/>
 
 <hr>

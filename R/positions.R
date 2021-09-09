@@ -141,26 +141,28 @@ swap_visualizations <- function(swap_data) {
         geom_point(colour = "purple4") +
         geom_line(colour = "purple4") +
         scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
-        scale_x_datetime(date_breaks = "1 month", date_labels = "%b %y") +
+        scale_x_datetime(date_breaks = "1 month", date_labels = "%b-%y") +
         labs(
             title = "Cumulative Number of Swaps over Time",
             subtitle = "For Swaps on the Uniswap Platform",
             x = "Date",
             y = "Number of Swaps"
-        )
+        )+
+        theme(axis.text.x = element_text(size=6))
 
     p2 <- ggplot(swap_data %>% arrange(.data$timestamp) %>% mutate(Sum = cumsum(.data$amountUSD)), aes(x = .data$timestamp, y = .data$Sum)) +
         geom_point(colour = "green4") +
         geom_line(colour = "green4") +
         scale_y_continuous(breaks = scales::pretty_breaks(n = 10),
                            labels = scales::dollar) +
-        scale_x_datetime(date_breaks = "1 month", date_labels = "%b %y") +
+        scale_x_datetime(date_breaks = "1 month", date_labels = "%b-%y") +
         labs(
             title = "Cumulative Amount of USD Swapped over Time",
             subtitle = "For Swaps on the Uniswap Platform",
             x = "Date",
             y = "Cumulative Amount ($)"
-        )
+        )+
+        theme(axis.text.x = element_text(size=6))
 
     p3 <- ggplot(swap_data %>% mutate(Pair = paste0(.data$token0_symbol, "/", .data$token1_symbol)) %>%
                      group_by(.data$Pair) %>% summarise(Count = n()) %>%
@@ -172,9 +174,7 @@ swap_visualizations <- function(swap_data) {
             x = "Pair",
             y = "Number of Swaps"
         ) +
-        theme(
-            axis.text.x = element_text(angle=20, hjust=1)
-        )
+        theme(axis.text.x = element_text(angle=90, hjust=1,size=6))
 
     unique_tokens <- tibble(
         Token = c(swap_data$token0_symbol, swap_data$token1_symbol),
@@ -195,7 +195,7 @@ swap_visualizations <- function(swap_data) {
             y = "Number of Swaps"
         ) +
         theme(
-            axis.text.x = element_text(angle=20, hjust=1)
+            axis.text.x = element_text(angle=90, hjust=1,size=6)
         )
 
     (p1 + p2) / (p3 + p4)
