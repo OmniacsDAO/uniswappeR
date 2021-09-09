@@ -234,8 +234,8 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 - `vis_uniswap_stats_hist_v2()`
 
-<img src="man/figures/example_plot.png" align="center"/>
-<div align="center">Uniswap Trading Report</div>
+<img src="man/figures/vis_uniswap_stats_hist_v2.png" align="center"/>
+<div align="center">Uniswap Platform Growth</div>
 
 #### 2. Uniswap Platform Growth
 
