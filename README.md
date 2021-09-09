@@ -208,7 +208,7 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
 - `user_hist_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
 
-#### 9. Get Mints/Burns/Swaps Txs from a specific Pair
+#### 9. Get Mints/Burns/Swaps Txs from a specific User
 
 - `user_swaps_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
 - `user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
@@ -244,10 +244,19 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_token_stats_hist_v2.png" align="center"/>
 <div align="center">Token Growth</div>
 
-#### 2. ..
+#### 3. Token Number of Pairs Growth
 
+- `vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
+<img src="man/figures/vis_token_pair_map_v2.png" align="center"/>
+<div align="center">Token Growth</div>
 
+#### 4. Pair Growth
+
+- `vis_pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
+
+<img src="man/figures/vis_pair_stats_hist_daily_v2.png" align="center"/>
+<div align="center">Pair Growth</div>
 
 
 
