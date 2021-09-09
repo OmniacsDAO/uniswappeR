@@ -10,6 +10,10 @@ export_plot(plot_to_export, path_to_export, width = 7, height = 7)
 \item{plot_to_export}{Object containing plot we want to export}
 
 \item{path_to_export}{Path of the .png file, we want to export to}
+
+\item{width}{Width of plot in inches}
+
+\item{height}{Height of plot in inches}
 }
 \value{
 Status of the write

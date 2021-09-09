@@ -194,6 +194,8 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 #' Write out the analysis plots 
 #' @param plot_to_export Object containing plot we want to export
 #' @param path_to_export Path of the .png file, we want to export to
+#' @param width Width of plot in inches
+#' @param height Height of plot in inches
 #' @return Status of the write
 #'
 #' @export
@@ -205,6 +207,6 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 #' export_plot(plot_to_export,path_to_export)
 export_plot <- function(plot_to_export,path_to_export,width=7,height=7) 
 {
-    ggsave(path_to_export,plot_to_export,width=width,height=height,device = "png")
+    ggsave(path_to_export,plot_to_export,width=width,height=height)
     return("Plot Export Complete")
 }
