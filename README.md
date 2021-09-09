@@ -275,6 +275,11 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 - `swap_performance(swap_data)`
 <img src="man/figures/example3_pricechange.png"  align="center"/>
 
+#### 6. Save analysis plot
+- `plot_to_export <- vis_uniswap_stats_hist_v2()`
+- `path_to_export <- "~/Desktop/uniswappeR_plot_export.png"`
+- `export_plot(plot_to_export,path_to_export)`
+
 <hr>
 
 ## About Us

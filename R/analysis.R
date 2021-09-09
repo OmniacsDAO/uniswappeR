@@ -189,3 +189,22 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
         theme(plot.title = element_text(hjust = 0.5))
 
 }
+
+
+#' Write out the analysis plots 
+#' @param plot_to_export Object containing plot we want to export
+#' @param path_to_export Path of the .png file, we want to export to
+#' @return Status of the write
+#'
+#' @export
+#' @importFrom ggplot2 ggsave
+#'
+#' @examples
+#' plot_to_export <- vis_uniswap_stats_hist_v2()
+#' path_to_export <- "~/Desktop/uniswappeR_plot_export.png"
+#' export_plot(plot_to_export,path_to_export)
+export_plot <- function(plot_to_export,path_to_export,width=7,height=7) 
+{
+    ggsave(path_to_export,plot_to_export,width=width,height=height,device = "png")
+    return("Plot Export Complete")
+}
