@@ -23,9 +23,9 @@ View the [video walkthrough](https://www.youtube.com/watch?v=GpWZLMB2lvM) on how
 
 #### 0. (Optional Environment Setup) If you want to use the trade functionality of the package.
 - Install the reticulate package using<br>`library(reticulate)`
-- Install python to use as backend using<br>`install_python("3.8.7")`
-- Create a Virtual Environment to keep the backend sandboxed using<br>`virtualenv_create("uniswappeR-env", version = "3.8.7")`
-- Install uniswap-python package using<br>`virtualenv_install(envname="uniswappeR-env",packages=c("uniswap-python==0.4.6"))`
+- Use python3, You can use `py_discover_config()` to figure the path for python3<br>`use_python("/usr/local/bin/python3")`
+- Create a Virtual Environment to keep the backend sandboxed using<br>`virtualenv_create("uniswappeR-env")`
+- Install uniswap-python package using<br>`virtualenv_install(envname="uniswappeR-env",packages=c("uniswap-python"))`
 - Use the Virtual Environment using<br>`use_virtualenv("uniswappeR-env",required=TRUE)`
 - Extract checksum function from Web3 module<br>`Web3_checksum <- import("web3",convert=FALSE)$Web3$toChecksumAddress`
 
@@ -37,8 +37,8 @@ View the [video walkthrough](https://www.youtube.com/watch?v=GpWZLMB2lvM) on how
 #### 2. Use your Infura Node
 `set_infura_node("https://mainnet.infura.io/v3/XXXXXXXXXXXXXXXXXXX")`
 
-#### 3. Setup a uniswap session using your address and private key
-`u_w <- uniswap_session(user_add = "**", pvt_key = "***")`<br>
+#### 3. Setup a uniswap session using your address and private key. Choose UniswapV2 or UniswapV3 by supplying the version as 2 or 3 respectively.
+`u_w <- uniswap_session(user_add = "**", pvt_key = "***", version = 3)`<br>
 
 #### 4. Helper Functions to Check Balances and Query Prices
 
