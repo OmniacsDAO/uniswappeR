@@ -33,6 +33,7 @@ View the [video walkthrough](https://www.youtube.com/watch?v=GpWZLMB2lvM) on how
 - `library(reticulate)`
 - `library(uniswappeR)`
 - `use_virtualenv("uniswappeR-env",required=TRUE)`
+- `Web3_checksum <- import("web3",convert=FALSE)$Web3$toChecksumAddress`
 
 #### 2. Use your Infura Node
 `set_infura_node("https://mainnet.infura.io/v3/XXXXXXXXXXXXXXXXXXX")`
