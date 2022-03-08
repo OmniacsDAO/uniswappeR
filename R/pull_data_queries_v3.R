@@ -45,7 +45,6 @@ initialize_queries_v3 <- function()
                 date
                 volumeETH
                 volumeUSD
-                volumeUSDUntracked
                 feesUSD
                 txCount
                 tvlUSD

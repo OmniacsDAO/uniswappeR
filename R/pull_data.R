@@ -208,7 +208,7 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
-    qcon <- initialize_queries()
+    qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
 
