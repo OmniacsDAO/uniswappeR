@@ -68,6 +68,7 @@ r_num <- function(val) as.numeric(as.character(val))
 #' @param node The Infura Node
 #' @param user_add User Address
 #' @param pvt_key Private Key of the user Address
+#' @param version Choose UniswapV2 or UniswapV3 by supplying the version as 2 or 3 respectively.
 #'
 #' @return The python session uniswap endpoint
 #'

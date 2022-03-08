@@ -22,7 +22,9 @@ Status of the write
 Write out the analysis plots
 }
 \examples{
+\dontrun{
 plot_to_export <- vis_uniswap_stats_hist_v2()
 path_to_export <- "~/Desktop/uniswappeR_plot_export.png"
 export_plot(plot_to_export,path_to_export)
+}
 }

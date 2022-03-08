@@ -18,7 +18,9 @@ Status of the write
 Write out the data object given file name
 }
 \examples{
+\dontrun{
 data_to_export <- token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 path_to_export <- "~/Desktop/uniswappeR_export.csv"
 export_data(data_to_export,path_to_export)
+}
 }

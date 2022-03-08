@@ -4,7 +4,12 @@
 \alias{uniswap_session}
 \title{Start the python session}
 \usage{
-uniswap_session(node = get_infura_node(), user_add = NULL, pvt_key = NULL)
+uniswap_session(
+  node = get_infura_node(),
+  user_add = NULL,
+  pvt_key = NULL,
+  version = 2
+)
 }
 \arguments{
 \item{node}{The Infura Node}
@@ -12,6 +17,8 @@ uniswap_session(node = get_infura_node(), user_add = NULL, pvt_key = NULL)
 \item{user_add}{User Address}
 
 \item{pvt_key}{Private Key of the user Address}
+
+\item{version}{Choose UniswapV2 or UniswapV3 by supplying the version as 2 or 3 respectively.}
 }
 \value{
 The python session uniswap endpoint

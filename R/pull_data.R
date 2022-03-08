@@ -7,9 +7,11 @@
 #' @importFrom utils write.csv
 #'
 #' @examples
+#' \dontrun{
 #' data_to_export <- token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 #' path_to_export <- "~/Desktop/uniswappeR_export.csv"
 #' export_data(data_to_export,path_to_export)
+#' }
 export_data <- function(data_to_export,path_to_export) 
 {
     write.csv(data_to_export,path_to_export,row.names=FALSE)
@@ -18,7 +20,7 @@ export_data <- function(data_to_export,path_to_export)
 
 
 #' Get UniswapV2 Factory Stats
-#' @return Data on the Uniswap Factory contract
+#' @return Data on the UniswapV2 Factory contract
 #'
 #' @export
 #'
@@ -37,7 +39,7 @@ factory_stats_v2 <- function()
 
 
 #' Get UniswapV3 Factory Stats
-#' @return Data on the Uniswap Factory contract
+#' @return Data on the UniswapV3 Factory contract
 #'
 #' @export
 #'

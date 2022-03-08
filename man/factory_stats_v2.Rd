@@ -2,15 +2,15 @@
 % Please edit documentation in R/pull_data.R
 \name{factory_stats_v2}
 \alias{factory_stats_v2}
-\title{Get Uniswap Factory Stats}
+\title{Get UniswapV2 Factory Stats}
 \usage{
 factory_stats_v2()
 }
 \value{
-Data on the Uniswap Factory contract
+Data on the UniswapV2 Factory contract
 }
 \description{
-Get Uniswap Factory Stats
+Get UniswapV2 Factory Stats
 }
 \examples{
 
