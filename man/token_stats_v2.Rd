@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{token_stats_v2}
 \alias{token_stats_v2}
-\title{Get Token Stats}
+\title{Get UniswapV2 Token Stats}
 \usage{
 token_stats_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 }
@@ -13,7 +13,7 @@ token_stats_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 Data on a particular Token
 }
 \description{
-Get Token Stats
+Get UniswapV2 Token Stats
 }
 \examples{
 

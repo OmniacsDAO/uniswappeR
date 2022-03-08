@@ -57,7 +57,7 @@ factory_stats_v3 <- function()
 }
 
 
-#' Get Uniswap Historical Stats
+#' Get UniswapV2 Historical Stats
 #' @return Historical Data on the Uniswap Platform
 #'
 #' @export
@@ -88,7 +88,40 @@ uniswap_stats_hist_v2 <- function()
     return(uni_data)
 }
 
-#' Get Token Stats
+
+#' Get UniswapV3 Historical Stats
+#' @return Historical Data on the Uniswap Platform
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' uniswap_stats_hist_v3()
+uniswap_stats_hist_v3 <- function() 
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    uni_data <- data.frame()
+    while(TRUE)
+    {
+        uni_data_t <- fromJSON(con$exec(qry$queries$uni_stats_hist,list(timestamp=c_timestamp)))$data$uniswapDayDatas
+        if(length(uni_data_t)==0) break()
+        uni_data <- bind_rows(uni_data,uni_data_t)
+        c_timestamp <- as.numeric(tail(uni_data_t$date,1))
+        message(paste0("Fetched ",nrow(uni_data)," Entries"))
+    }
+    return(uni_data)
+}
+
+
+#' Get UniswapV2 Token Stats
 #' @param token_address Token's Address
 #' @return Data on a particular Token
 #'
@@ -107,8 +140,27 @@ token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
     fromJSON(con$exec(qry$queries$token_stats,list(tokenAdd = token_address)))$data$tokens
 }
 
+#' Get UniswapV3 Token Stats
+#' @param token_address Token's Address
+#' @return Data on a particular Token
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#'
+#' @examples
+#'
+#' token_stats_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    fromJSON(con$exec(qry$queries$token_stats,list(tokenAdd = token_address)))$data$tokens
+}
 
-#' Get Token Historical Stats
+
+#' Get UniswapV2 Token Historical Stats
 #' @param token_address Token's Address
 #' @return Historical Data on a particular Token
 #'
@@ -139,6 +191,39 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
     }
     return(token_data)
     
+}
+
+
+#' Get UniswapV3 Token Historical Stats
+#' @param token_address Token's Address
+#' @return Historical Data on a particular Token
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    token_data <- data.frame()
+    while(TRUE)
+    {
+        token_data_t <- fromJSON(con$exec(qry$queries$token_stats_hist,list(tokenAdd = token_address,timestamp=c_timestamp)))$data$tokens$tokenDayData[[1]]
+        if(length(token_data_t)==0) break()
+        token_data <- bind_rows(token_data,token_data_t)
+        c_timestamp <- as.numeric(tail(token_data_t$date,1))
+        message(paste0("Fetched ",nrow(token_data)," Entries"))
+    }
+    return(token_data)
 }
 
 

@@ -178,11 +178,14 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `factory_stats_v2()`
 - `factory_stats_v3()`
 - `uniswap_stats_hist_v2()`
+- `uniswap_stats_hist_v3()`
 
-#### 3. View Stats or Historical Stats for a specific token across all pairs that token is included in
+#### 3. View Stats or Historical Stats for a specific token across all pairs that token is included in (Supports V2 and V3)
 
 - `token_stats_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+- `token_stats_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 - `token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+- `token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
 #### 4. For a specific Token get stats for all pairs the Token is either Base or Quote
 
