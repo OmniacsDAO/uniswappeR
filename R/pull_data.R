@@ -17,7 +17,7 @@ export_data <- function(data_to_export,path_to_export)
 }
 
 
-#' Get Uniswap Factory Stats
+#' Get UniswapV2 Factory Stats
 #' @return Data on the Uniswap Factory contract
 #'
 #' @export
@@ -33,6 +33,25 @@ factory_stats_v2 <- function()
     con <- qcon[[1]]
     qry <- qcon[[2]]
     fromJSON(con$exec(qry$queries$factory_stats))$data$uniswapFactories
+}
+
+
+#' Get UniswapV3 Factory Stats
+#' @return Data on the Uniswap Factory contract
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#'
+#' @examples
+#'
+#' factory_stats_v3()
+factory_stats_v3 <- function() 
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    fromJSON(con$exec(qry$queries$factory_stats))$data$factories
 }
 
 
