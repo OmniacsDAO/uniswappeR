@@ -212,7 +212,7 @@ trade_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$make_trad
 #' @param t2_d Token 2 Decimals
 #' @param t1_q Token 1 Qty.
 #' @return Transaction Hash
-trade_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) as.character(u_w$make_trade(t1_a,py_int(t1_q*10**t1_d),t2_a,recipient=NULL)$hex())
+trade_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) as.character(u_w$make_trade(t1_a,t2_a,py_int(t1_q*10**t1_d),recipient=NULL)$hex())
 
 #' Swap Token1 for Token2, Receive specified Token2 Amount
 #' @export
@@ -223,6 +223,6 @@ trade_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) as.charact
 #' @param t2_d Token 2 Decimals
 #' @param t2_q Token 2 Qty.
 #' @return Transaction Hash
-trade_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) as.character(u_w$make_trade_output(t1_a,py_int(t2_q*10**t2_d),t2_a,recipient=NULL)$hex())
+trade_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) as.character(u_w$make_trade_output(t1_a,t2_a,py_int(t2_q*10**t2_d),recipient=NULL)$hex())
 #################################################################
 #################################################################
