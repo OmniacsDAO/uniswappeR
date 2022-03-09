@@ -140,6 +140,7 @@ token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
     fromJSON(con$exec(qry$queries$token_stats,list(tokenAdd = token_address)))$data$tokens
 }
 
+
 #' Get UniswapV3 Token Stats
 #' @param token_address Token's Address
 #' @return Data on a particular Token
@@ -350,7 +351,7 @@ pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8b
 }
 
 
-#' Get Hourly Pair Historical Stats
+#' Get UniswapV2 Hourly Pair Historical Stats
 #' @param pair_address Pair's Address
 #' @return Hourly Historical Data on a particular Pair
 #'
@@ -383,7 +384,40 @@ pair_stats_hist_hourly_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 }
 
 
-#' Get Daily Pair Historical Stats
+#' Get UniswapV3 Hourly Pair Historical Stats
+#' @param pair_address Pair's Address
+#' @return Hourly Historical Data on a particular Pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_stats_hist_hourly_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+pair_stats_hist_hourly_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$pair_stats_hist_hourly,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pools$poolHourData[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$periodStartUnix,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+
+#' Get UniswapV2 Daily Pair Historical Stats
 #' @param pair_address Pair's Address
 #' @return Daily Historical Data on a particular Pair
 #'
@@ -414,6 +448,40 @@ pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4
     }
     return(pair_data)
 }
+
+
+#' Get UniswapV3 Daily Pair Historical Stats
+#' @param pair_address Pair's Address
+#' @return Daily Historical Data on a particular Pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$pair_stats_hist_daily,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pools$poolDayData[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$date,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
 
 #' Get Current Liquidity Positions in a pair
 #' @param pair_address Pair's Address

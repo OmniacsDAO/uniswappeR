@@ -220,5 +220,109 @@ initialize_queries_v3 <- function()
     ##################################################################
     ##################################################################
 
+
+    ##################################################################
+    ## Historical Stats Hourly of a particular pair
+    ##################################################################
+    qry$query(
+        'pair_stats_hist_hourly',
+        'query pair_stats_hist_hourly($pairAdd: String!,$timestamp: Int!)
+        {
+            pools(where: {id: $pairAdd})
+            {
+                poolHourData(orderBy: periodStartUnix, orderDirection: desc,first:1000,where:{periodStartUnix_lt:$timestamp })
+                {
+                    periodStartUnix
+                    liquidity
+                    sqrtPrice
+                    token0Price
+                    token1Price
+                    tvlUSD
+                    volumeToken0
+                    volumeToken1
+                    volumeUSD
+                    feesUSD
+                    txCount
+                    open
+                    high
+                    low
+                    close
+                    pool
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## Historical Stats Daily of a particular pair
+    ##################################################################
+    qry$query(
+        'pair_stats_hist_daily',
+        'query pair_stats_hist_daily($pairAdd: String!,$timestamp: Int!)
+        {
+            pools(where: {id: $pairAdd})
+            {
+                poolDayData(orderBy: date, orderDirection: desc,first:1000,where:{date_lt:$timestamp })
+                {
+                    date
+                    liquidity
+                    sqrtPrice
+                    token0Price
+                    token1Price
+                    tvlUSD
+                    volumeToken0
+                    volumeToken1
+                    volumeUSD
+                    feesUSD
+                    txCount
+                    open
+                    high
+                    low
+                    close
+                    pool
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
     return(list(con, qry))
 }

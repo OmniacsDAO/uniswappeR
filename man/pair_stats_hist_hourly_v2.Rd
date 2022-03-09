@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{pair_stats_hist_hourly_v2}
 \alias{pair_stats_hist_hourly_v2}
-\title{Get Hourly Pair Historical Stats}
+\title{Get UniswapV2 Hourly Pair Historical Stats}
 \usage{
 pair_stats_hist_hourly_v2(
   pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee"
@@ -15,7 +15,7 @@ pair_stats_hist_hourly_v2(
 Hourly Historical Data on a particular Pair
 }
 \description{
-Get Hourly Pair Historical Stats
+Get UniswapV2 Hourly Pair Historical Stats
 }
 \examples{
 
