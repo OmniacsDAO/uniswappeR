@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{token_pair_map_v2}
 \alias{token_pair_map_v2}
-\title{Get Token's associated pairs}
+\title{Get UniswapV2 Token's associated pairs}
 \usage{
 token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 }
@@ -13,7 +13,7 @@ token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 Sssociated Pairs of a particular Token
 }
 \description{
-Get Token's associated pairs
+Get UniswapV2 Token's associated pairs
 }
 \examples{
 

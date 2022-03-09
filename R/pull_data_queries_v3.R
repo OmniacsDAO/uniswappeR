@@ -115,5 +115,58 @@ initialize_queries_v3 <- function()
     ##################################################################
     ##################################################################
 
+
+    ##################################################################
+    ## Check pair associated with a token as a base
+    ##################################################################
+    qry$query(
+        'token_pair_map',
+        'query token_pair_map($timestamp: Int!)
+        {
+            pools(orderBy: createdAtTimestamp, orderDirection: desc, first: 1000, where:{createdAtTimestamp_lt:$timestamp })
+                {
+                    id
+                    token0
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    token1
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    feeTier
+                    liquidity
+                    token0Price
+                    token1Price
+                    volumeToken0
+                    volumeToken1
+                    volumeUSD
+                    untrackedVolumeUSD
+                    feesUSD
+                    txCount
+                    collectedFeesToken0
+                    collectedFeesToken1
+                    collectedFeesUSD
+                    totalValueLockedToken0
+                    totalValueLockedToken1
+                    totalValueLockedETH
+                    totalValueLockedUSD
+                    liquidityProviderCount
+                    totalValueLockedUSDUntracked
+                    createdAtTimestamp
+                    createdAtBlockNumber
+                }
+
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
     return(list(con, qry))
 }

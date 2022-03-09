@@ -187,9 +187,11 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 - `token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
-#### 4. For a specific Token get stats for all pairs the Token is either Base or Quote
+#### 4. For a specific Token get stats for all pairs the Token is either Base or Quote (Supports V2 and V3)
 
 - `token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+- `token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+
 
 #### 5. View Stats or Historical Stats for a specific Pair
 
