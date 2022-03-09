@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{pair_stats_v2}
 \alias{pair_stats_v2}
-\title{Get Pair Stats}
+\title{Get UniswapV2 Pair Stats}
 \usage{
 pair_stats_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 }
@@ -13,7 +13,7 @@ pair_stats_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 Data on a particular Pair
 }
 \description{
-Get Pair Stats
+Get UniswapV2 Pair Stats
 }
 \examples{
 

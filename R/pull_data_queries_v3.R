@@ -124,45 +124,97 @@ initialize_queries_v3 <- function()
         'query token_pair_map($timestamp: Int!)
         {
             pools(orderBy: createdAtTimestamp, orderDirection: desc, first: 1000, where:{createdAtTimestamp_lt:$timestamp })
+            {
+                id
+                token0
                 {
                     id
-                    token0
-                    {
-                        id
-                        symbol
-                        name
-                        decimals
-                    }
-                    token1
-                    {
-                        id
-                        symbol
-                        name
-                        decimals
-                    }
-                    feeTier
-                    liquidity
-                    token0Price
-                    token1Price
-                    volumeToken0
-                    volumeToken1
-                    volumeUSD
-                    untrackedVolumeUSD
-                    feesUSD
-                    txCount
-                    collectedFeesToken0
-                    collectedFeesToken1
-                    collectedFeesUSD
-                    totalValueLockedToken0
-                    totalValueLockedToken1
-                    totalValueLockedETH
-                    totalValueLockedUSD
-                    liquidityProviderCount
-                    totalValueLockedUSDUntracked
-                    createdAtTimestamp
-                    createdAtBlockNumber
+                    symbol
+                    name
+                    decimals
                 }
+                token1
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                feeTier
+                liquidity
+                token0Price
+                token1Price
+                volumeToken0
+                volumeToken1
+                volumeUSD
+                untrackedVolumeUSD
+                feesUSD
+                txCount
+                collectedFeesToken0
+                collectedFeesToken1
+                collectedFeesUSD
+                totalValueLockedToken0
+                totalValueLockedToken1
+                totalValueLockedETH
+                totalValueLockedUSD
+                liquidityProviderCount
+                totalValueLockedUSDUntracked
+                createdAtTimestamp
+                createdAtBlockNumber
+            }
 
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## Stats of a particular pair
+    ##################################################################
+    qry$query(
+        'pair_stats',
+        'query pair_stats($pairAdd: String!)
+        {
+            pools(where: {id: $pairAdd})
+            {
+                id
+                token0
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                feeTier
+                liquidity
+                token0Price
+                token1Price
+                volumeToken0
+                volumeToken1
+                volumeUSD
+                untrackedVolumeUSD
+                feesUSD
+                txCount
+                collectedFeesToken0
+                collectedFeesToken1
+                collectedFeesUSD
+                totalValueLockedToken0
+                totalValueLockedToken1
+                totalValueLockedETH
+                totalValueLockedUSD
+                liquidityProviderCount
+                totalValueLockedUSDUntracked
+                createdAtTimestamp
+                createdAtBlockNumber
+            }
         }'
     )    
     ##################################################################

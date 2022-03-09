@@ -302,7 +302,7 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
         base_data <- bind_rows(base_data,base_data_t)
         c_timestamp <- as.numeric(tail(base_data_t$createdAtTimestamp,1))
         base_data <- base_data[base_data$token0$id == token_address,]
-        message(paste0("Fetched ",nrow(base_data)," Pools"))
+        message(paste0("Fetched ",nrow(base_data)," Entries"))
     }
 
     ## Return
@@ -310,7 +310,7 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 }
 
 
-#' Get Pair Stats
+#' Get UniswapV2 Pair Stats
 #' @param pair_address Pair's Address
 #' @return Data on a particular Pair
 #'
@@ -327,6 +327,26 @@ pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e4
     con <- qcon[[1]]
     qry <- qcon[[2]]
     fromJSON(con$exec(qry$queries$pair_stats,list(pairAdd = pair_address)))$data$pairs
+}
+
+
+#' Get UniswapV3 Pair Stats
+#' @param pair_address Pair's Address
+#' @return Data on a particular Pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#'
+#' @examples
+#'
+#' pair_stats_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801") 
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    fromJSON(con$exec(qry$queries$pair_stats,list(pairAdd = pair_address)))$data$pools
 }
 
 
