@@ -222,11 +222,14 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
 - `user_hist_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
 
-#### 9. Get Mints/Burns/Swaps Txs from a specific User
+#### 9. Get Mints/Burns/Swaps Txs from a specific User (Supports V2 and V3)
 
 - `user_swaps_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
+- `user_swaps_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")`
 - `user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
+- `user_mints_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")`
 - `user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
+- `user_burns_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")`
 
 #### 10. Export any of the pulled data as CSV file
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{user_burns_v2}
 \alias{user_burns_v2}
-\title{Get User Burn Txs}
+\title{Get UniswapV2 User Burn Txs}
 \usage{
 user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 }
@@ -13,7 +13,7 @@ user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 User Burn Txs
 }
 \description{
-Get User Burn Txs
+Get UniswapV2 User Burn Txs
 }
 \examples{
 

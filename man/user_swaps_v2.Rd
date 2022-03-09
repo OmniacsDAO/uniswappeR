@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{user_swaps_v2}
 \alias{user_swaps_v2}
-\title{Get User Swap Txs}
+\title{Get UniswapV2 User Swap Txs}
 \usage{
 user_swaps_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 }
@@ -13,7 +13,7 @@ user_swaps_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 User Swap Txs
 }
 \description{
-Get User Swap Txs
+Get UniswapV2 User Swap Txs
 }
 \examples{
 

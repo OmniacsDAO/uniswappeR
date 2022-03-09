@@ -846,7 +846,7 @@ user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f927227045
 }
 
 
-#' Get User Swap Txs
+#' Get UniswapV2 User Swap Txs
 #' @param user_address User's Address
 #' @return User Swap Txs
 #'
@@ -878,7 +878,39 @@ user_swaps_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 }
 
 
-#' Get User Mint Txs
+#' Get UniswapV3 User Swap Txs
+#' @param user_address User's Address
+#' @return User Swap Txs
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' user_swaps_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+user_swaps_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    id_last = ""
+    tx_data <- data.frame()
+    while(TRUE)
+    {
+        tx_data_t <- fromJSON(con$exec(qry$queries$swap_user,list(userAdd = user_address,idlast=id_last)))$data$swaps
+        if(length(tx_data_t)==0) break()
+        tx_data <- bind_rows(tx_data,tx_data_t)
+        id_last <- tail(tx_data$id,1)
+        message(paste0("Fetched ",nrow(tx_data)," Entries"))
+    }
+    return(tx_data)
+}
+
+
+#' Get UniswapV2 User Mint Txs
 #' @param user_address User's Address
 #' @return User Mint Txs
 #'
@@ -910,7 +942,39 @@ user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 }
 
 
-#' Get User Burn Txs
+#' Get UniswapV3 User Mint Txs
+#' @param user_address User's Address
+#' @return User Mint Txs
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' user_mints_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+user_mints_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    id_last = ""
+    tx_data <- data.frame()
+    while(TRUE)
+    {
+        tx_data_t <- fromJSON(con$exec(qry$queries$mint_user,list(userAdd = user_address,idlast=id_last)))$data$mints
+        if(length(tx_data_t)==0) break()
+        tx_data <- bind_rows(tx_data,tx_data_t)
+        id_last <- tail(tx_data$id,1)
+        message(paste0("Fetched ",nrow(tx_data)," Entries"))
+    }
+    return(tx_data)
+}
+
+
+#' Get UniswapV2 User Burn Txs
 #' @param user_address User's Address
 #' @return User Burn Txs
 #'
@@ -925,6 +989,38 @@ user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 user_burns_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
     qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    id_last = ""
+    tx_data <- data.frame()
+    while(TRUE)
+    {
+        tx_data_t <- fromJSON(con$exec(qry$queries$burn_user,list(userAdd = user_address,idlast=id_last)))$data$burns
+        if(length(tx_data_t)==0) break()
+        tx_data <- bind_rows(tx_data,tx_data_t)
+        id_last <- tail(tx_data$id,1)
+        message(paste0("Fetched ",nrow(tx_data)," Entries"))
+    }
+    return(tx_data)
+}
+
+
+#' Get UniswapV3 User Burn Txs
+#' @param user_address User's Address
+#' @return User Burn Txs
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' user_burns_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+user_burns_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+{
+    qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
     ## Loop historical

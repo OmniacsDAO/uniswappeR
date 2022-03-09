@@ -536,5 +536,153 @@ initialize_queries_v3 <- function()
     ##################################################################
     ##################################################################
 
+
+    ##################################################################
+    ## User Swap Transactions
+    ##################################################################
+    qry$query(
+        'swap_user',
+        'query swap_user($userAdd: String!,$idlast: String!)
+        {
+            swaps(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,origin:$userAdd})
+            {
+                    id
+                    timestamp
+                    sender
+                    recipient
+                    origin
+                    amount0
+                    amount1
+                    amountUSD
+                    logIndex
+                    sqrtPriceX96
+                    tick
+                    transaction
+                    {
+                        id
+                    }
+                    pool
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## User Mint Transactions
+    ##################################################################
+    qry$query(
+        'mint_user',
+        'query mint_user($userAdd: String!,$idlast: String!)
+        {
+            mints(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,origin:$userAdd})
+            {
+                    id
+                    timestamp
+                    owner
+                    sender
+                    origin
+                    amount
+                    amount0
+                    amount1
+                    amountUSD
+                    logIndex
+                    tickLower
+                    tickUpper
+                    transaction
+                    {
+                        id
+                    }
+                    pool
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## User Burn Transactions
+    ##################################################################
+    qry$query(
+        'burn_user',
+        'query burn_user($userAdd: String!,$idlast: String!)
+        {
+            burns(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,origin:$userAdd})
+            {
+                    id
+                    timestamp
+                    owner
+                    origin
+                    amount
+                    amount0
+                    amount1
+                    amountUSD
+                    logIndex
+                    tickLower
+                    tickUpper
+                    transaction
+                    {
+                        id
+                    }
+                    pool
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
     return(list(con, qry))
 }
