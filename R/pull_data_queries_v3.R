@@ -379,5 +379,162 @@ initialize_queries_v3 <- function()
     ##################################################################
     ##################################################################
 
+
+    ##################################################################
+    ## Mint Transactions in a pair
+    ##################################################################
+    qry$query(
+        'mints_pair',
+        'query mints_pair($pairAdd: String!,$timestamp: Int!)
+        {
+            pools(where:{id:$pairAdd})
+            {
+                mints(orderBy: timestamp, orderDirection: desc,first:1000,where:{timestamp_lt:$timestamp})
+                {
+                    id
+                    timestamp
+                    owner
+                    sender
+                    origin
+                    amount
+                    amount0
+                    amount1
+                    amountUSD
+                    logIndex
+                    tickLower
+                    tickUpper
+                    transaction
+                    {
+                        id
+                    }
+                    pool
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## Burn Transactions in a pair
+    ##################################################################
+    qry$query(
+        'burns_pair',
+        'query burns_pair($pairAdd: String!,$timestamp: Int!)
+        {
+            pools(where:{id:$pairAdd})
+            {
+                burns(orderBy: timestamp, orderDirection: desc,first:1000,where:{timestamp_lt:$timestamp})
+                {
+                    id
+                    timestamp
+                    owner
+                    origin
+                    amount
+                    amount0
+                    amount1
+                    amountUSD
+                    logIndex
+                    tickLower
+                    tickUpper
+                    transaction
+                    {
+                        id
+                    }
+                    pool
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## Swap Transactions in a pair
+    ##################################################################
+    qry$query(
+        'swaps_pair',
+        'query swaps_pair($pairAdd: String!,$timestamp: Int!)
+        {
+            pools(where:{id:$pairAdd})
+            {
+                swaps(orderBy: timestamp, orderDirection: desc,first:1000,where:{timestamp_lt:$timestamp})
+                {
+                    id
+                    timestamp
+                    sender
+                    recipient
+                    origin
+                    amount0
+                    amount1
+                    amountUSD
+                    logIndex
+                    sqrtPriceX96
+                    tick
+                    transaction
+                    {
+                        id
+                    }
+                    pool
+                    {
+                        id
+                        token0
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                        token1
+                        {
+                            id
+                            symbol
+                            name
+                            decimals
+                        }
+                    }
+                }
+            }      
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
     return(list(con, qry))
 }

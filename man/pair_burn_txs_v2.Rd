@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{pair_burn_txs_v2}
 \alias{pair_burn_txs_v2}
-\title{Get Burn Transactions in a pair}
+\title{Get UniswapV2 Burn Transactions in a pair}
 \usage{
 pair_burn_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 }
@@ -13,7 +13,7 @@ pair_burn_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 Burn Transactions in a pair
 }
 \description{
-Get Burn Transactions in a pair
+Get UniswapV2 Burn Transactions in a pair
 }
 \examples{
 

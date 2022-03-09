@@ -584,7 +584,7 @@ pair_liq_positions_hist_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229
 }
 
 
-#' Get Mint Transactions in a pair
+#' Get UniswapV2 Mint Transactions in a pair
 #' @param pair_address Pair's Address
 #' @return Mint Transactions in a pair
 #'
@@ -617,7 +617,40 @@ pair_mint_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 }
 
 
-#' Get Burn Transactions in a pair
+#' Get UniswapV3 Mint Transactions in a pair
+#' @param pair_address Pair's Address
+#' @return Mint Transactions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_mint_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+pair_mint_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$mints_pair,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pools$mints[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$timestamp,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+
+#' Get UniswapV2 Burn Transactions in a pair
 #' @param pair_address Pair's Address
 #' @return Burn Transactions in a pair
 #'
@@ -650,7 +683,40 @@ pair_burn_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 }
 
 
-#' Get Swap Transactions in a pair
+#' Get UniswapV3 Burn Transactions in a pair
+#' @param pair_address Pair's Address
+#' @return Burn Transactions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_burn_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+pair_burn_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$burns_pair,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pools$burns[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$timestamp,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+
+#' Get UniswapV2 Swap Transactions in a pair
 #' @param pair_address Pair's Address
 #' @return Swap Transactions in a pair
 #'
@@ -674,6 +740,39 @@ pair_swap_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
     while(TRUE)
     {
         pair_data_t <- fromJSON(con$exec(qry$queries$swaps_pair,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pairs$swaps[[1]]
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$timestamp,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+
+#' Get UniswapV3 Swap Transactions in a pair
+#' @param pair_address Pair's Address
+#' @return Swap Transactions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pair_swap_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+pair_swap_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$swaps_pair,list(pairAdd = pair_address,timestamp=c_timestamp)))$data$pools$swaps[[1]]
         if(length(pair_data_t)==0) break()
         pair_data <- bind_rows(pair_data,pair_data_t)
         c_timestamp <- as.numeric(tail(pair_data_t$timestamp,1))
