@@ -299,6 +299,13 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 <hr>
 
+## Significant Updates
+
+#### 3/9/2022
+- Added UniswapV3 data pull support for all stats, except 'Liquidity Positions'
+- Added trading functionality for V3
+- Updated the ReadMe to reflect the most recent changes
+
 ## About Us
 
 [Omni Analytics Group](https://omnianalytics.io) is an incorporated group of passionate technologists who help others use data science to change the world. Our  practice of data science leads us into many exciting areas where we enthusiastically apply our machine learning, artificial intelligence and analysis skills. Our flavor for this month, the blockchain!  To learn more about what we do or just to have fun, join us over on [Twitter](https://twitter.com/OmniAnalytics).
