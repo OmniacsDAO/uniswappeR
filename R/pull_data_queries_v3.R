@@ -324,5 +324,60 @@ initialize_queries_v3 <- function()
     ##################################################################
     ##################################################################
 
+
+    ##################################################################
+    ## Liquidity Positions in a pair
+    ##################################################################
+    qry$query(
+        'liq_positions',
+        'query liq_positions($pairAdd: String!,$idlast: String!)
+        {
+            positions(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast})
+            {
+                id
+                owner
+                pool
+                {
+                    id
+                    token0
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    token1
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                }
+                liquidity
+                depositedToken0
+                depositedToken1
+                withdrawnToken0
+                withdrawnToken0
+                collectedFeesToken0
+                collectedFeesToken1
+                tickLower
+                {
+                    id
+                    price0
+                    price1
+                }
+                tickUpper
+                {
+                    id
+                    price0
+                    price1
+                }
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
     return(list(con, qry))
 }

@@ -483,7 +483,7 @@ pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f461
 }
 
 
-#' Get Current Liquidity Positions in a pair
+#' Get UniswapV2 Current Liquidity Positions in a pair
 #' @param pair_address Pair's Address
 #' @return Current Liquidity Positions in a pair
 #'
@@ -514,6 +514,42 @@ pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014
     }
     return(pair_data)
 }
+
+
+#' Get UniswapV3 Current Liquidity Positions in a pair
+#' @param pair_address Pair's Address
+#' @return Current Liquidity Positions in a pair
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#' \dontrun{
+#' pair_liq_positions_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+#' }
+pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+
+    ## Loop historical
+    id_last = ""
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$liq_positions,list(pairAdd = pair_address,idlast=id_last)))$data$positions
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        id_last <- tail(pair_data_t$id,1)
+        pair_data <- pair_data[pair_data$pool$id == pair_address,]
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
 
 #' Get Historical Liquidity Positions in a pair
 #' @param pair_address Pair's Address
