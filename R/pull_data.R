@@ -302,7 +302,7 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
         if(length(base_data_t)==0) break()
         base_data <- bind_rows(base_data,base_data_t)
         c_timestamp <- as.numeric(tail(base_data_t$createdAtTimestamp,1))
-        #base_data <- base_data[base_data$token0$id == token_address | base_data$token1$id == token_address,]
+        base_data <- base_data[base_data$token0$id == token_address | base_data$token1$id == token_address,]
         message(paste0("Fetched ",nrow(base_data)," Entries"))
     }
 
