@@ -134,6 +134,7 @@ uniswap_stats_hist_v3 <- function()
 #' token_stats_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
+    token_address <- tolower(token_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -154,6 +155,7 @@ token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 #' token_stats_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
+    token_address <- tolower(token_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -175,6 +177,7 @@ token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 #' token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
+    token_address <- tolower(token_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -209,6 +212,7 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
+    token_address <- tolower(token_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -242,6 +246,7 @@ token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
+    token_address <- tolower(token_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -289,6 +294,7 @@ token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 #' token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
+    token_address <- tolower(token_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -324,6 +330,7 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 #' pair_stats_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee") 
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -344,6 +351,7 @@ pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e4
 #' pair_stats_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801") 
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -365,6 +373,7 @@ pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8b
 #' pair_stats_hist_hourly_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 pair_stats_hist_hourly_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -398,6 +407,7 @@ pair_stats_hist_hourly_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 #' pair_stats_hist_hourly_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 pair_stats_hist_hourly_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -431,6 +441,7 @@ pair_stats_hist_hourly_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f46
 #' pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -464,6 +475,7 @@ pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4
 #' pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -497,6 +509,7 @@ pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f461
 #' pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -531,6 +544,7 @@ pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014
 #' }
 pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -565,6 +579,7 @@ pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae
 #' pair_liq_positions_hist_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 pair_liq_positions_hist_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -598,6 +613,7 @@ pair_liq_positions_hist_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229
 #' pair_mint_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 pair_mint_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -631,6 +647,7 @@ pair_mint_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 #' pair_mint_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 pair_mint_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -664,6 +681,7 @@ pair_mint_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' pair_burn_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 pair_burn_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -697,6 +715,7 @@ pair_burn_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 #' pair_burn_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 pair_burn_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -730,6 +749,7 @@ pair_burn_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' pair_swap_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 pair_swap_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -763,6 +783,7 @@ pair_swap_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 #' pair_swap_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 pair_swap_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
+    pair_address <- tolower(pair_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -796,6 +817,7 @@ pair_swap_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
 user_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
 {
+    user_address <- tolower(user_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -828,6 +850,7 @@ user_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a
 #' user_hist_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
 user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
 {
+    user_address <- tolower(user_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -860,6 +883,7 @@ user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f927227045
 #' user_swaps_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 user_swaps_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
+    user_address <- tolower(user_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -892,6 +916,7 @@ user_swaps_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' user_swaps_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 user_swaps_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 {
+    user_address <- tolower(user_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -924,6 +949,7 @@ user_swaps_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A
 #' user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
+    user_address <- tolower(user_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -956,6 +982,7 @@ user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' user_mints_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 user_mints_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 {
+    user_address <- tolower(user_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -988,6 +1015,7 @@ user_mints_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A
 #' user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 user_burns_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
+    user_address <- tolower(user_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
@@ -1020,6 +1048,7 @@ user_burns_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' user_burns_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 user_burns_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 {
+    user_address <- tolower(user_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
