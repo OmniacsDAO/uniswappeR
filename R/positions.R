@@ -41,9 +41,6 @@ swaps <- function(address) {
             swaps_t <- swaps1 %>% cbind(trans) %>% cbind(token0) %>% cbind(token1) %>% as_tibble() %>%
             mutate(across(starts_with("amount"), as.numeric)) %>%
             arrange(desc(.data$timestamp))
-            names(swaps_t) <- c("amount0In", "amount0Out", "amount1In", "amount1Out", "amountUSD",
-                      "id", "sender", "timestamp", "to", "Address", "transaction_id", "token0_symbol", "token0_name", "token0_decimals",
-                      "token1_symbol", "token1_name", "token1_decimals")
             swap_data <- do.call(rbind,list(swap_data,swaps_t))
             message(paste0("Fetched ",nrow(swap_data)," Swap Records of address ",user_add))
             if(nrow(swaps_t)<1000) break()
