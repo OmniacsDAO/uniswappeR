@@ -338,12 +338,14 @@ pairs_all_v2 <- function()
     pair_data <- data.frame()
     while(TRUE)
     {
-        pair_data_t <- fromJSON(con$exec(qry$queries$all_pairs,list(timestamp=c_timestamp)))$data$pairs
+        pair_data_tt <- fromJSON(con$exec(qry$queries$all_pairs,list(timestamp=c_timestamp)))
+        if(!is.null(pair_data_tt$errors)) next()
+        pair_data_t <- pair_data_tt$data$pairs
         if(length(pair_data_t)==0) break()
         pair_data <- bind_rows(pair_data,pair_data_t)
         c_timestamp <- as.numeric(tail(pair_data_t$createdAtTimestamp,1))
-        message(paste0("Fetched ",nrow(pair_data)," Entries\n Resting for 5 Seconds"))
-        Sys.sleep(5)
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+        #Sys.sleep(0)
     }
     return(pair_data)
 }
