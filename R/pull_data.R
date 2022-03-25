@@ -317,6 +317,69 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 }
 
 
+#' Get UniswapV2 All Pairs
+#' @return All Pair Data
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pairs_all_v2()
+pairs_all_v2 <- function() 
+{
+    qcon <- initialize_queries()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$all_pairs,list(timestamp=c_timestamp)))$data$pairs
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$createdAtTimestamp,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries\n Resting for 5 Seconds"))
+        Sys.sleep(5)
+    }
+    return(pair_data)
+}
+
+
+#' Get UniswapV3 All Pairs
+#' @return All Pair Data
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' pairs_all_v3()
+pairs_all_v3 <- function() 
+{
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    c_timestamp <- as.integer(Sys.time())
+    pair_data <- data.frame()
+    while(TRUE)
+    {
+        pair_data_t <- fromJSON(con$exec(qry$queries$all_pairs,list(timestamp=c_timestamp)))$data$pools
+        if(length(pair_data_t)==0) break()
+        pair_data <- bind_rows(pair_data,pair_data_t)
+        c_timestamp <- as.numeric(tail(pair_data_t$createdAtTimestamp,1))
+        message(paste0("Fetched ",nrow(pair_data)," Entries"))
+    }
+    return(pair_data)
+}
+
+
 #' Get UniswapV2 Pair Stats
 #' @param pair_address Pair's Address
 #' @return Data on a particular Pair

@@ -192,8 +192,12 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 - `token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
+#### 5. Fetch All Pairs deployed (Supports V2 and V3)
 
-#### 5. View Stats or Historical Stats for a specific Pair (Supports V2 and V3)
+- `pairs_all_v2()`
+- `pairs_all_v3()`
+
+#### 6. View Stats or Historical Stats for a specific Pair (Supports V2 and V3)
 
 - `pair_stats_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 - `pair_stats_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
@@ -202,13 +206,13 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 - `pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 
-#### 6. View Liquidity Positions or Historical LPs for a specific Pair (Partially Supports V2 and V3, V3 Implementation is very slow at the moment.)
+#### 7. View Liquidity Positions or Historical LPs for a specific Pair (Partially Supports V2 and V3, V3 Implementation is very slow at the moment.)
 
 - `pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 - `pair_liq_positions_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 - `pair_liq_positions_hist_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
-#### 7. Get Mints/Burns/Swaps Txs from a specific Pair (Supports V2 and V3)
+#### 8. Get Mints/Burns/Swaps Txs from a specific Pair (Supports V2 and V3)
 
 - `pair_mint_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 - `pair_mint_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
@@ -217,12 +221,12 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `pair_swap_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 - `pair_swap_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 
-#### 8. View Liquidity Positions or Historical LPs for a specific User (V3 support pending.)
+#### 9. View Liquidity Positions or Historical LPs for a specific User (V3 support pending.)
 
 - `user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
 - `user_hist_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
 
-#### 9. Get Mints/Burns/Swaps Txs from a specific User (Supports V2 and V3)
+#### 10. Get Mints/Burns/Swaps Txs from a specific User (Supports V2 and V3)
 
 - `user_swaps_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
 - `user_swaps_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")`
@@ -231,7 +235,7 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")`
 - `user_burns_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")`
 
-#### 10. Export any of the pulled data as CSV file
+#### 11. Export any of the pulled data as CSV file
 
 - `data_to_export <- token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 - `path_to_export <- "~/Desktop/uniswappeR_export.csv"`

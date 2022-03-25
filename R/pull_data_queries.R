@@ -213,6 +213,53 @@ initialize_queries <- function()
 
 
     ##################################################################
+    ## Get all pairs
+    ##################################################################
+    qry$query(
+        'all_pairs',
+        'query all_pairs($timestamp: Int!)
+        {
+            pairs(orderBy: createdAtTimestamp, orderDirection: desc, first: 1000, where:{createdAtTimestamp_lt:$timestamp })
+            {
+                id
+                token0
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                token1
+                {
+                    id
+                    symbol
+                    name
+                    decimals
+                }
+                reserve0
+                reserve1
+                totalSupply
+                reserveUSD
+                reserveETH
+                trackedReserveETH
+                token0Price
+                token1Price
+                volumeToken0
+                volumeToken1
+                volumeUSD
+                untrackedVolumeUSD
+                txCount
+                createdAtTimestamp
+                createdAtBlockNumber
+                liquidityProviderCount
+            }
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
     ## Stats of a particular pair
     ##################################################################
     qry$query(
