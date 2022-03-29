@@ -2,7 +2,7 @@
 % Please edit documentation in R/analysis.R
 \name{vis_token_stats_hist_v2}
 \alias{vis_token_stats_hist_v2}
-\title{Visualise various growth metrics of a given token}
+\title{Visualise various growth metrics of a given token in UniswapV2}
 \usage{
 vis_token_stats_hist_v2(
   token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
@@ -15,7 +15,7 @@ vis_token_stats_hist_v2(
 Plot of growth metrics of a given token
 }
 \description{
-Visualise various growth metrics of a given token
+Visualise various growth metrics of a given token in UniswapV2
 }
 \examples{
 vis_token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")

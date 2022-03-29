@@ -2,7 +2,7 @@
 % Please edit documentation in R/analysis.R
 \name{vis_pair_stats_hist_daily_v2}
 \alias{vis_pair_stats_hist_daily_v2}
-\title{Visualise various growth metrics of a given pair}
+\title{Visualise various growth metrics of a given pair UniswapV2}
 \usage{
 vis_pair_stats_hist_daily_v2(
   pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee"
@@ -15,7 +15,7 @@ vis_pair_stats_hist_daily_v2(
 Plot of growth metrics of a given pair
 }
 \description{
-Visualise various growth metrics of a given pair
+Visualise various growth metrics of a given pair UniswapV2
 }
 \examples{
 vis_pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")

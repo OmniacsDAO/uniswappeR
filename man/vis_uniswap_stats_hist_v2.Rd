@@ -2,15 +2,15 @@
 % Please edit documentation in R/analysis.R
 \name{vis_uniswap_stats_hist_v2}
 \alias{vis_uniswap_stats_hist_v2}
-\title{Visualise various growth metrics of the Uniswap Platform}
+\title{Visualise various growth metrics of the UniswapV2 Platform}
 \usage{
 vis_uniswap_stats_hist_v2()
 }
 \value{
-Plot of growth metrics of the Uniswap Platform
+Plot of growth metrics of the UniswapV2 Platform
 }
 \description{
-Visualise various growth metrics of the Uniswap Platform
+Visualise various growth metrics of the UniswapV2 Platform
 }
 \examples{
 vis_uniswap_stats_hist_v2()

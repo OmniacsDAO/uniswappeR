@@ -1,5 +1,5 @@
-#' Visualise various growth metrics of the Uniswap Platform
-#' @return Plot of growth metrics of the Uniswap Platform
+#' Visualise various growth metrics of the UniswapV2 Platform
+#' @return Plot of growth metrics of the UniswapV2 Platform
 #'
 #' @export
 #'
@@ -31,13 +31,50 @@ vis_uniswap_stats_hist_v2 <- function()
         facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
         scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
         labs(x = "Date", y = "Value")+
-        ggtitle("Uniswap Platform Growth")+
+        ggtitle("UniswapV2 Platform Growth")+
         theme(plot.title = element_text(hjust = 0.5))
-
 }
 
 
-#' Visualise various growth metrics of a given token
+#' Visualise various growth metrics of the UniswapV3 Platform
+#' @return Plot of growth metrics of the UniswapV3 Platform
+#'
+#' @export
+#'
+#' @import lubridate
+#' @import ggplot2
+#' @import tidyr
+#'
+#' @examples
+#' vis_uniswap_stats_hist_v3()
+vis_uniswap_stats_hist_v3 <- function() 
+{
+    plot_data <- uniswap_stats_hist_v3()
+    plot_data$Date <- as_date(as_datetime(plot_data$date))
+
+    plot_data_long <- gather(plot_data, key="met_nam", value="met_val", c( "volumeETH" , "volumeUSD" ,"tvlUSD", "feesUSD" ,"txCount"))
+    plot_data_long <- plot_data_long[,c("Date","met_nam","met_val")]
+    plot_data_long$met_val <- as.numeric(plot_data_long$met_val)
+    variable_names <- list(
+                            "volumeETH" = "Daily Volume (ETH)" ,
+                            "volumeUSD" = "Daily Volume (USD)" ,
+                            "tvlUSD" = "Daily Volume Locked (USD)",
+                            "feesUSD" = "Daily Fee Collected (USD)",
+                            "txCount"  = "Transaction Count"
+                        )
+    variable_labeller <- function(variable,value) return(variable_names[value])
+
+    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+        geom_line()+
+        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+        labs(x = "Date", y = "Value")+
+        ggtitle("UniswapV3 Platform Growth")+
+        theme(plot.title = element_text(hjust = 0.5))
+}
+
+
+#' Visualise various growth metrics of a given token in UniswapV2
 #' @param token_address Token's Address
 #' @return Plot of growth metrics of a given token
 #'
@@ -74,11 +111,50 @@ vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
         labs(x = "Date", y = "Value")+
         ggtitle("Token Growth")+
         theme(plot.title = element_text(hjust = 0.5))
-
 }
 
 
-#' Visualise Number of pairs the token is present
+#' Visualise various growth metrics of a given token in UniswapV3
+#' @param token_address Token's Address
+#' @return Plot of growth metrics of a given token
+#'
+#' @export
+#'
+#' @import lubridate
+#' @import ggplot2
+#' @import tidyr
+#'
+#' @examples
+#' vis_token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+{
+    plot_data <- token_stats_hist_v3(token_address)
+    plot_data$Date <- as_date(as_datetime(plot_data$date))
+
+    plot_data_long <- gather(plot_data, key="met_nam", value="met_val", c( "volume" , "volumeUSD" ,"totalValueLocked", "totalValueLockedUSD" ,"feesUSD","priceUSD"))
+    plot_data_long <- plot_data_long[,c("Date","met_nam","met_val")]
+    plot_data_long$met_val <- as.numeric(plot_data_long$met_val)
+    variable_names <- list(
+                            "volume" = "Daily Volume (Tokens)" ,
+                            "volumeUSD" = "Daily Volume (USD)" ,
+                            "totalValueLocked" = "Token Value Locked (Tokens)",
+                            "totalValueLockedUSD" = "Token Value Locked (USD)",
+                            "feesUSD"  = "Daily Fee Collected (USD)",
+                            "priceUSD" = "Price of Token (USD)"
+                        )
+    variable_labeller <- function(variable,value) return(variable_names[value])
+
+    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+        geom_line()+
+        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+        labs(x = "Date", y = "Value")+
+        ggtitle("Token Growth")+
+        theme(plot.title = element_text(hjust = 0.5))
+}
+
+
+#' Visualise Number of pairs the token is present UniswapV2
 #' @param token_address Token's Address
 #' @return Plot of Number of pairs the token is present
 #'
@@ -120,7 +196,49 @@ vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
 }
 
 
-#' Visualise various growth metrics of a given pair
+#' Visualise Number of pairs the token is present UniswapV3
+#' @param token_address Token's Address
+#' @return Plot of Number of pairs the token is present
+#'
+#' @export
+#'
+#' @import lubridate
+#' @import ggplot2
+#' @import tidyr
+#'
+#' @examples
+#' vis_token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+vis_token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+{
+    plot_data <- token_pair_map_v3(token_address)
+    plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$createdAtTimestamp)))
+    plot_data$If_Token0 <- plot_data$token0$id==token_address
+    plot_data$If_Token1 <- plot_data$token1$id==token_address
+    plot_data <- plot_data[order(plot_data$Date),]
+    plot_data$token0_cumsum <- cumsum(plot_data$If_Token0)
+    plot_data$token1_cumsum <- cumsum(plot_data$If_Token1)
+
+    plot_data_long <- gather(plot_data, key="met_nam", value="met_val", c( "token0_cumsum" , "token1_cumsum"))
+    plot_data_long <- plot_data_long[,c("Date","met_nam","met_val")]
+    plot_data_long$met_val <- as.numeric(plot_data_long$met_val)
+    variable_names <- list(
+                            "token0_cumsum" = "Number of Pairs with token as Token0" ,
+                            "token1_cumsum" = "Number of Pairs with token as Token1"
+                        )
+    variable_labeller <- function(variable,value) return(variable_names[value])
+
+    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+        geom_line()+
+        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+        labs(x = "Date", y = "Number of Pairs")+
+        ggtitle("Token Number of Pairs Growth")+
+        theme(plot.title = element_text(hjust = 0.5))
+
+}
+
+
+#' Visualise various growth metrics of a given pair UniswapV2
 #' @param pair_address Pair's Address
 #' @return Plot of growth metrics of a given pair
 #'
@@ -149,6 +267,49 @@ vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa2
                             "dailyVolumeUSD" = "Daily Volume (USD)",
                             "reserve0" = paste0(Token0_Sym,"\'s Liquidity"),
                             "reserve1" = paste0(Token1_Sym,"\'s Liquidity")
+                        )
+    variable_labeller <- function(variable,value) return(variable_names[value])
+
+    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+        geom_line()+
+        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+        labs(x = "Date", y = "Value")+
+        ggtitle("Pair Growth")+
+        theme(plot.title = element_text(hjust = 0.5))
+
+}
+
+
+#' Visualise various growth metrics of a given pair UniswapV3
+#' @param pair_address Pair's Address
+#' @return Plot of growth metrics of a given pair
+#'
+#' @export
+#'
+#' @import lubridate
+#' @import ggplot2
+#' @import tidyr
+#'
+#' @examples
+#' vis_pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+vis_pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801") 
+{
+    plot_data <- pair_stats_hist_daily_v3(pair_address)
+    plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$date)))
+    Token0_Sym <- unique(plot_data$pool$token0$symbol)
+    Token1_Sym <- unique(plot_data$pool$token1$symbol)
+    
+    plot_data_long <- gather(plot_data, key="met_nam", value="met_val", c( "txCount" , "volumeToken0","volumeToken1","volumeUSD","token0Price","token1Price"))
+    plot_data_long <- plot_data_long[,c("Date","met_nam","met_val")]
+    plot_data_long$met_val <- as.numeric(plot_data_long$met_val)
+    variable_names <- list(
+                            "txCount" = "Number of Daily Transactions" ,
+                            "volumeToken0" = paste0(Token0_Sym,"\'s Daily Volume"),
+                            "volumeToken1" = paste0(Token1_Sym,"\'s Daily Volume"),
+                            "volumeUSD" = "Daily Volume (USD)",
+                            "token0Price" = paste0(Token0_Sym,"\'s Price in ",Token1_Sym),
+                            "token1Price" = paste0(Token1_Sym,"\'s Price in ",Token0_Sym)
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
