@@ -1,3 +1,81 @@
+#' Forecast Price for liquidity range for a pair's tokens UniswapV3
+#' @param pair_address Pair's Address
+#' @param days How long in future to forecast
+#' @param cap Max % Increase that can occur in a day, default capped to 10%
+#' @param sims Number of simultations
+#' @return Forecast Price for a pair's tokens UniswapV3
+#'
+#' @export
+#'
+#' @import lubridate
+#' @import dplyr
+#' @import tidyr
+#'
+#' @examples
+#' liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
+liquidity_range_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
+{
+    ## Pull data
+    data <- pair_stats_hist_daily_v3(pair_address)
+    data <- data[-nrow(data),]
+    data$Date <- as_date(as_datetime(data$date))
+    data <- data[,c("Date","token0Price","token1Price")]
+    data$token0Price <- as.numeric(data$token0Price)
+    data$token1Price <- as.numeric(data$token1Price)
+
+    ## New Data
+    ndata <- data.frame(Date = seq(max(data$Date),max(data$Date)+days,by="days"),token0PricePred=NA,token0PriceUpper=NA,token0PriceLower=NA,token1PricePred=NA,token1PriceUpper=NA,token1PriceLower=NA)
+
+    ## Brownian Motion Data
+    btc_brownian <- data %>%
+        mutate(
+                Returns0 = c(1, token0Price[-1] / lag(token0Price, 1)[-1]),
+                Returns1 = c(1, token1Price[-1] / lag(token1Price, 1)[-1]),
+            ) %>%
+        mutate(
+                Returns0 = pmin(cap, pmax(1 / cap, Returns0)),
+                Returns1 = pmin(cap, pmax(1 / cap, Returns1)),
+                ScaledReturns0 = Returns0 - 1,
+                ScaledReturns1 = Returns1 - 1
+            )
+
+    # Simulate returns according to the number of times
+    simulated_returns0 <- as.data.frame(do.call(cbind, lapply(1:sims, function(i) {sample(btc_brownian$Returns0, size = nrow(ndata), replace = TRUE)})))
+    simulated_returns1 <- as.data.frame(do.call(cbind, lapply(1:sims, function(i) {sample(btc_brownian$Returns1, size = nrow(ndata), replace = TRUE)})))
+
+    # Build the predictions dataset
+    btc_brownian_preds0 <- cbind(Date = ndata$Date, simulated_returns0) %>%
+        gather(key = Simulation, value = Value, 2:ncol(.)) %>%
+        group_by(Simulation) %>%
+        mutate(CumeValue = cumprod(Value),
+               Future = CumeValue * data$token0Price[length(data$token0Price)]) %>%
+        group_by(Date) %>%
+        summarise(Prediction = mean(Future),
+                  Upper = quantile(Future, .975),
+                  Lower = quantile(Future, .025),
+                  Method = "Brownian Motion")
+    btc_brownian_preds1 <- cbind(Date = ndata$Date, simulated_returns1) %>%
+        gather(key = Simulation, value = Value, 2:ncol(.)) %>%
+        group_by(Simulation) %>%
+        mutate(CumeValue = cumprod(Value),
+               Future = CumeValue * data$token1Price[length(data$token1Price)]) %>%
+        group_by(Date) %>%
+        summarise(Prediction = mean(Future),
+                  Upper = quantile(Future, .975),
+                  Lower = quantile(Future, .025),
+                  Method = "Brownian Motion")
+    ndata$token0PricePred <- btc_brownian_preds0$Prediction
+    ndata$token1PricePred <- btc_brownian_preds1$Prediction
+    ndata$token0PriceUpper <- btc_brownian_preds0$Upper
+    ndata$token1PriceUpper <- btc_brownian_preds1$Upper
+    ndata$token0PriceLower <- btc_brownian_preds0$Lower
+    ndata$token1PriceLower <- btc_brownian_preds1$Lower
+
+    ## Return Predictions with estimates
+    return(ndata)
+}
+
+
 #' Visualise various growth metrics of the UniswapV2 Platform
 #' @return Plot of growth metrics of the UniswapV2 Platform
 #'
