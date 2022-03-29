@@ -258,13 +258,6 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/liquidity_range_v3.png" align="center"/>
 <div align="center">UniswapV3 Pair Liquidity Range Forecast</div>
 
-
-- `vis_uniswap_stats_hist_v3()`
-
-<img src="man/figures/vis_uniswap_stats_hist_v3.png" align="center"/>
-<div align="center">Uniswap Platform Growth</div>
-
-
 #### 2. Uniswap Platform Growth
 
 - `vis_uniswap_stats_hist_v2()`
