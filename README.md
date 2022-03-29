@@ -258,11 +258,23 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_uniswap_stats_hist_v2.png" align="center"/>
 <div align="center">Uniswap Platform Growth</div>
 
+
+- `vis_uniswap_stats_hist_v3()`
+
+<img src="man/figures/vis_uniswap_stats_hist_v3.png" align="center"/>
+<div align="center">Uniswap Platform Growth</div>
+
 #### 2. Token Growth
 
 - `vis_token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
 <img src="man/figures/vis_token_stats_hist_v2.png" align="center"/>
+<div align="center">Token Growth</div>
+
+
+- `vis_token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+
+<img src="man/figures/vis_token_stats_hist_v3.png" align="center"/>
 <div align="center">Token Growth</div>
 
 #### 3. Token Number of Pairs Growth
@@ -272,11 +284,23 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_token_pair_map_v2.png" align="center"/>
 <div align="center">Token Growth</div>
 
+
+- `vis_token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
+
+<img src="man/figures/vis_token_pair_map_v3.png" align="center"/>
+<div align="center">Token Growth</div>
+
 #### 4. Pair Growth
 
 - `vis_pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 <img src="man/figures/vis_pair_stats_hist_daily_v2.png" align="center"/>
+<div align="center">Pair Growth</div>
+
+
+- `vis_pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
+
+<img src="man/figures/vis_pair_stats_hist_daily_v3.png" align="center"/>
 <div align="center">Pair Growth</div>
 
 #### 5. Liquidity Token Distribution
