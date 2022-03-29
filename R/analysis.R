@@ -17,6 +17,8 @@ liquidity_range_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3
 {
     ## Pull data
     data <- pair_stats_hist_daily_v3(pair_address)
+    token0 <- unique(data$pool$token0$symbol)
+    token1 <- unique(data$pool$token1$symbol)
     data <- data[-nrow(data),]
     data$Date <- as_date(as_datetime(data$date))
     data <- data[,c("Date","token0Price","token1Price")]
@@ -70,6 +72,7 @@ liquidity_range_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3
     ndata$token1PriceUpper <- btc_brownian_preds1$Upper
     ndata$token0PriceLower <- btc_brownian_preds0$Lower
     ndata$token1PriceLower <- btc_brownian_preds1$Lower
+    names(ndata)[2:7] <- paste0(c(token0,token1),c("_PricePred","_PriceUpper","_PriceLower"))
 
     ## Return Predictions with estimates
     return(ndata)
