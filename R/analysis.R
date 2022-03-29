@@ -72,7 +72,7 @@ liquidity_range_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3
     ndata$token1PriceUpper <- btc_brownian_preds1$Upper
     ndata$token0PriceLower <- btc_brownian_preds0$Lower
     ndata$token1PriceLower <- btc_brownian_preds1$Lower
-    names(ndata)[2:7] <- paste0(c(token0,token1),c("_PricePred","_PriceUpper","_PriceLower"))
+    names(ndata)[2:7] <- c(paste0(token0,c("_PricePred","_PriceUpper","_PriceLower")),paste0(token1,c("_PricePred","_PriceUpper","_PriceLower")))
 
     ## Return Predictions with estimates
     return(ndata)
