@@ -327,7 +327,13 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 - `swap_performance(swap_data)`
 <img src="man/figures/example3_pricechange.png"  align="center"/>
 
-#### 8. Save analysis plot
+#### 8. Liquidity Range Estimates
+
+- `liquidity_range_visualization("0x06b1655b9d560de112759b4f0bf57d6f005e72fe")`
+<img src="man/figures/liquidity_range.png"  align="center"/>
+
+#### 9. Save analysis plot
+
 - `plot_to_export <- vis_uniswap_stats_hist_v2()`
 - `path_to_export <- "~/Desktop/uniswappeR_plot_export.png"`
 - `export_plot(plot_to_export,path_to_export)`
