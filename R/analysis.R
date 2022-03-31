@@ -90,7 +90,7 @@ liquidity_range_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3
 #'
 #' @examples
 #' vis_uniswap_stats_hist_v2()
-vis_uniswap_stats_hist_v2 <- function() 
+vis_uniswap_stats_hist_v2 <- function()
 {
     plot_data <- uniswap_stats_hist_v2()
     plot_data$Date <- as_date(as_datetime(plot_data$date))
@@ -128,7 +128,7 @@ vis_uniswap_stats_hist_v2 <- function()
 #'
 #' @examples
 #' vis_uniswap_stats_hist_v3()
-vis_uniswap_stats_hist_v3 <- function() 
+vis_uniswap_stats_hist_v3 <- function()
 {
     plot_data <- uniswap_stats_hist_v3()
     plot_data$Date <- as_date(as_datetime(plot_data$date))
@@ -167,7 +167,7 @@ vis_uniswap_stats_hist_v3 <- function()
 #'
 #' @examples
 #' vis_token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
-vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     plot_data <- token_stats_hist_v2(token_address)
     plot_data$Date <- as_date(as_datetime(plot_data$date))
@@ -190,7 +190,7 @@ vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
         facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
         scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
         labs(x = "Date", y = "Value")+
-        ggtitle("Token Growth")+
+        ggtitle(paste0("Token Growth (", token_address, ")"))+
         theme(plot.title = element_text(hjust = 0.5))
 }
 
@@ -207,7 +207,7 @@ vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
 #'
 #' @examples
 #' vis_token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
-vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     plot_data <- token_stats_hist_v3(token_address)
     plot_data$Date <- as_date(as_datetime(plot_data$date))
@@ -247,7 +247,7 @@ vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
 #'
 #' @examples
 #' vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
-vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     plot_data <- token_pair_map_v2(token_address)
     plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$createdAtTimestamp)))
@@ -289,7 +289,7 @@ vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
 #'
 #' @examples
 #' vis_token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
-vis_token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+vis_token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     plot_data <- token_pair_map_v3(token_address)
     plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$createdAtTimestamp)))
@@ -331,13 +331,13 @@ vis_token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
 #'
 #' @examples
 #' vis_pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
-vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee") 
+vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     plot_data <- pair_stats_hist_daily_v2(pair_address)
     plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$date)))
     Token0_Sym <- unique(plot_data$token0$symbol)
     Token1_Sym <- unique(plot_data$token1$symbol)
-    
+
     plot_data_long <- gather(plot_data, key="met_nam", value="met_val", c( "dailyTxns" , "dailyVolumeToken0","dailyVolumeToken1","dailyVolumeUSD","reserve0","reserve1"))
     plot_data_long <- plot_data_long[,c("Date","met_nam","met_val")]
     plot_data_long$met_val <- as.numeric(plot_data_long$met_val)
@@ -356,7 +356,7 @@ vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa2
         facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
         scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
         labs(x = "Date", y = "Value")+
-        ggtitle("Pair Growth")+
+        ggtitle(paste0("Pair Growth (", pair_address, ")"))+
         theme(plot.title = element_text(hjust = 0.5))
 
 }
@@ -374,13 +374,13 @@ vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa2
 #'
 #' @examples
 #' vis_pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
-vis_pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801") 
+vis_pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
     plot_data <- pair_stats_hist_daily_v3(pair_address)
     plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$date)))
     Token0_Sym <- unique(plot_data$pool$token0$symbol)
     Token1_Sym <- unique(plot_data$pool$token1$symbol)
-    
+
     plot_data_long <- gather(plot_data, key="met_nam", value="met_val", c( "txCount" , "volumeToken0","volumeToken1","volumeUSD","token0Price","token1Price"))
     plot_data_long <- plot_data_long[,c("Date","met_nam","met_val")]
     plot_data_long$met_val <- as.numeric(plot_data_long$met_val)
@@ -417,7 +417,7 @@ vis_pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85
 #'
 #' @examples
 #' vis_pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
-vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee") 
+vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     plot_data <- pair_liq_positions_v2(pair_address)
     plot_data$liquidityTokenBalance <- as.numeric(plot_data$liquidityTokenBalance)
@@ -427,13 +427,13 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
         geom_histogram()+
         scale_x_continuous(breaks = pretty(plot_data$liquidityTokenBalance, n = 20))+
         labs(x = "Liquidity Token Balance", y = "Number of Holders")+
-        ggtitle("Liquidity Token Distribution")+
+        ggtitle(paste0("Liquidity Token Distribution (", pair_address, ")"))+
         theme(plot.title = element_text(hjust = 0.5))
 
 }
 
 
-#' Write out the analysis plots 
+#' Write out the analysis plots
 #' @param plot_to_export Object containing plot we want to export
 #' @param path_to_export Path of the .png file, we want to export to
 #' @param width Width of plot in inches
@@ -449,7 +449,7 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 #' path_to_export <- "~/Desktop/uniswappeR_plot_export.png"
 #' export_plot(plot_to_export,path_to_export)
 #' }
-export_plot <- function(plot_to_export,path_to_export,width=7,height=7) 
+export_plot <- function(plot_to_export,path_to_export,width=7,height=7)
 {
     ggsave(path_to_export,plot_to_export,width=width,height=height)
     return("Plot Export Complete")
