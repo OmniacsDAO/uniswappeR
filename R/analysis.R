@@ -491,6 +491,35 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 }
 
 
+
+#' Visualise Liquidity Positions spread in a given pair
+#' @param pair_address Pair's Address
+#' @return Plot of Liquidity Positions spread in a given pair
+#'
+#' @export
+#'
+#' @import lubridate
+#' @import ggplot2
+#' @import tidyr
+#'
+#' @examples
+#' vis_pair_liq_positions_v3(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+vis_pair_liq_positions_v3 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+{
+    plot_data <- pair_liq_positions_v3(pair_address)
+    plot_data$liquidityTokenBalance <- as.numeric(plot_data$liquidityTokenBalance)
+    plot_data <- plot_data[plot_data$liquidityTokenBalance>0,]
+
+    ggplot(plot_data, aes(x=liquidityTokenBalance)) +
+        geom_histogram()+
+        scale_x_continuous(breaks = pretty(plot_data$liquidityTokenBalance, n = 20))+
+        labs(x = "Liquidity Token Balance", y = "Number of Holders")+
+        ggtitle(paste0("Liquidity Token Distribution (", pair_address, ")"))+
+        theme(plot.title = element_text(hjust = 0.5))
+
+}
+
+
 #' Write out the analysis plots
 #' @param plot_to_export Object containing plot we want to export
 #' @param path_to_export Path of the .png file, we want to export to
