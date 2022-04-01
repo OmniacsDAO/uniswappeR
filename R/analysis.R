@@ -133,7 +133,7 @@ liquidity_range_v3 <- function(pair_address, ...) {
     range_x <- as.data.frame(rbind(as.numeric(tail(x[,c(3,4)],1)),as.numeric(tail(x[,c(6,7)],1))))
     names(range_x) <- c("Upper Range","Lower Range")
     rownames(range_x) <- c(paste0(gsub("_PricePred","",names(x)[c(2,5)]),collapse="/"),paste0(gsub("_PricePred","",names(x)[c(5,2)]),collapse="/"))
-    return(x)
+    return(range_x)
 }
 
 
