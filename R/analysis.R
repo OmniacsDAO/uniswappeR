@@ -12,8 +12,8 @@
 #' @import tidyr
 #'
 #' @examples
-#' liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
-liquidity_range_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
+#' liquidity_range_all_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
+liquidity_range_all_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
 {
     ## Pull data
     data <- pair_stats_hist_daily_v3(pair_address)
@@ -76,6 +76,64 @@ liquidity_range_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3
 
     ## Return Predictions with estimates
     return(ndata)
+}
+
+
+#' Get a visualization liquidity range estimates
+#'
+#' @param pair_address The address of the pair to analyze
+#' @param ... Additional arguments passed to the liquidity_range_all_v3 function
+#'
+#' @return Visualization on the liquidity range for the given pair
+#'
+#' @export
+#'
+#' @import ggplot2
+#' @import dplyr
+#'
+#' @examples
+#' liquidity_range_visualization("0x06b1655b9d560de112759b4f0bf57d6f005e72fe")
+liquidity_range_visualization <- function(pair_address, ...) {
+    x <- liquidity_range_all_v3(pair_address = pair_address, ...)
+
+    names(x) <- gsub("Price", "", names(x))
+
+    y <- x %>%
+        gather(key = Variable, value = Value, 2:ncol(.)) %>%
+        separate(Variable, into = c("Token", "Variable"), sep = "_", extra = "merge")
+
+    ggplot(data = y, aes(x = Date, y = Value, colour = Variable)) +
+        geom_point() +
+        geom_line() +
+        scale_colour_brewer(palette = "Dark2") +
+        facet_wrap(~Token, scales = "free_y", nrow = 2) +
+        labs(
+            title = "Brownian Motion based Liquidity Pool Price Forecasts",
+            subtitle = paste0("For Pool: ", pair_address)
+        )
+}
+
+
+#' Get a suggested range for liquidity
+#'
+#' @param pair_address The address of the pair to analyze
+#' @param ... Additional arguments passed to the liquidity_range_all_v3 function
+#'
+#' @return Get a Suggestion for liquidity Range
+#'
+#' @export
+#'
+#' @import ggplot2
+#' @import dplyr
+#'
+#' @examples
+#' liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+liquidity_range_v3 <- function(pair_address, ...) {
+    x <- liquidity_range_all_v3(pair_address = pair_address, ...)
+    range_x <- as.data.frame(rbind(as.numeric(tail(x[,c(3,4)],1)),as.numeric(tail(x[,c(6,7)],1))))
+    names(range_x) <- c("Upper Range","Lower Range")
+    rownames(range_x) <- c(paste0(gsub("_PricePred","",names(x)[c(2,5)]),collapse="/"),paste0(gsub("_PricePred","",names(x)[c(5,2)]),collapse="/"))
+    return(x)
 }
 
 

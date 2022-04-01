@@ -253,12 +253,22 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 #### 1. UniswapV3 Pair Token Liquidity Range Forecast.
 
-- `liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)`
+- `liquidity_range_all_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)`
 
-<img src="man/figures/liquidity_range_v3.png" align="center"/>
+<img src="man/figures/liquidity_range_all_v3.png" align="center"/>
 <div align="center">UniswapV3 Pair Liquidity Range Forecast</div>
 
-#### 2. Uniswap Platform Growth
+- `liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
+
+<img src="man/figures/liquidity_rangev3.png" align="center"/>
+<div align="center">UniswapV3 Pair Liquidity Range</div>
+
+#### 2. Liquidity Range Estimates Visualisation
+
+- `liquidity_range_visualization("0x06b1655b9d560de112759b4f0bf57d6f005e72fe")`
+<img src="man/figures/liquidity_range.png"  align="center"/>
+
+#### 3. Uniswap Platform Growth
 
 - `vis_uniswap_stats_hist_v2()`
 
@@ -271,7 +281,7 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_uniswap_stats_hist_v3.png" align="center"/>
 <div align="center">Uniswap Platform Growth</div>
 
-#### 3. Token Growth
+#### 4. Token Growth
 
 - `vis_token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
@@ -284,7 +294,7 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_token_stats_hist_v3.png" align="center"/>
 <div align="center">Token Growth</div>
 
-#### 4. Token Number of Pairs Growth
+#### 5. Token Number of Pairs Growth
 
 - `vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
@@ -297,7 +307,7 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_token_pair_map_v3.png" align="center"/>
 <div align="center">Token Growth</div>
 
-#### 5. Pair Growth
+#### 6. Pair Growth
 
 - `vis_pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
@@ -310,14 +320,14 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 <img src="man/figures/vis_pair_stats_hist_daily_v3.png" align="center"/>
 <div align="center">Pair Growth</div>
 
-#### 6. Liquidity Token Distribution
+#### 7. Liquidity Token Distribution
 
 - `vis_pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 <img src="man/figures/vis_pair_liq_positions_v2.png" align="center"/>
 <div align="center">Liquidity Token Distribution</div>
 
-#### 7. User Swap Performance
+#### 8. User Swap Performance
 
 - `addresses <- c("0x2e3381202988d535e8185e7089f633f7c9998e83", "0x4d9c274ADF71e4201B4aB1f28BF05D44eE4bA261")`
 - `swap_data <- swaps(addresses)`
@@ -327,10 +337,6 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 - `swap_performance(swap_data)`
 <img src="man/figures/example3_pricechange.png"  align="center"/>
 
-#### 8. Liquidity Range Estimates
-
-- `liquidity_range_visualization("0x06b1655b9d560de112759b4f0bf57d6f005e72fe")`
-<img src="man/figures/liquidity_range.png"  align="center"/>
 
 #### 9. Save analysis plot
 

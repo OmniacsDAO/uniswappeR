@@ -305,38 +305,3 @@ swap_performance <- function(swap_data) {
 
     p1
 }
-
-
-#' Get a visualization liquidity range estimates
-#'
-#' @param pair_address The address of the pair to analyze
-#' @param ... Additional arguments passed to the liquidity_range_v3 function
-#'
-#' @return Visualization on the liquidity range for the given pair
-#'
-#' @export
-#'
-#' @import ggplot2
-#' @import dplyr
-#'
-#' @examples
-#'
-liquidity_range_visualization <- function(pair_address, ...) {
-    x <- liquidity_range_v3(pair_address = pair_address, ...)
-
-    names(x) <- gsub("Price", "", names(x))
-
-    y <- x %>%
-        gather(key = Variable, value = Value, 2:ncol(.)) %>%
-        separate(Variable, into = c("Token", "Variable"), sep = "_", extra = "merge")
-
-    ggplot(data = y, aes(x = Date, y = Value, colour = Variable)) +
-        geom_point() +
-        geom_line() +
-        scale_colour_brewer(palette = "Dark2") +
-        facet_wrap(~Token, scales = "free_y", nrow = 2) +
-        labs(
-            title = "Brownian Motion based Liquidity Pool Price Forecasts",
-            subtitle = paste0("For Pool: ", pair_address)
-        )
-}

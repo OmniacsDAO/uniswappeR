@@ -2,30 +2,21 @@
 % Please edit documentation in R/analysis.R
 \name{liquidity_range_v3}
 \alias{liquidity_range_v3}
-\title{Forecast Price for liquidity range for a pair's tokens UniswapV3}
+\title{Get a suggested range for liquidity}
 \usage{
-liquidity_range_v3(
-  pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
-  days = 30,
-  cap = 10,
-  sims = 1000
-)
+liquidity_range_v3(pair_address, ...)
 }
 \arguments{
-\item{pair_address}{Pair's Address}
+\item{pair_address}{The address of the pair to analyze}
 
-\item{days}{How long in future to forecast}
-
-\item{cap}{Max % Increase that can occur in a day, default capped to 10%}
-
-\item{sims}{Number of simultations}
+\item{...}{Additional arguments passed to the liquidity_range_all_v3 function}
 }
 \value{
-Forecast Price for a pair's tokens UniswapV3
+Get a Suggestion for liquidity Range
 }
 \description{
-Forecast Price for liquidity range for a pair's tokens UniswapV3
+Get a suggested range for liquidity
 }
 \examples{
-liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
+liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 }
