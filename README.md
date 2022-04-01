@@ -260,7 +260,7 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 - `liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 
-<img src="man/figures/liquidity_rangev3.png" align="center"/>
+<img src="man/figures/liquidity_range_v3.png" align="center"/>
 <div align="center">UniswapV3 Pair Liquidity Range</div>
 
 #### 2. Liquidity Range Estimates Visualisation
