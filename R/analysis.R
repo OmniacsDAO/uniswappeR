@@ -92,7 +92,7 @@ liquidity_range_all_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617a
 #' @import dplyr
 #'
 #' @examples
-#' liquidity_range_visualization("0x06b1655b9d560de112759b4f0bf57d6f005e72fe")
+#' liquidity_range_visualization("0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 liquidity_range_visualization <- function(pair_address, ...) {
     x <- liquidity_range_all_v3(pair_address = pair_address, ...)
 
