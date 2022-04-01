@@ -266,7 +266,7 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 #### 2. Liquidity Range Estimates Visualisation
 
 - `liquidity_range_visualization("0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
-<img src="man/figures/liquidity_range.png"  align="center"/>
+<img src="man/figures/liquidity_range_visualization.png"  align="center"/>
 
 #### 3. Uniswap Platform Growth
 
