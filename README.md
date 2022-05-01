@@ -252,30 +252,41 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 ### Walkthrough
 
 #### 1. UniswapV3 Pair Token Liquidity Range Forecast.
-The below code snippet provides a forecast 
+
+The below code snippet provides a forecast using geometric Brownian motion its tunable parameters are the Pair's Address, forecast window, max % increase that can occur in a single day, and number of simulations, respectively. The resulting output is a data frame with the liquidity  range forecast.
 
 - `liquidity_range_all_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)`
 
 <img src="man/figures/liquidity_range_all_v3.png" align="center"/>
 <div align="center">UniswapV3 Pair Liquidity Range Forecast</div>
 
+This provides the suggested range for the liquidity.
 - `liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
+
 
 <img src="man/figures/liquidity_range_v3.png" align="center"/>
 <div align="center">UniswapV3 Pair Liquidity Range</div>
 
 #### 2. Liquidity Range Estimates Visualisation
 
+Allows for the visualisation of the GBM process for a Pair's address. Additionally `ggplot` pipelines can be added to modify the visualisation.
+
 - `liquidity_range_visualization("0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 <img src="man/figures/liquidity_range_visualization.png"  align="center"/>
 
 #### 3. Uniswap Platform Growth
+
+This section introduces various visualisations within `uniswappeR`.
+
+This allows the user to visualise various growth metrics of the UniswapV2 Platform. From this, insights about daily volume, liquidity, and transaction counts can be analyzed. For example, we can infer that the amount of transactions overtime is steadily increasing, and that there is not a clear, discernible pattern for the daily volume nor liquidity.
 
 - `vis_uniswap_stats_hist_v2()`
 
 <img src="man/figures/vis_uniswap_stats_hist_v2.png" align="center"/>
 <div align="center">Uniswap Platform Growth</div>
 
+
+This allows the user to visualise various growth metrics of the UniswapV3 Platform. From this, insights about daily volume, liquidity, and transaction counts can be analyzed. This visual quickly allows us to see that sometime around March 2022, a large spike occured for the daily volume. This this enables the curious user to explore in further detail the events that occurred that day.
 
 - `vis_uniswap_stats_hist_v3()`
 
