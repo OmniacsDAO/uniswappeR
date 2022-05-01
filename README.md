@@ -295,11 +295,14 @@ This allows the user to visualise various growth metrics of the UniswapV3 Platfo
 
 #### 4. Token Growth
 
+This allows the user to visualise various growth metrics of a given token in UniswapV2. Similar to the other historical stats functions, this allows the user to see past trends for a specific token on UniswapV2. From this we can quickly notice a downward trend in token liquidity signaling a rush on that token.
+
 - `vis_token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
 <img src="man/figures/vis_token_stats_hist_v2.png" align="center"/>
 <div align="center">Token Growth</div>
 
+This allows the user to visualise various growth metrics of a given token in UniswapV3. Similar to the other historical stats functions, this allows the user to see past trends for a specific token on UniswapV3. One quick insight we can gather is that there appears to be a progressively less popularity in this token's trade volume which is allow, perhaps, correlating with the token's price.
 
 - `vis_token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
