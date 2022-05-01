@@ -163,7 +163,7 @@ View the [video walkthrough](https://www.youtube.com/watch?v=GpWZLMB2lvM) on how
 
 ### Description
 
-Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package.
+Our `uniswappeR` R package contains the codebase that abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package.
 
 View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how to pull data into R using UniswappeR.
 
@@ -247,11 +247,12 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 
 ### Description
 
-Our `uniswappeR` R package includes a number of high level functions for interacting and visualise the data from uniswap:
+Our `uniswappeR` R package includes a number of high level functions for interacting and visualising the data from uniswap:
 
 ### Walkthrough
 
 #### 1. UniswapV3 Pair Token Liquidity Range Forecast.
+The below code snippet provides a forecast 
 
 - `liquidity_range_all_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)`
 
