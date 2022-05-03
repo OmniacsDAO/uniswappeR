@@ -311,11 +311,15 @@ This allows the user to visualise various growth metrics of a given token in Uni
 
 #### 5. Token Number of Pairs Growth
 
+The below visual provides an indication of how often a given token is in a pair where token0 and token1 are given by the sorting order.
+
 - `vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
 <img src="man/figures/vis_token_pair_map_v2.png" align="center"/>
 <div align="center">Token Growth</div>
 
+
+The below visual provides an indication of how often a given token is in a pair where token0 and token1 are given by the sorting order.
 
 - `vis_token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
@@ -324,11 +328,14 @@ This allows the user to visualise various growth metrics of a given token in Uni
 
 #### 6. Pair Growth
 
+The following provides a vasual of various growth metrics of a given pair in UniswapV2. In this example the pair_address is UNI to DAI.
+
 - `vis_pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 <img src="man/figures/vis_pair_stats_hist_daily_v2.png" align="center"/>
 <div align="center">Pair Growth</div>
 
+The following provides a vasual of various growth metrics of a given pair in UniswapV3.
 
 - `vis_pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 
@@ -337,12 +344,17 @@ This allows the user to visualise various growth metrics of a given token in Uni
 
 #### 7. Liquidity Token Distribution
 
+
+Allows for a user to visualise liquidity positions spread in a given pair via a histogram. One insight we can gather from this is that one address is providing about 1450 tokens to the LP whereas most others are contributing substaintially less.
+
 - `vis_pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 <img src="man/figures/vis_pair_liq_positions_v2.png" align="center"/>
 <div align="center">Liquidity Token Distribution</div>
 
 #### 8. User Swap Performance
+
+Allows a user to retrieve all the swaps data for a given address or addresses. This allows a user to readily recognize their level of activity.
 
 - `addresses <- c("0x2e3381202988d535e8185e7089f633f7c9998e83", "0x4d9c274ADF71e4201B4aB1f28BF05D44eE4bA261")`
 - `swap_data <- swaps(addresses)`
