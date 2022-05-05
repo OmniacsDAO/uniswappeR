@@ -163,7 +163,7 @@ View the [video walkthrough](https://www.youtube.com/watch?v=GpWZLMB2lvM) on how
 
 ### Description
 
-Our `uniswappeR` R package contains the codebase to abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package.
+Our `uniswappeR` R package contains the codebase that abstracts away the GraphQL layer of querying for uniswap data into a user-friendly R package.
 
 View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how to pull data into R using UniswappeR.
 
@@ -247,34 +247,46 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 
 ### Description
 
-Our `uniswappeR` R package includes a number of high level functions for interacting and visualise the data from uniswap:
+Our `uniswappeR` R package includes a number of high level functions for interacting and visualising the data from uniswap:
 
 ### Walkthrough
 
 #### 1. UniswapV3 Pair Token Liquidity Range Forecast.
+
+The below code snippet provides a forecast using geometric Brownian motion its tunable parameters are the Pair's Address, forecast window, max % increase that can occur in a single day, and number of simulations, respectively. The resulting output is a data frame with the liquidity  range forecast.
 
 - `liquidity_range_all_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)`
 
 <img src="man/figures/liquidity_range_all_v3.png" align="center"/>
 <div align="center">UniswapV3 Pair Liquidity Range Forecast</div>
 
+This provides the suggested range for the liquidity.
 - `liquidity_range_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
+
 
 <img src="man/figures/liquidity_range_v3.png" align="center"/>
 <div align="center">UniswapV3 Pair Liquidity Range</div>
 
 #### 2. Liquidity Range Estimates Visualisation
 
+Allows for the visualisation of the GBM process for a Pair's address. Additionally `ggplot` pipelines can be added to modify the visualisation.
+
 - `liquidity_range_visualization("0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 <img src="man/figures/liquidity_range_visualization.png"  align="center"/>
 
 #### 3. Uniswap Platform Growth
+
+This section introduces various visualisations within `uniswappeR`.
+
+This allows the user to visualise various growth metrics of the UniswapV2 Platform. From this, insights about daily volume, liquidity, and transaction counts can be analyzed. For example, we can infer that the amount of transactions overtime is steadily increasing, and that there is not a clear, discernible pattern for the daily volume nor liquidity.
 
 - `vis_uniswap_stats_hist_v2()`
 
 <img src="man/figures/vis_uniswap_stats_hist_v2.png" align="center"/>
 <div align="center">Uniswap Platform Growth</div>
 
+
+This allows the user to visualise various growth metrics of the UniswapV3 Platform. From this, insights about daily volume, liquidity, and transaction counts can be analyzed. This visual quickly allows us to see that sometime around March 2022, a large spike occured for the daily volume. This this enables the curious user to explore in further detail the events that occurred that day.
 
 - `vis_uniswap_stats_hist_v3()`
 
@@ -283,11 +295,14 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 #### 4. Token Growth
 
+This allows the user to visualise various growth metrics of a given token in UniswapV2. Similar to the other historical stats functions, this allows the user to see past trends for a specific token on UniswapV2. From this we can quickly notice a downward trend in token liquidity signaling a rush on that token.
+
 - `vis_token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
 <img src="man/figures/vis_token_stats_hist_v2.png" align="center"/>
 <div align="center">Token Growth</div>
 
+This allows the user to visualise various growth metrics of a given token in UniswapV3. Similar to the other historical stats functions, this allows the user to see past trends for a specific token on UniswapV3. One quick insight we can gather is that there appears to be a progressively less popularity in this token's trade volume which is allow, perhaps, correlating with the token's price.
 
 - `vis_token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
@@ -296,11 +311,15 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 #### 5. Token Number of Pairs Growth
 
+The below visual provides an indication of how often a given token is in a pair where token0 and token1 are given by the sorting order.
+
 - `vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
 <img src="man/figures/vis_token_pair_map_v2.png" align="center"/>
 <div align="center">Token Growth</div>
 
+
+The below visual provides an indication of how often a given token is in a pair where token0 and token1 are given by the sorting order.
 
 - `vis_token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")`
 
@@ -309,11 +328,14 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 #### 6. Pair Growth
 
+The following provides a vasual of various growth metrics of a given pair in UniswapV2. In this example the pair_address is UNI to DAI.
+
 - `vis_pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 <img src="man/figures/vis_pair_stats_hist_daily_v2.png" align="center"/>
 <div align="center">Pair Growth</div>
 
+The following provides a vasual of various growth metrics of a given pair in UniswapV3.
 
 - `vis_pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 
@@ -322,12 +344,17 @@ Our `uniswappeR` R package includes a number of high level functions for interac
 
 #### 7. Liquidity Token Distribution
 
+
+Allows for a user to visualise liquidity positions spread in a given pair via a histogram. One insight we can gather from this is that one address is providing about 1450 tokens to the LP whereas most others are contributing substaintially less.
+
 - `vis_pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 
 <img src="man/figures/vis_pair_liq_positions_v2.png" align="center"/>
 <div align="center">Liquidity Token Distribution</div>
 
 #### 8. User Swap Performance
+
+Allows a user to retrieve all the swaps data for a given address or addresses. This allows a user to readily recognize their level of activity.
 
 - `addresses <- c("0x2e3381202988d535e8185e7089f633f7c9998e83", "0x4d9c274ADF71e4201B4aB1f28BF05D44eE4bA261")`
 - `swap_data <- swaps(addresses)`
