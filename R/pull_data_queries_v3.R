@@ -705,6 +705,122 @@ initialize_queries_v3 <- function()
 
 
     ##################################################################
+    ## User Liquidity Positions Current
+    ##################################################################
+    qry$query(
+        'lps_user',
+        'query lps_user($userAdd: String!,$idlast: String!)
+        {
+            positions(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,owner:$userAdd})
+            {
+                id
+                owner
+                pool
+                {
+                    id
+                    token0
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    token1
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                }
+                liquidity
+                depositedToken0
+                depositedToken1
+                withdrawnToken0
+                withdrawnToken1
+                collectedFeesToken0
+                collectedFeesToken1
+                tickLower
+                {
+                    id
+                    price0
+                    price1
+                }
+                tickUpper
+                {
+                    id
+                    price0
+                    price1
+                }
+            }     
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
+    ## User Liquidity Positions Historical
+    ##################################################################
+    qry$query(
+        'lps_hist_user',
+        'query lps_hist_user($userAdd: String!,$idlast: String!)
+        {
+            positionSnapshots(orderBy: id, orderDirection: asc,first:1000,where:{id_gt:$idlast,owner:$userAdd})
+            {
+                id
+                owner
+                pool
+                {
+                    id
+                    token0
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                    token1
+                    {
+                        id
+                        symbol
+                        name
+                        decimals
+                    }
+                }
+                blockNumber
+                timestamp
+                liquidity
+                depositedToken0
+                depositedToken1
+                withdrawnToken0
+                withdrawnToken1
+                collectedFeesToken0
+                collectedFeesToken1
+                position
+                {
+                    id
+                    tickLower
+                    {
+                        id
+                        price0
+                        price1
+                    }
+                    tickUpper
+                    {
+                        id
+                        price0
+                        price1
+                    }
+                }
+            }     
+        }'
+    )    
+    ##################################################################
+    ##################################################################
+
+
+    ##################################################################
     ## User Swap Transactions
     ##################################################################
     qry$query(

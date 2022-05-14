@@ -684,7 +684,6 @@ pair_liq_positions_hist_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229
 #' @import dplyr
 #'
 #' @examples
-#'
 #' \dontrun{
 #' pair_liq_positions_hist_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 #' }
@@ -914,7 +913,7 @@ pair_swap_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 }
 
 
-#' Get User Liquidity Positions
+#' Get UniswapV2 User Liquidity Positions
 #' @param user_address User's Address
 #' @return User Liquidity Positions
 #'
@@ -947,7 +946,40 @@ user_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a
 }
 
 
-#' Get Historical User Liquidity Positions
+#' Get UniswapV3 User Liquidity Positions
+#' @param user_address User's Address
+#' @return User Liquidity Positions
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' user_lps_v3(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
+user_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
+{
+    user_address <- tolower(user_address)
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    id_last = ""
+    lp_data <- data.frame()
+    while(TRUE)
+    {
+        lp_data_t <- fromJSON(con$exec(qry$queries$lps_user,list(userAdd = user_address,idlast=id_last)))$data$positions
+        if(length(lp_data_t)==0) break()
+        lp_data <- bind_rows(lp_data,lp_data_t)
+        id_last <- tail(lp_data_t$id,1)
+        message(paste0("Fetched ",nrow(lp_data)," Entries"))
+    }
+    return(lp_data)
+}
+
+
+#' Get UniswapV2 Historical User Liquidity Positions
 #' @param user_address User's Address
 #' @return Historical User Liquidity Positions
 #'
@@ -971,6 +1003,38 @@ user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f927227045
     while(TRUE)
     {
         lp_data_t <- fromJSON(con$exec(qry$queries$lps_hist_user,list(userAdd = user_address,idlast=id_last)))$data$liquidityPositionSnapshots
+        if(length(lp_data_t)==0) break()
+        lp_data <- bind_rows(lp_data,lp_data_t)
+        id_last <- tail(lp_data_t$id,1)
+        message(paste0("Fetched ",nrow(lp_data)," Entries"))
+    }
+    return(lp_data)
+}
+
+#' Get UniswapV3 Historical User Liquidity Positions
+#' @param user_address User's Address
+#' @return Historical User Liquidity Positions
+#'
+#' @export
+#'
+#' @importFrom jsonlite fromJSON
+#' @import dplyr
+#'
+#' @examples
+#'
+#' user_hist_lps_v3(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
+user_hist_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
+{
+    user_address <- tolower(user_address)
+    qcon <- initialize_queries_v3()
+    con <- qcon[[1]]
+    qry <- qcon[[2]]
+    ## Loop historical
+    id_last = ""
+    lp_data <- data.frame()
+    while(TRUE)
+    {
+        lp_data_t <- fromJSON(con$exec(qry$queries$lps_hist_user,list(userAdd = user_address,idlast=id_last)))$data$positionSnapshots
         if(length(lp_data_t)==0) break()
         lp_data <- bind_rows(lp_data,lp_data_t)
         id_last <- tail(lp_data_t$id,1)

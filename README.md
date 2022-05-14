@@ -222,10 +222,12 @@ View the [video walkthrough](https://www.youtube.com/watch?v=yCDr-zsrM8Y) on how
 - `pair_swap_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")`
 - `pair_swap_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
 
-#### 9. View Liquidity Positions or Historical LPs for a specific User (V3 support pending.)
+#### 9. View Liquidity Positions or Historical LPs for a specific User (Supports V2 and V3)
 
 - `user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
+- `user_lps_v3(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")`
 - `user_hist_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")`
+- `user_hist_lps_v3(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")`
 
 #### 10. Get Mints/Burns/Swaps Txs from a specific User (Supports V2 and V3)
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{user_lps_v2}
 \alias{user_lps_v2}
-\title{Get User Liquidity Positions}
+\title{Get UniswapV2 User Liquidity Positions}
 \usage{
 user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
 }
@@ -13,7 +13,7 @@ user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
 User Liquidity Positions
 }
 \description{
-Get User Liquidity Positions
+Get UniswapV2 User Liquidity Positions
 }
 \examples{
 
