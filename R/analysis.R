@@ -503,8 +503,10 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 #' @import tidyr
 #'
 #' @examples
-#' vis_pair_liq_positions_v3(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
-vis_pair_liq_positions_v3 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' \dontrun{
+#' vis_pair_liq_positions_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+#' }
+vis_pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
     plot_data <- pair_liq_positions_v3(pair_address)
     plot_data$liquidityTokenBalance <- as.numeric(plot_data$liquidityTokenBalance)

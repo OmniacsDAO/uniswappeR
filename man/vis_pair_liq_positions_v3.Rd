@@ -5,7 +5,7 @@
 \title{Visualise Liquidity Positions spread in a given pair}
 \usage{
 vis_pair_liq_positions_v3(
-  pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee"
+  pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801"
 )
 }
 \arguments{
@@ -18,5 +18,7 @@ Plot of Liquidity Positions spread in a given pair
 Visualise Liquidity Positions spread in a given pair
 }
 \examples{
-vis_pair_liq_positions_v3(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+\dontrun{
+vis_pair_liq_positions_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+}
 }
