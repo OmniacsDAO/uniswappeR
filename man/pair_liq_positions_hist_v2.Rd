@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_data.R
 \name{pair_liq_positions_hist_v2}
 \alias{pair_liq_positions_hist_v2}
-\title{Get Historical Liquidity Positions in a pair}
+\title{Get Unsiwap2 Historical Liquidity Positions in a pair}
 \usage{
 pair_liq_positions_hist_v2(
   pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee"
@@ -15,7 +15,7 @@ pair_liq_positions_hist_v2(
 Historical Liquidity Positions in a pair
 }
 \description{
-Get Historical Liquidity Positions in a pair
+Get Unsiwap2 Historical Liquidity Positions in a pair
 }
 \examples{
 
