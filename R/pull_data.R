@@ -304,16 +304,27 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
     base_data <- data.frame()
     while(TRUE)
     {
-        base_data_t <- fromJSON(con$exec(qry$queries$token_pair_map,list(timestamp=c_timestamp)))$data$pools
+        base_data_t <- fromJSON(con$exec(qry$queries$token_pairBase_map,list(tokenAdd = token_address,timestamp=c_timestamp)))$data$pools
         if(length(base_data_t)==0) break()
         base_data <- bind_rows(base_data,base_data_t)
         c_timestamp <- as.numeric(tail(base_data_t$createdAtTimestamp,1))
-        base_data <- base_data[base_data$token0$id == token_address | base_data$token1$id == token_address,]
-        message(paste0("Fetched ",nrow(base_data)," Entries"))
+        message(paste0("Fetched ",nrow(base_data)," Base Entries"))
+    }
+
+    ## Token as Quote
+    c_timestamp <- as.integer(Sys.time())
+    quote_data <- data.frame()
+    while(TRUE)
+    {
+        quote_data_t <- fromJSON(con$exec(qry$queries$token_pairQuote_map,list(tokenAdd = token_address,timestamp=c_timestamp)))$data$pools
+        if(length(quote_data_t)==0) break()
+        quote_data <- bind_rows(quote_data,quote_data_t)
+        c_timestamp <- as.numeric(tail(quote_data_t$createdAtTimestamp,1))
+        message(paste0("Fetched ",nrow(quote_data)," Quote Entries"))
     }
 
     ## Return
-    return(base_data)
+    return(bind_rows(base_data,quote_data))
 }
 
 
