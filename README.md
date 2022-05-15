@@ -60,8 +60,9 @@ View the [video walkthrough](https://www.youtube.com/watch?v=GpWZLMB2lvM) on how
 	`t2_d <- 18`
 
 
-- Check Your ETH Balance<br>`check_eth_balance(u_w)`
-
+- Check Your ETH Balance<br>
+	- `check_eth_balance(u_w)`
+	
 
 - Check Your Uniswap (UNI) Token Balance<br>
 	- `check_tok_balance(t_a,t_d,u_w)`
