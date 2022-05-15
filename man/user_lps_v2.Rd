@@ -16,6 +16,7 @@ User Liquidity Positions
 Get UniswapV2 User Liquidity Positions
 }
 \examples{
-
+\dontrun{
 user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
+}
 }

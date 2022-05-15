@@ -16,6 +16,7 @@ User Burn Txs
 Get UniswapV2 User Burn Txs
 }
 \examples{
-
+\dontrun{
 user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
+}
 }

@@ -16,6 +16,7 @@ Data on a particular Pair
 Get UniswapV3 Pair Stats
 }
 \examples{
-
+\dontrun{
 pair_stats_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+}
 }

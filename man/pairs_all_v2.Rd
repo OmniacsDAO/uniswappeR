@@ -13,6 +13,7 @@ All Pair Data
 Get UniswapV2 All Pairs
 }
 \examples{
-
+\dontrun{
 pairs_all_v2()
+}
 }

@@ -18,6 +18,7 @@ Current Liquidity Positions in a pair
 Get UniswapV2 Current Liquidity Positions in a pair
 }
 \examples{
-
+\dontrun{
 pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+}
 }

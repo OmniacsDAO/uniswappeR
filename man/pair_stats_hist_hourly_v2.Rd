@@ -18,6 +18,7 @@ Hourly Historical Data on a particular Pair
 Get UniswapV2 Hourly Pair Historical Stats
 }
 \examples{
-
+\dontrun{
 pair_stats_hist_hourly_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+}
 }

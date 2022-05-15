@@ -16,6 +16,7 @@ Sssociated Pairs of a particular Token
 Get UniswapV3 Token's associated pairs
 }
 \examples{
-
+\dontrun{
 token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+}
 }

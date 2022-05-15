@@ -13,6 +13,7 @@ Data on the UniswapV2 Factory contract
 Get UniswapV2 Factory Stats
 }
 \examples{
-
+\dontrun{
 factory_stats_v2()
+}
 }

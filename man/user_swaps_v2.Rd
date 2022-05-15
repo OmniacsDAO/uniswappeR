@@ -16,6 +16,7 @@ User Swap Txs
 Get UniswapV2 User Swap Txs
 }
 \examples{
-
+\dontrun{
 user_swaps_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
+}
 }

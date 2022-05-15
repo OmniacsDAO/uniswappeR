@@ -13,6 +13,7 @@ All Pair Data
 Get UniswapV3 All Pairs
 }
 \examples{
-
+\dontrun{
 pairs_all_v3()
+}
 }

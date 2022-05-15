@@ -27,8 +27,9 @@ export_data <- function(data_to_export,path_to_export)
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#'
+#' \dontrun{
 #' factory_stats_v2()
+#' }
 factory_stats_v2 <- function() 
 {
     qcon <- initialize_queries()
@@ -46,8 +47,9 @@ factory_stats_v2 <- function()
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#'
+#' \dontrun{
 #' factory_stats_v3()
+#' }
 factory_stats_v3 <- function() 
 {
     qcon <- initialize_queries_v3()
@@ -66,8 +68,9 @@ factory_stats_v3 <- function()
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' uniswap_stats_hist_v2()
+#' }
 uniswap_stats_hist_v2 <- function() 
 {
     qcon <- initialize_queries()
@@ -98,8 +101,9 @@ uniswap_stats_hist_v2 <- function()
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' uniswap_stats_hist_v3()
+#' }
 uniswap_stats_hist_v3 <- function() 
 {
     qcon <- initialize_queries_v3()
@@ -130,8 +134,9 @@ uniswap_stats_hist_v3 <- function()
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#'
+#' \dontrun{
 #' token_stats_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+#' }
 token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
     token_address <- tolower(token_address)
@@ -151,8 +156,9 @@ token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#'
+#' \dontrun{
 #' token_stats_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+#' }
 token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
     token_address <- tolower(token_address)
@@ -173,8 +179,9 @@ token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+#' }
 token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
     token_address <- tolower(token_address)
@@ -208,8 +215,9 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+#' }
 token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
     token_address <- tolower(token_address)
@@ -242,8 +250,9 @@ token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+#' }
 token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
     token_address <- tolower(token_address)
@@ -290,8 +299,9 @@ token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+#' }
 token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
 {
     token_address <- tolower(token_address)
@@ -337,8 +347,9 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pairs_all_v2()
+#' }
 pairs_all_v2 <- function() 
 {
     qcon <- initialize_queries()
@@ -371,8 +382,9 @@ pairs_all_v2 <- function()
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pairs_all_v3()
+#' }
 pairs_all_v3 <- function() 
 {
     qcon <- initialize_queries_v3()
@@ -402,8 +414,9 @@ pairs_all_v3 <- function()
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_stats_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' }
 pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee") 
 {
     pair_address <- tolower(pair_address)
@@ -423,8 +436,9 @@ pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e4
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_stats_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+#' }
 pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801") 
 {
     pair_address <- tolower(pair_address)
@@ -445,8 +459,9 @@ pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8b
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_stats_hist_hourly_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' }
 pair_stats_hist_hourly_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     pair_address <- tolower(pair_address)
@@ -479,8 +494,9 @@ pair_stats_hist_hourly_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_stats_hist_hourly_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+#' }
 pair_stats_hist_hourly_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
     pair_address <- tolower(pair_address)
@@ -513,8 +529,9 @@ pair_stats_hist_hourly_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f46
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' }
 pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     pair_address <- tolower(pair_address)
@@ -547,8 +564,9 @@ pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+#' }
 pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
     pair_address <- tolower(pair_address)
@@ -581,8 +599,9 @@ pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f461
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' }
 pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     pair_address <- tolower(pair_address)
@@ -650,8 +669,9 @@ pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_liq_positions_hist_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' }
 pair_liq_positions_hist_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     pair_address <- tolower(pair_address)
@@ -719,8 +739,9 @@ pair_liq_positions_hist_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_mint_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' }
 pair_mint_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     pair_address <- tolower(pair_address)
@@ -753,8 +774,9 @@ pair_mint_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_mint_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+#' }
 pair_mint_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
     pair_address <- tolower(pair_address)
@@ -787,8 +809,9 @@ pair_mint_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_burn_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' }
 pair_burn_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     pair_address <- tolower(pair_address)
@@ -821,8 +844,9 @@ pair_burn_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_burn_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+#' }
 pair_burn_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
     pair_address <- tolower(pair_address)
@@ -855,8 +879,9 @@ pair_burn_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_swap_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+#' }
 pair_swap_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     pair_address <- tolower(pair_address)
@@ -889,8 +914,9 @@ pair_swap_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' pair_swap_txs_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
+#' }
 pair_swap_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
     pair_address <- tolower(pair_address)
@@ -923,8 +949,9 @@ pair_swap_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
+#' }
 user_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
 {
     user_address <- tolower(user_address)
@@ -956,8 +983,9 @@ user_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_lps_v3(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
+#' }
 user_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
 {
     user_address <- tolower(user_address)
@@ -989,8 +1017,9 @@ user_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B9
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_hist_lps_v2(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
+#' }
 user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a08")
 {
     user_address <- tolower(user_address)
@@ -1021,8 +1050,9 @@ user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f927227045
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_hist_lps_v3(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
+#' }
 user_hist_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
 {
     user_address <- tolower(user_address)
@@ -1054,8 +1084,9 @@ user_hist_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_swaps_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
+#' }
 user_swaps_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
     user_address <- tolower(user_address)
@@ -1087,8 +1118,9 @@ user_swaps_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_swaps_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+#' }
 user_swaps_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 {
     user_address <- tolower(user_address)
@@ -1120,8 +1152,9 @@ user_swaps_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
+#' }
 user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
     user_address <- tolower(user_address)
@@ -1153,8 +1186,9 @@ user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_mints_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+#' }
 user_mints_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 {
     user_address <- tolower(user_address)
@@ -1186,8 +1220,9 @@ user_mints_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_burns_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
+#' }
 user_burns_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 {
     user_address <- tolower(user_address)
@@ -1219,8 +1254,9 @@ user_burns_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' @import dplyr
 #'
 #' @examples
-#'
+#' \dontrun{
 #' user_burns_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
+#' }
 user_burns_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 {
     user_address <- tolower(user_address)

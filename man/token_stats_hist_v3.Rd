@@ -18,6 +18,7 @@ Historical Data on a particular Token
 Get UniswapV3 Token Historical Stats
 }
 \examples{
-
+\dontrun{
 token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+}
 }

@@ -13,6 +13,7 @@ Historical Data on the Uniswap Platform
 Get UniswapV2 Historical Stats
 }
 \examples{
-
+\dontrun{
 uniswap_stats_hist_v2()
+}
 }

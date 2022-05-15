@@ -16,6 +16,7 @@ Mint Transactions in a pair
 Get UniswapV2 Mint Transactions in a pair
 }
 \examples{
-
+\dontrun{
 pair_mint_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
+}
 }
