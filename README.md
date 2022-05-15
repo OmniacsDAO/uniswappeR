@@ -379,6 +379,9 @@ Allows a user to retrieve all the swaps data for a given address or addresses. T
 
 ## Significant Updates
 
+#### 5/14/2022
+- Added UniswapV3 data pull support for pending 'Liquidity Positions'
+
 #### 3/9/2022
 - Added UniswapV3 data pull support for all stats, except 'Liquidity Positions'
 - Added trading functionality for V3
