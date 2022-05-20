@@ -19,7 +19,7 @@
 liquidity_range_all_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
 {
     Simulation <- Variable <- Value <- `.` <- NULL
-    
+
     ## Pull data
     data <- pair_stats_hist_daily_v3(pair_address)
     token0 <- unique(data$pool$token0$symbol)
@@ -154,7 +154,7 @@ liquidity_range_v3 <- function(pair_address, ...) {
 #' @import tidyr
 #'
 #' @examples
-#' vis_uniswap_stats_hist_v2()
+#' \dontrun{vis_uniswap_stats_hist_v2()}
 vis_uniswap_stats_hist_v2 <- function()
 {
     met_val <- NULL
@@ -193,7 +193,7 @@ vis_uniswap_stats_hist_v2 <- function()
 #' @import tidyr
 #'
 #' @examples
-#' vis_uniswap_stats_hist_v3()
+#' \dontrun{vis_uniswap_stats_hist_v3()}
 vis_uniswap_stats_hist_v3 <- function()
 {
     met_val <- NULL

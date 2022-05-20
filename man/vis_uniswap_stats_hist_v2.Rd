@@ -13,5 +13,5 @@ Plot of growth metrics of the UniswapV2 Platform
 Visualise various growth metrics of the UniswapV2 Platform
 }
 \examples{
-vis_uniswap_stats_hist_v2()
+\dontrun{vis_uniswap_stats_hist_v2()}
 }
