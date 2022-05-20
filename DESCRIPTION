@@ -14,12 +14,11 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/Omni-Analytics-Group/uniswappeR
 BugReports: https://github.com/Omni-Analytics-Group/uniswappeR/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Imports:
   httr,
   lubridate,
   dplyr,
-  magrittr,
   rlang,
   tibble,
   tidyr,

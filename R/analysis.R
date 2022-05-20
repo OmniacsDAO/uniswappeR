@@ -1,7 +1,7 @@
 #' Forecast Price for liquidity range for a pair's tokens UniswapV3
 #' @param pair_address Pair's Address
 #' @param days How long in future to forecast
-#' @param cap Max % Increase that can occur in a day, default capped to 10%
+#' @param cap Max Percentage Increase that can occur in a day, default capped to 10\%
 #' @param sims Number of simultations
 #' @return Forecast Price for a pair's tokens UniswapV3
 #'
@@ -10,11 +10,16 @@
 #' @import lubridate
 #' @import dplyr
 #' @import tidyr
+#' @importFrom rlang .data
+#' @importFrom stats quantile
 #'
 #' @examples
-#' liquidity_range_all_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
+#' liquidity_range_all_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+#'                        days = 30, cap = 10, sims = 1000)
 liquidity_range_all_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",days=30,cap=10,sims=1000)
 {
+    Simulation <- Variable <- Value <- `.` <- NULL
+    
     ## Pull data
     data <- pair_stats_hist_daily_v3(pair_address)
     token0 <- unique(data$pool$token0$symbol)
@@ -31,14 +36,14 @@ liquidity_range_all_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617a
     ## Brownian Motion Data
     btc_brownian <- data %>%
         mutate(
-                Returns0 = c(1, token0Price[-1] / lag(token0Price, 1)[-1]),
-                Returns1 = c(1, token1Price[-1] / lag(token1Price, 1)[-1]),
+                Returns0 = c(1, .data$token0Price[-1] / lag(.data$token0Price, 1)[-1]),
+                Returns1 = c(1, .data$token1Price[-1] / lag(.data$token1Price, 1)[-1]),
             ) %>%
         mutate(
-                Returns0 = pmin(cap, pmax(1 / cap, Returns0)),
-                Returns1 = pmin(cap, pmax(1 / cap, Returns1)),
-                ScaledReturns0 = Returns0 - 1,
-                ScaledReturns1 = Returns1 - 1
+                Returns0 = pmin(cap, pmax(1 / cap, .data$Returns0)),
+                Returns1 = pmin(cap, pmax(1 / cap, .data$Returns1)),
+                ScaledReturns0 = .data$Returns0 - 1,
+                ScaledReturns1 = .data$Returns1 - 1
             )
 
     # Simulate returns according to the number of times
@@ -48,23 +53,23 @@ liquidity_range_all_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617a
     # Build the predictions dataset
     btc_brownian_preds0 <- cbind(Date = ndata$Date, simulated_returns0) %>%
         gather(key = Simulation, value = Value, 2:ncol(.)) %>%
-        group_by(Simulation) %>%
-        mutate(CumeValue = cumprod(Value),
-               Future = CumeValue * data$token0Price[length(data$token0Price)]) %>%
-        group_by(Date) %>%
-        summarise(Prediction = mean(Future),
-                  Upper = quantile(Future, .975),
-                  Lower = quantile(Future, .025),
+        group_by(.data$Simulation) %>%
+        mutate(CumeValue = cumprod(.data$Value),
+               Future = .data$CumeValue * data$token0Price[length(data$token0Price)]) %>%
+        group_by(.data$Date) %>%
+        summarise(Prediction = mean(.data$Future),
+                  Upper = quantile(.data$Future, .975),
+                  Lower = quantile(.data$Future, .025),
                   Method = "Brownian Motion")
     btc_brownian_preds1 <- cbind(Date = ndata$Date, simulated_returns1) %>%
         gather(key = Simulation, value = Value, 2:ncol(.)) %>%
-        group_by(Simulation) %>%
-        mutate(CumeValue = cumprod(Value),
-               Future = CumeValue * data$token1Price[length(data$token1Price)]) %>%
-        group_by(Date) %>%
-        summarise(Prediction = mean(Future),
-                  Upper = quantile(Future, .975),
-                  Lower = quantile(Future, .025),
+        group_by(.data$Simulation) %>%
+        mutate(CumeValue = cumprod(.data$Value),
+               Future = .data$CumeValue * data$token1Price[length(data$token1Price)]) %>%
+        group_by(.data$Date) %>%
+        summarise(Prediction = mean(.data$Future),
+                  Upper = quantile(.data$Future, .975),
+                  Lower = quantile(.data$Future, .025),
                   Method = "Brownian Motion")
     ndata$token0PricePred <- btc_brownian_preds0$Prediction
     ndata$token1PricePred <- btc_brownian_preds1$Prediction
@@ -90,10 +95,12 @@ liquidity_range_all_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617a
 #'
 #' @import ggplot2
 #' @import dplyr
+#' @importFrom rlang .data
 #'
 #' @examples
 #' liquidity_range_visualization("0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 liquidity_range_visualization <- function(pair_address, ...) {
+    Variable <- Value <- `.` <- NULL
     x <- liquidity_range_all_v3(pair_address = pair_address, ...)
 
     names(x) <- gsub("Price", "", names(x))
@@ -150,6 +157,7 @@ liquidity_range_v3 <- function(pair_address, ...) {
 #' vis_uniswap_stats_hist_v2()
 vis_uniswap_stats_hist_v2 <- function()
 {
+    met_val <- NULL
     plot_data <- uniswap_stats_hist_v2()
     plot_data$Date <- as_date(as_datetime(plot_data$date))
 
@@ -188,6 +196,7 @@ vis_uniswap_stats_hist_v2 <- function()
 #' vis_uniswap_stats_hist_v3()
 vis_uniswap_stats_hist_v3 <- function()
 {
+    met_val <- NULL
     plot_data <- uniswap_stats_hist_v3()
     plot_data$Date <- as_date(as_datetime(plot_data$date))
 
@@ -227,6 +236,7 @@ vis_uniswap_stats_hist_v3 <- function()
 #' vis_token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
+    met_val <- NULL
     plot_data <- token_stats_hist_v2(token_address)
     plot_data$Date <- as_date(as_datetime(plot_data$date))
 
@@ -267,6 +277,7 @@ vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
 #' vis_token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
+    met_val <- NULL
     plot_data <- token_stats_hist_v3(token_address)
     plot_data$Date <- as_date(as_datetime(plot_data$date))
 
@@ -307,6 +318,7 @@ vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
 #' vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
+    met_val <- NULL
     plot_data <- token_pair_map_v2(token_address)
     plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$createdAtTimestamp)))
     plot_data$If_Token0 <- plot_data$token0$id==token_address
@@ -349,6 +361,7 @@ vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
 #' vis_token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 vis_token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
+    met_val <- NULL
     plot_data <- token_pair_map_v3(token_address)
     plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$createdAtTimestamp)))
     plot_data$If_Token0 <- plot_data$token0$id==token_address
@@ -391,6 +404,7 @@ vis_token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
 #' vis_pair_stats_hist_daily_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    met_val <- NULL
     plot_data <- pair_stats_hist_daily_v2(pair_address)
     plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$date)))
     Token0_Sym <- unique(plot_data$token0$symbol)
@@ -434,6 +448,7 @@ vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa2
 #' vis_pair_stats_hist_daily_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 vis_pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
+    met_val <- NULL
     plot_data <- pair_stats_hist_daily_v3(pair_address)
     plot_data$Date <- as_date(as_datetime(as.numeric(plot_data$date)))
     Token0_Sym <- unique(plot_data$pool$token0$symbol)
@@ -477,6 +492,7 @@ vis_pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85
 #' vis_pair_liq_positions_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
+    liquidityTokenBalance <- NULL
     plot_data <- pair_liq_positions_v2(pair_address)
     plot_data$liquidityTokenBalance <- as.numeric(plot_data$liquidityTokenBalance)
     plot_data <- plot_data[plot_data$liquidityTokenBalance>0,]
@@ -508,6 +524,7 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 #' }
 vis_pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
+    liquidityTokenBalance <- NULL
     plot_data <- pair_liq_positions_v3(pair_address)
     plot_data$liquidityTokenBalance <- as.numeric(plot_data$liquidityTokenBalance)
     plot_data <- plot_data[plot_data$liquidityTokenBalance>0,]
