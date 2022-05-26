@@ -16,7 +16,7 @@ trade_tok.to.eth_eth.fix(t_a, t_d, e_q, u_w)
 \item{u_w}{Uniswap Session}
 }
 \value{
-Transaction Hash
+Character vector representing the Transaction Hash
 }
 \description{
 Swap Token for ETH, Swap tokens to receive specified ETH amount

@@ -12,7 +12,7 @@ vis_pair_stats_hist_daily_v2(
 \item{pair_address}{Pair's Address}
 }
 \value{
-Plot of growth metrics of a given pair
+ggplot2 Plot of growth metrics of a given pair
 }
 \description{
 Visualise various growth metrics of a given pair UniswapV2

@@ -7,7 +7,7 @@
 pairs_all_v3()
 }
 \value{
-All Pair Data
+Data frame representing All Pair Data
 }
 \description{
 Get UniswapV3 All Pairs

@@ -16,7 +16,7 @@ check_tok.to.eth_eth.fix(t_a, t_d, e_q, u_w)
 \item{u_w}{Uniswap Session}
 }
 \value{
-Token Amount Needed
+Numeric vector representing the Token Amount Needed
 }
 \description{
 Swap Token for ETH, Given ETH Qty check how much Token you need

@@ -1,7 +1,7 @@
 #' Write out the data object given file name
 #' @param data_to_export Object containing data we want to export
 #' @param path_to_export Path of the CSV file, we want to export to
-#' @return Status of the write
+#' @return Character vector indicating status of the write
 #'
 #' @export
 #' @importFrom utils write.csv
@@ -12,7 +12,7 @@
 #' path_to_export <- "~/Desktop/uniswappeR_export.csv"
 #' export_data(data_to_export,path_to_export)
 #' }
-export_data <- function(data_to_export,path_to_export) 
+export_data <- function(data_to_export,path_to_export)
 {
     write.csv(data_to_export,path_to_export,row.names=FALSE)
     return("Data Export Complete")
@@ -20,7 +20,7 @@ export_data <- function(data_to_export,path_to_export)
 
 
 #' Get UniswapV2 Factory Stats
-#' @return Data on the UniswapV2 Factory contract
+#' @return List representing data on the UniswapV2 Factory contract
 #'
 #' @export
 #'
@@ -30,7 +30,7 @@ export_data <- function(data_to_export,path_to_export)
 #' \dontrun{
 #' factory_stats_v2()
 #' }
-factory_stats_v2 <- function() 
+factory_stats_v2 <- function()
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -40,7 +40,7 @@ factory_stats_v2 <- function()
 
 
 #' Get UniswapV3 Factory Stats
-#' @return Data on the UniswapV3 Factory contract
+#' @return List representing data on the UniswapV3 Factory contract
 #'
 #' @export
 #'
@@ -50,7 +50,7 @@ factory_stats_v2 <- function()
 #' \dontrun{
 #' factory_stats_v3()
 #' }
-factory_stats_v3 <- function() 
+factory_stats_v3 <- function()
 {
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
@@ -60,7 +60,7 @@ factory_stats_v3 <- function()
 
 
 #' Get UniswapV2 Historical Stats
-#' @return Historical Data on the Uniswap Platform
+#' @return data frame representing historical Data on the Uniswap Platform
 #'
 #' @export
 #'
@@ -71,7 +71,7 @@ factory_stats_v3 <- function()
 #' \dontrun{
 #' uniswap_stats_hist_v2()
 #' }
-uniswap_stats_hist_v2 <- function() 
+uniswap_stats_hist_v2 <- function()
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -93,7 +93,7 @@ uniswap_stats_hist_v2 <- function()
 
 
 #' Get UniswapV3 Historical Stats
-#' @return Historical Data on the Uniswap Platform
+#' @return data frame representing historical Data on the Uniswap Platform
 #'
 #' @export
 #'
@@ -104,7 +104,7 @@ uniswap_stats_hist_v2 <- function()
 #' \dontrun{
 #' uniswap_stats_hist_v3()
 #' }
-uniswap_stats_hist_v3 <- function() 
+uniswap_stats_hist_v3 <- function()
 {
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
@@ -127,7 +127,7 @@ uniswap_stats_hist_v3 <- function()
 
 #' Get UniswapV2 Token Stats
 #' @param token_address Token's Address
-#' @return Data on a particular Token
+#' @return List representing data on a particular Token
 #'
 #' @export
 #'
@@ -137,7 +137,7 @@ uniswap_stats_hist_v3 <- function()
 #' \dontrun{
 #' token_stats_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 #' }
-token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     token_address <- tolower(token_address)
     qcon <- initialize_queries()
@@ -149,7 +149,7 @@ token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 
 #' Get UniswapV3 Token Stats
 #' @param token_address Token's Address
-#' @return Data on a particular Token
+#' @return List representing data on a particular Token
 #'
 #' @export
 #'
@@ -159,7 +159,7 @@ token_stats_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 #' \dontrun{
 #' token_stats_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 #' }
-token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     token_address <- tolower(token_address)
     qcon <- initialize_queries_v3()
@@ -171,7 +171,7 @@ token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 
 #' Get UniswapV2 Token Historical Stats
 #' @param token_address Token's Address
-#' @return Historical Data on a particular Token
+#' @return Data frame representing historical Data on a particular Token
 #'
 #' @export
 #'
@@ -182,7 +182,7 @@ token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 #' \dontrun{
 #' token_stats_hist_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 #' }
-token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     token_address <- tolower(token_address)
     qcon <- initialize_queries()
@@ -201,13 +201,13 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
         message(paste0("Fetched ",nrow(token_data)," Entries"))
     }
     return(token_data)
-    
+
 }
 
 
 #' Get UniswapV3 Token Historical Stats
 #' @param token_address Token's Address
-#' @return Historical Data on a particular Token
+#' @return Data frame representing historical Data on a particular Token
 #'
 #' @export
 #'
@@ -218,7 +218,7 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' \dontrun{
 #' token_stats_hist_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 #' }
-token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     token_address <- tolower(token_address)
     qcon <- initialize_queries_v3()
@@ -242,7 +242,7 @@ token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 
 #' Get UniswapV2 Token's associated pairs
 #' @param token_address Token's Address
-#' @return Sssociated Pairs of a particular Token
+#' @return Data frame representing associated Pairs of a particular Token
 #'
 #' @export
 #'
@@ -253,13 +253,13 @@ token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' \dontrun{
 #' token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 #' }
-token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     token_address <- tolower(token_address)
     qcon <- initialize_queries()
     con <- qcon[[1]]
     qry <- qcon[[2]]
-    
+
     ## Token as Base
     c_timestamp <- as.integer(Sys.time())
     base_data <- data.frame()
@@ -291,7 +291,7 @@ token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 
 #' Get UniswapV3 Token's associated pairs
 #' @param token_address Token's Address
-#' @return Sssociated Pairs of a particular Token
+#' @return Data frame representing associated Pairs of a particular Token
 #'
 #' @export
 #'
@@ -302,13 +302,13 @@ token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 #' \dontrun{
 #' token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 #' }
-token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") 
+token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     token_address <- tolower(token_address)
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
     qry <- qcon[[2]]
-    
+
     ## Token as Base
     c_timestamp <- as.integer(Sys.time())
     base_data <- data.frame()
@@ -339,7 +339,7 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 
 
 #' Get UniswapV2 All Pairs
-#' @return All Pair Data
+#' @return Data frame representing All Pair Data
 #'
 #' @export
 #'
@@ -350,7 +350,7 @@ token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdadd
 #' \dontrun{
 #' pairs_all_v2()
 #' }
-pairs_all_v2 <- function() 
+pairs_all_v2 <- function()
 {
     qcon <- initialize_queries()
     con <- qcon[[1]]
@@ -374,7 +374,7 @@ pairs_all_v2 <- function()
 
 
 #' Get UniswapV3 All Pairs
-#' @return All Pair Data
+#' @return Data frame representing All Pair Data
 #'
 #' @export
 #'
@@ -385,7 +385,7 @@ pairs_all_v2 <- function()
 #' \dontrun{
 #' pairs_all_v3()
 #' }
-pairs_all_v3 <- function() 
+pairs_all_v3 <- function()
 {
     qcon <- initialize_queries_v3()
     con <- qcon[[1]]
@@ -407,7 +407,7 @@ pairs_all_v3 <- function()
 
 #' Get UniswapV2 Pair Stats
 #' @param pair_address Pair's Address
-#' @return Data on a particular Pair
+#' @return List data on a particular Pair
 #'
 #' @export
 #'
@@ -417,7 +417,7 @@ pairs_all_v3 <- function()
 #' \dontrun{
 #' pair_stats_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 #' }
-pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee") 
+pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 {
     pair_address <- tolower(pair_address)
     qcon <- initialize_queries()
@@ -429,7 +429,7 @@ pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e4
 
 #' Get UniswapV3 Pair Stats
 #' @param pair_address Pair's Address
-#' @return Data on a particular Pair
+#' @return List data on a particular Pair
 #'
 #' @export
 #'
@@ -439,7 +439,7 @@ pair_stats_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e4
 #' \dontrun{
 #' pair_stats_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 #' }
-pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801") 
+pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
     pair_address <- tolower(pair_address)
     qcon <- initialize_queries_v3()
@@ -451,7 +451,7 @@ pair_stats_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8b
 
 #' Get UniswapV2 Hourly Pair Historical Stats
 #' @param pair_address Pair's Address
-#' @return Hourly Historical Data on a particular Pair
+#' @return Data frame representing Hourly Historical Data on a particular Pair
 #'
 #' @export
 #'
@@ -486,7 +486,7 @@ pair_stats_hist_hourly_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 
 #' Get UniswapV3 Hourly Pair Historical Stats
 #' @param pair_address Pair's Address
-#' @return Hourly Historical Data on a particular Pair
+#' @return Data frame representing Hourly Historical Data on a particular Pair
 #'
 #' @export
 #'
@@ -521,7 +521,7 @@ pair_stats_hist_hourly_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f46
 
 #' Get UniswapV2 Daily Pair Historical Stats
 #' @param pair_address Pair's Address
-#' @return Daily Historical Data on a particular Pair
+#' @return Data frame representing Daily Historical Data on a particular Pair
 #'
 #' @export
 #'
@@ -556,7 +556,7 @@ pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4
 
 #' Get UniswapV3 Daily Pair Historical Stats
 #' @param pair_address Pair's Address
-#' @return Daily Historical Data on a particular Pair
+#' @return Data frame representing Daily Historical Data on a particular Pair
 #'
 #' @export
 #'
@@ -591,7 +591,7 @@ pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f461
 
 #' Get UniswapV2 Current Liquidity Positions in a pair
 #' @param pair_address Pair's Address
-#' @return Current Liquidity Positions in a pair
+#' @return Data frame representing Current Liquidity Positions in a pair
 #'
 #' @export
 #'
@@ -626,7 +626,7 @@ pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a4014
 
 #' Get UniswapV3 Current Liquidity Positions in a pair
 #' @param pair_address Pair's Address
-#' @return Current Liquidity Positions in a pair
+#' @return Data frame representing Current Liquidity Positions in a pair
 #'
 #' @export
 #'
@@ -661,7 +661,7 @@ pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae
 
 #' Get Unsiwap2 Historical Liquidity Positions in a pair
 #' @param pair_address Pair's Address
-#' @return Historical Liquidity Positions in a pair
+#' @return Data frame representing Historical Liquidity Positions in a pair
 #'
 #' @export
 #'
@@ -696,7 +696,7 @@ pair_liq_positions_hist_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229
 
 #' Get Unsiwap3 Historical Liquidity Positions in a pair
 #' @param pair_address Pair's Address
-#' @return Historical Liquidity Positions in a pair
+#' @return Data frame representing Historical Liquidity Positions in a pair
 #'
 #' @export
 #'
@@ -731,7 +731,7 @@ pair_liq_positions_hist_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4
 
 #' Get UniswapV2 Mint Transactions in a pair
 #' @param pair_address Pair's Address
-#' @return Mint Transactions in a pair
+#' @return Data frame representing Mint Transactions in a pair
 #'
 #' @export
 #'
@@ -766,7 +766,7 @@ pair_mint_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 
 #' Get UniswapV3 Mint Transactions in a pair
 #' @param pair_address Pair's Address
-#' @return Mint Transactions in a pair
+#' @return Data frame representing Mint Transactions in a pair
 #'
 #' @export
 #'
@@ -801,7 +801,7 @@ pair_mint_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 
 #' Get UniswapV2 Burn Transactions in a pair
 #' @param pair_address Pair's Address
-#' @return Burn Transactions in a pair
+#' @return Data frame representing Burn Transactions in a pair
 #'
 #' @export
 #'
@@ -836,7 +836,7 @@ pair_burn_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 
 #' Get UniswapV3 Burn Transactions in a pair
 #' @param pair_address Pair's Address
-#' @return Burn Transactions in a pair
+#' @return Data frame representing Burn Transactions in a pair
 #'
 #' @export
 #'
@@ -871,7 +871,7 @@ pair_burn_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 
 #' Get UniswapV2 Swap Transactions in a pair
 #' @param pair_address Pair's Address
-#' @return Swap Transactions in a pair
+#' @return Data frame representing Swap Transactions in a pair
 #'
 #' @export
 #'
@@ -906,7 +906,7 @@ pair_swap_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 
 #' Get UniswapV3 Swap Transactions in a pair
 #' @param pair_address Pair's Address
-#' @return Swap Transactions in a pair
+#' @return Data frame representing Swap Transactions in a pair
 #'
 #' @export
 #'
@@ -941,7 +941,7 @@ pair_swap_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 
 #' Get UniswapV2 User Liquidity Positions
 #' @param user_address User's Address
-#' @return User Liquidity Positions
+#' @return Data frame representing User Liquidity Positions
 #'
 #' @export
 #'
@@ -975,7 +975,7 @@ user_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a
 
 #' Get UniswapV3 User Liquidity Positions
 #' @param user_address User's Address
-#' @return User Liquidity Positions
+#' @return Data frame representing User Liquidity Positions
 #'
 #' @export
 #'
@@ -1009,7 +1009,7 @@ user_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B9
 
 #' Get UniswapV2 Historical User Liquidity Positions
 #' @param user_address User's Address
-#' @return Historical User Liquidity Positions
+#' @return Data frame representing Historical User Liquidity Positions
 #'
 #' @export
 #'
@@ -1042,7 +1042,7 @@ user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f927227045
 
 #' Get UniswapV3 Historical User Liquidity Positions
 #' @param user_address User's Address
-#' @return Historical User Liquidity Positions
+#' @return Data frame representing Historical User Liquidity Positions
 #'
 #' @export
 #'
@@ -1076,7 +1076,7 @@ user_hist_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58
 
 #' Get UniswapV2 User Swap Txs
 #' @param user_address User's Address
-#' @return User Swap Txs
+#' @return Data frame representing User Swap Txs
 #'
 #' @export
 #'
@@ -1110,7 +1110,7 @@ user_swaps_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 
 #' Get UniswapV3 User Swap Txs
 #' @param user_address User's Address
-#' @return User Swap Txs
+#' @return Data frame representing User Swap Txs
 #'
 #' @export
 #'
@@ -1144,7 +1144,7 @@ user_swaps_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A
 
 #' Get UniswapV2 User Mint Txs
 #' @param user_address User's Address
-#' @return User Mint Txs
+#' @return Data frame representing User Mint Txs
 #'
 #' @export
 #'
@@ -1178,7 +1178,7 @@ user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 
 #' Get UniswapV3 User Mint Txs
 #' @param user_address User's Address
-#' @return User Mint Txs
+#' @return Data frame representing User Mint Txs
 #'
 #' @export
 #'
@@ -1212,7 +1212,7 @@ user_mints_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A
 
 #' Get UniswapV2 User Burn Txs
 #' @param user_address User's Address
-#' @return User Burn Txs
+#' @return Data frame representing User Burn Txs
 #'
 #' @export
 #'
@@ -1246,7 +1246,7 @@ user_burns_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 
 #' Get UniswapV3 User Burn Txs
 #' @param user_address User's Address
-#' @return User Burn Txs
+#' @return Data frame representing User Burn Txs
 #'
 #' @export
 #'

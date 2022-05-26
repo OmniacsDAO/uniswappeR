@@ -12,7 +12,7 @@ vis_token_pair_map_v3(
 \item{token_address}{Token's Address}
 }
 \value{
-Plot of Number of pairs the token is present
+ggplot2 Plot of Number of pairs the token is present
 }
 \description{
 Visualise Number of pairs the token is present UniswapV3

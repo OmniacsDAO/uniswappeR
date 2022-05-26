@@ -14,7 +14,7 @@ check_tok_balance(t_a, t_d, u_w)
 \item{u_w}{Uniswap Session}
 }
 \value{
-Return User Token Balance
+Numeric vector representing the User Token balance
 }
 \description{
 Check any Token Balance

@@ -7,7 +7,7 @@
 vis_uniswap_stats_hist_v2()
 }
 \value{
-Plot of growth metrics of the UniswapV2 Platform
+ggplot2 plot of growth metrics of the UniswapV2 Platform
 }
 \description{
 Visualise various growth metrics of the UniswapV2 Platform

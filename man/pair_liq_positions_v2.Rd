@@ -12,7 +12,7 @@ pair_liq_positions_v2(
 \item{pair_address}{Pair's Address}
 }
 \value{
-Current Liquidity Positions in a pair
+Data frame representing Current Liquidity Positions in a pair
 }
 \description{
 Get UniswapV2 Current Liquidity Positions in a pair

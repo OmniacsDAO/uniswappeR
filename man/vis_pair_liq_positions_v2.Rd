@@ -12,7 +12,7 @@ vis_pair_liq_positions_v2(
 \item{pair_address}{Pair's Address}
 }
 \value{
-Plot of Liquidity Positions spread in a given pair
+ggplot2 Plot of Liquidity Positions spread in a given pair
 }
 \description{
 Visualise Liquidity Positions spread in a given pair

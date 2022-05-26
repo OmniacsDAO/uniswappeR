@@ -7,7 +7,7 @@
 factory_stats_v2()
 }
 \value{
-Data on the UniswapV2 Factory contract
+List representing data on the UniswapV2 Factory contract
 }
 \description{
 Get UniswapV2 Factory Stats

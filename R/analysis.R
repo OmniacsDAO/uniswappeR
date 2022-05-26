@@ -3,7 +3,7 @@
 #' @param days How long in future to forecast
 #' @param cap Max Percentage Increase that can occur in a day, default capped to 10\%
 #' @param sims Number of simultations
-#' @return Forecast Price for a pair's tokens UniswapV3
+#' @return Data frame representing Forecast Price for a pair's tokens UniswapV3
 #'
 #' @export
 #'
@@ -126,7 +126,7 @@ liquidity_range_visualization <- function(pair_address, ...) {
 #' @param pair_address The address of the pair to analyze
 #' @param ... Additional arguments passed to the liquidity_range_all_v3 function
 #'
-#' @return Get a Suggestion for liquidity Range
+#' @return Character vector representing a Suggestion for liquidity Range
 #'
 #' @export
 #'
@@ -145,7 +145,7 @@ liquidity_range_v3 <- function(pair_address, ...) {
 
 
 #' Visualise various growth metrics of the UniswapV2 Platform
-#' @return Plot of growth metrics of the UniswapV2 Platform
+#' @return ggplot2 plot of growth metrics of the UniswapV2 Platform
 #'
 #' @export
 #'
@@ -184,7 +184,7 @@ vis_uniswap_stats_hist_v2 <- function()
 
 
 #' Visualise various growth metrics of the UniswapV3 Platform
-#' @return Plot of growth metrics of the UniswapV3 Platform
+#' @return ggplot plot of growth metrics of the UniswapV3 Platform
 #'
 #' @export
 #'
@@ -224,7 +224,7 @@ vis_uniswap_stats_hist_v3 <- function()
 
 #' Visualise various growth metrics of a given token in UniswapV2
 #' @param token_address Token's Address
-#' @return Plot of growth metrics of a given token
+#' @return ggplot2 Plot of growth metrics of a given token
 #'
 #' @export
 #'
@@ -265,7 +265,7 @@ vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
 
 #' Visualise various growth metrics of a given token in UniswapV3
 #' @param token_address Token's Address
-#' @return Plot of growth metrics of a given token
+#' @return ggplot2 Plot of growth metrics of a given token
 #'
 #' @export
 #'
@@ -306,7 +306,7 @@ vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
 
 #' Visualise Number of pairs the token is present UniswapV2
 #' @param token_address Token's Address
-#' @return Plot of Number of pairs the token is present
+#' @return ggplot2 Plot of Number of pairs the token is present
 #'
 #' @export
 #'
@@ -349,7 +349,7 @@ vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
 
 #' Visualise Number of pairs the token is present UniswapV3
 #' @param token_address Token's Address
-#' @return Plot of Number of pairs the token is present
+#' @return ggplot2 Plot of Number of pairs the token is present
 #'
 #' @export
 #'
@@ -392,7 +392,7 @@ vis_token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
 
 #' Visualise various growth metrics of a given pair UniswapV2
 #' @param pair_address Pair's Address
-#' @return Plot of growth metrics of a given pair
+#' @return ggplot2 Plot of growth metrics of a given pair
 #'
 #' @export
 #'
@@ -436,7 +436,7 @@ vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa2
 
 #' Visualise various growth metrics of a given pair UniswapV3
 #' @param pair_address Pair's Address
-#' @return Plot of growth metrics of a given pair
+#' @return ggplot2 Plot of growth metrics of a given pair
 #'
 #' @export
 #'
@@ -480,7 +480,7 @@ vis_pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85
 
 #' Visualise Liquidity Positions spread in a given pair
 #' @param pair_address Pair's Address
-#' @return Plot of Liquidity Positions spread in a given pair
+#' @return ggplot2 Plot of Liquidity Positions spread in a given pair
 #'
 #' @export
 #'
@@ -510,7 +510,7 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 
 #' Visualise Liquidity Positions spread in a given pair
 #' @param pair_address Pair's Address
-#' @return Plot of Liquidity Positions spread in a given pair
+#' @return ggplot2 Plot of Liquidity Positions spread in a given pair
 #'
 #' @export
 #'
@@ -544,7 +544,7 @@ vis_pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f46
 #' @param path_to_export Path of the .png file, we want to export to
 #' @param width Width of plot in inches
 #' @param height Height of plot in inches
-#' @return Status of the write
+#' @return Character vector of the status of the write
 #'
 #' @export
 #' @importFrom ggplot2 ggsave

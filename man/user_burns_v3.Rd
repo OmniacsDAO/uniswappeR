@@ -10,7 +10,7 @@ user_burns_v3(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A74f3")
 \item{user_address}{User's Address}
 }
 \value{
-User Burn Txs
+Data frame representing User Burn Txs
 }
 \description{
 Get UniswapV3 User Burn Txs

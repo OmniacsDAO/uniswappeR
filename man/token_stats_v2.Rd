@@ -10,7 +10,7 @@ token_stats_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 \item{token_address}{Token's Address}
 }
 \value{
-Data on a particular Token
+List representing data on a particular Token
 }
 \description{
 Get UniswapV2 Token Stats

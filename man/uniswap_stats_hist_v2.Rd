@@ -7,7 +7,7 @@
 uniswap_stats_hist_v2()
 }
 \value{
-Historical Data on the Uniswap Platform
+data frame representing historical Data on the Uniswap Platform
 }
 \description{
 Get UniswapV2 Historical Stats

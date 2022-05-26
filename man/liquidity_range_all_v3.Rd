@@ -21,7 +21,7 @@ liquidity_range_all_v3(
 \item{sims}{Number of simultations}
 }
 \value{
-Forecast Price for a pair's tokens UniswapV3
+Data frame representing Forecast Price for a pair's tokens UniswapV3
 }
 \description{
 Forecast Price for liquidity range for a pair's tokens UniswapV3

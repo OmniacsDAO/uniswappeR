@@ -10,7 +10,7 @@ swaps(address)
 \item{address}{A wallet address (or vector of addresses) for the account owner's account}
 }
 \value{
-Data on the swaps for the given account owner
+dataframe on the swaps for the given account owner
 }
 \description{
 Get all the swaps data for a given address or addresses

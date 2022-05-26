@@ -10,7 +10,7 @@ user_hist_lps_v3(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B972")
 \item{user_address}{User's Address}
 }
 \value{
-Historical User Liquidity Positions
+Data frame representing Historical User Liquidity Positions
 }
 \description{
 Get UniswapV3 Historical User Liquidity Positions

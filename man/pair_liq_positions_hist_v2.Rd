@@ -12,7 +12,7 @@ pair_liq_positions_hist_v2(
 \item{pair_address}{Pair's Address}
 }
 \value{
-Historical Liquidity Positions in a pair
+Data frame representing Historical Liquidity Positions in a pair
 }
 \description{
 Get Unsiwap2 Historical Liquidity Positions in a pair

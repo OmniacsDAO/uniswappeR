@@ -10,7 +10,7 @@ pair_mint_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 \item{pair_address}{Pair's Address}
 }
 \value{
-Mint Transactions in a pair
+Data frame representing Mint Transactions in a pair
 }
 \description{
 Get UniswapV2 Mint Transactions in a pair

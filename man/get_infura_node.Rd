@@ -7,12 +7,13 @@
 get_infura_node()
 }
 \value{
-Your Infura Node, if set
+Character vector, representing your Infura Node, if set
 }
 \description{
 Gets the Infura Node
 }
 \examples{
+q
 \dontrun{
 get_infura_node()
 }

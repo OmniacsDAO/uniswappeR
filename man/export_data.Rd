@@ -12,7 +12,7 @@ export_data(data_to_export, path_to_export)
 \item{path_to_export}{Path of the CSV file, we want to export to}
 }
 \value{
-Status of the write
+Character vector indicating status of the write
 }
 \description{
 Write out the data object given file name

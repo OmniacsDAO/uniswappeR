@@ -10,7 +10,7 @@ user_mints_v2(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675fd03")
 \item{user_address}{User's Address}
 }
 \value{
-User Mint Txs
+Data frame representing User Mint Txs
 }
 \description{
 Get UniswapV2 User Mint Txs

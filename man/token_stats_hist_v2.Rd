@@ -12,7 +12,7 @@ token_stats_hist_v2(
 \item{token_address}{Token's Address}
 }
 \value{
-Historical Data on a particular Token
+Data frame representing historical Data on a particular Token
 }
 \description{
 Get UniswapV2 Token Historical Stats

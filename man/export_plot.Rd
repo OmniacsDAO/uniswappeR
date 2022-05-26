@@ -16,7 +16,7 @@ export_plot(plot_to_export, path_to_export, width = 7, height = 7)
 \item{height}{Height of plot in inches}
 }
 \value{
-Status of the write
+Character vector of the status of the write
 }
 \description{
 Write out the analysis plots

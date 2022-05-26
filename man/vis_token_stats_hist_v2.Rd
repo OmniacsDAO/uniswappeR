@@ -12,7 +12,7 @@ vis_token_stats_hist_v2(
 \item{token_address}{Token's Address}
 }
 \value{
-Plot of growth metrics of a given token
+ggplot2 Plot of growth metrics of a given token
 }
 \description{
 Visualise various growth metrics of a given token in UniswapV2

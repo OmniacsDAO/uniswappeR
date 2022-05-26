@@ -10,7 +10,7 @@ pair_stats_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 \item{pair_address}{Pair's Address}
 }
 \value{
-Data on a particular Pair
+List data on a particular Pair
 }
 \description{
 Get UniswapV2 Pair Stats

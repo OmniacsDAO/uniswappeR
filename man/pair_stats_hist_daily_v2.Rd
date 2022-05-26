@@ -12,7 +12,7 @@ pair_stats_hist_daily_v2(
 \item{pair_address}{Pair's Address}
 }
 \value{
-Daily Historical Data on a particular Pair
+Data frame representing Daily Historical Data on a particular Pair
 }
 \description{
 Get UniswapV2 Daily Pair Historical Stats

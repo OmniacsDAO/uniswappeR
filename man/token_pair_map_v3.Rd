@@ -10,7 +10,7 @@ token_pair_map_v3(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 \item{token_address}{Token's Address}
 }
 \value{
-Sssociated Pairs of a particular Token
+Data frame representing associated Pairs of a particular Token
 }
 \description{
 Get UniswapV3 Token's associated pairs

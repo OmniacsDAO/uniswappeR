@@ -9,6 +9,9 @@ py_int(x)
 \arguments{
 \item{x}{The value to pass through the python int function}
 }
+\value{
+An R integer converted from a Python integer
+}
 \description{
 Python builtin functions
 }

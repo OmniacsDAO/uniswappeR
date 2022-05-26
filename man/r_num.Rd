@@ -9,6 +9,9 @@ r_num(val)
 \arguments{
 \item{val}{Numeric converter to export}
 }
+\value{
+An R numeric vector converted from a Python numeric vector
+}
 \description{
 python object to R
 }

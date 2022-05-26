@@ -10,7 +10,7 @@ check_eth_balance(u_w)
 \item{u_w}{Uniswap Session}
 }
 \value{
-Return User ETH Balance
+Numeric vector representing the User Ethereum balance
 }
 \description{
 Get your ETH Balance

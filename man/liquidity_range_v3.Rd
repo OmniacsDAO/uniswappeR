@@ -12,7 +12,7 @@ liquidity_range_v3(pair_address, ...)
 \item{...}{Additional arguments passed to the liquidity_range_all_v3 function}
 }
 \value{
-Get a Suggestion for liquidity Range
+Character vector representing a Suggestion for liquidity Range
 }
 \description{
 Get a suggested range for liquidity

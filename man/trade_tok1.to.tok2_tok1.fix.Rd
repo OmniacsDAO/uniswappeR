@@ -20,7 +20,7 @@ trade_tok1.to.tok2_tok1.fix(t1_a, t1_d, t2_a, t2_d, t1_q, u_w)
 \item{u_w}{Uniswap Session}
 }
 \value{
-Transaction Hash
+Character vector representing the Transaction Hash
 }
 \description{
 Swap Token1 for Token2, Receive Token2 for specified Token1 Amount

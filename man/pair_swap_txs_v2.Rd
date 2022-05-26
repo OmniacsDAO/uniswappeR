@@ -10,7 +10,7 @@ pair_swap_txs_v2(pair_address = "0xf00e80f0de9aea0b33aa229a4014572777e422ee")
 \item{pair_address}{Pair's Address}
 }
 \value{
-Swap Transactions in a pair
+Data frame representing Swap Transactions in a pair
 }
 \description{
 Get UniswapV2 Swap Transactions in a pair

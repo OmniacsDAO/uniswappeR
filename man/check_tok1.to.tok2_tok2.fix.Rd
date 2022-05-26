@@ -20,7 +20,7 @@ check_tok1.to.tok2_tok2.fix(t1_a, t1_d, t2_a, t2_d, t2_q, u_w)
 \item{u_w}{Uniswap Session}
 }
 \value{
-Token 1 Amount Needed
+Numeric vector representing the Token 1 Amount Needed
 }
 \description{
 Swap Token1 for Token2, Given Token2 Qty check how much Token1 you would need (Use Token1 -> ETH -> Token2 Route)

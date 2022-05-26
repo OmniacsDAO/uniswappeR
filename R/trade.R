@@ -1,8 +1,8 @@
 #' Gets the Infura Node
 #'
-#' @return Your Infura Node, if set
+#' @return Character vector, representing your Infura Node, if set
 #' @export
-#' @examples
+#' @examples q
 #' \dontrun{
 #' get_infura_node()
 #' }
@@ -54,11 +54,13 @@ set_infura_node <- function(infura_node) {
 #' Python builtin functions
 #' @import reticulate
 #' @param x The value to pass through the python int function
+#' @return An R integer converted from a Python integer
 #' @export
 py_int <- function(x) return(import_builtins(convert = FALSE)$int(x))
 
 #' python object to R
 #' @param val Numeric converter to export
+#' @return An R numeric vector converted from a Python numeric vector
 #' @export
 r_num <- function(val) as.numeric(as.character(val))
 
@@ -80,7 +82,7 @@ uniswap_session <- function(node = get_infura_node(),user_add=NULL,pvt_key=NULL,
     ## Select which python to use
     # use_python("/usr/bin/python3")
 
-    ## Set infura Node as 
+    ## Set infura Node as
     py_run_string(paste0('import os;os.environ["PROVIDER"] = "',node,'"'))
 
     ## Initialise uniswap endpooint
@@ -94,7 +96,7 @@ uniswap_session <- function(node = get_infura_node(),user_add=NULL,pvt_key=NULL,
 #' Get your ETH Balance
 #' @export
 #' @param u_w Uniswap Session
-#' @return Return User ETH Balance
+#' @return Numeric vector representing the User Ethereum balance
 check_eth_balance <- function(u_w) r_num(u_w$get_eth_balance())/(10**18)
 
 #' Check any Token Balance
@@ -102,7 +104,7 @@ check_eth_balance <- function(u_w) r_num(u_w$get_eth_balance())/(10**18)
 #' @param u_w Uniswap Session
 #' @param t_a Token Address
 #' @param t_d Token Decimals
-#' @return Return User Token Balance
+#' @return Numeric vector representing the User Token balance
 check_tok_balance <- function(t_a,t_d,u_w) r_num(u_w$get_token_balance(t_a))/(10**t_d)
 
 #' Swap ETH for a Token, Given ETH Qty check how much token you would get
@@ -111,7 +113,7 @@ check_tok_balance <- function(t_a,t_d,u_w) r_num(u_w$get_token_balance(t_a))/(10
 #' @param t_a Token Address
 #' @param t_d Token Decimals
 #' @param e_q Ethereum Qty.
-#' @return Token Amount you get
+#' @return Numeric vector representing the Token Amount you get
 check_eth.to.tok_eth.fix <- function(t_a,t_d,e_q,u_w) r_num(u_w$get_price_input("0x0000000000000000000000000000000000000000",t_a,py_int(e_q*10**18)))/(10**t_d)
 
 #' Swap ETH for a Token, Given Token Qty check how much ETH you need
@@ -120,7 +122,7 @@ check_eth.to.tok_eth.fix <- function(t_a,t_d,e_q,u_w) r_num(u_w$get_price_input(
 #' @param t_a Token Address
 #' @param t_d Token Decimals
 #' @param t_q Token Qty.
-#' @return ETH needed
+#' @return Numeric vector representing the ETH needed
 check_eth.to.tok_tok.fix <- function(t_a,t_d,t_q,u_w) r_num(u_w$get_price_output("0x0000000000000000000000000000000000000000",t_a,py_int(t_q*10**t_d)))/(10**18)
 
 #' Swap Token for ETH, Given Token Qty check how much ETH you would get
@@ -129,7 +131,7 @@ check_eth.to.tok_tok.fix <- function(t_a,t_d,t_q,u_w) r_num(u_w$get_price_output
 #' @param t_a Token Address
 #' @param t_d Token Decimals
 #' @param t_q Token Qty.
-#' @return ETH Amount you get
+#' @return Numeric vector representing the ETH Amount you get
 check_tok.to.eth_tok.fix <- function(t_a,t_d,t_q,u_w) r_num(u_w$get_price_input(t_a,"0x0000000000000000000000000000000000000000",py_int(t_q*10**t_d)))/(10**18)
 
 #' Swap Token for ETH, Given ETH Qty check how much Token you need
@@ -138,7 +140,7 @@ check_tok.to.eth_tok.fix <- function(t_a,t_d,t_q,u_w) r_num(u_w$get_price_input(
 #' @param t_a Token Address
 #' @param t_d Token Decimals
 #' @param e_q Ethereum Qty.
-#' @return Token Amount Needed
+#' @return Numeric vector representing the Token Amount Needed
 check_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) r_num(u_w$get_price_output(t_a,"0x0000000000000000000000000000000000000000",py_int(e_q*10**18)))/(10**t_d)
 
 #' Swap Token1 for Token2, Given Token1 Qty check how much Token2 you would get (Use Token1 -> ETH -> Token2 Route)
@@ -149,7 +151,7 @@ check_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) r_num(u_w$get_price_output
 #' @param t2_a Token 2 Address
 #' @param t2_d Token 2 Decimals
 #' @param t1_q Token 1 Qty.
-#' @return Token 2 Amount you get
+#' @return Numeric vector representing the Token 2 Amount you get
 check_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) r_num(u_w$get_price_input(t1_a,t2_a,py_int(t1_q*10**t1_d)))/(10**t2_d)
 
 #' Swap Token1 for Token2, Given Token2 Qty check how much Token1 you would need (Use Token1 -> ETH -> Token2 Route)
@@ -160,7 +162,7 @@ check_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) r_num(u_w$
 #' @param t2_a Token 2 Address
 #' @param t2_d Token 2 Decimals
 #' @param t2_q Token 2 Qty.
-#' @return Token 1 Amount Needed
+#' @return Numeric vector representing the Token 1 Amount Needed
 check_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) r_num(u_w$get_price_output(t1_a,t2_a,py_int(t2_q*10**t2_d)))/(10**t1_d)
 #################################################################
 #################################################################
@@ -174,7 +176,7 @@ check_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) r_num(u_w$
 #' @param t_a Token Address
 #' @param t_d Token Decimals
 #' @param e_q Ethereum Qty.
-#' @return Transaction Hash
+#' @return Character vector representing the Transaction Hash
 trade_eth.to.tok_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$make_trade("0x0000000000000000000000000000000000000000",t_a,py_int(e_q*10**18),recipient=NULL)$hex())
 
 #' Swap ETH for a Token, Buy specified fixed Token Amount
@@ -183,7 +185,7 @@ trade_eth.to.tok_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$make_trad
 #' @param t_a Token Address
 #' @param t_d Token Decimals
 #' @param t_q Token Qty.
-#' @return Transaction Hash
+#' @return Character vector representing the Transaction Hash
 trade_eth.to.tok_tok.fix <- function(t_a,t_d,t_q,u_w) as.character(u_w$make_trade_output("0x0000000000000000000000000000000000000000",t_a,py_int(t_q*10**t_d),recipient=NULL)$hex())
 
 #' Swap Token for ETH, Receive ETH after swapping specified token amount
@@ -192,7 +194,7 @@ trade_eth.to.tok_tok.fix <- function(t_a,t_d,t_q,u_w) as.character(u_w$make_trad
 #' @param t_a Token Address
 #' @param t_d Token Decimals
 #' @param t_q Token Qty.
-#' @return Transaction Hash
+#' @return Character vector representing the Transaction Hash
 trade_tok.to.eth_tok.fix <- function(t_a,t_d,t_q,u_w) as.character(u_w$make_trade(t_a,"0x0000000000000000000000000000000000000000",py_int(t_q*10**t_d),recipient=NULL)$hex())
 
 #' Swap Token for ETH, Swap tokens to receive specified ETH amount
@@ -201,7 +203,7 @@ trade_tok.to.eth_tok.fix <- function(t_a,t_d,t_q,u_w) as.character(u_w$make_trad
 #' @param t_a Token Address
 #' @param t_d Token Decimals
 #' @param e_q ETH Qty.
-#' @return Transaction Hash
+#' @return Character vector representing the Transaction Hash
 trade_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$make_trade_output(t_a,"0x0000000000000000000000000000000000000000",py_int(e_q*10**18),recipient=NULL)$hex())
 
 #' Swap Token1 for Token2, Receive Token2 for specified Token1 Amount
@@ -212,7 +214,7 @@ trade_tok.to.eth_eth.fix <- function(t_a,t_d,e_q,u_w) as.character(u_w$make_trad
 #' @param t2_a Token 2 Address
 #' @param t2_d Token 2 Decimals
 #' @param t1_q Token 1 Qty.
-#' @return Transaction Hash
+#' @return Character vector representing the Transaction Hash
 trade_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) as.character(u_w$make_trade(t1_a,t2_a,py_int(t1_q*10**t1_d),recipient=NULL)$hex())
 
 #' Swap Token1 for Token2, Receive specified Token2 Amount
@@ -223,7 +225,7 @@ trade_tok1.to.tok2_tok1.fix <- function(t1_a,t1_d,t2_a,t2_d,t1_q,u_w) as.charact
 #' @param t2_a Token 2 Address
 #' @param t2_d Token 2 Decimals
 #' @param t2_q Token 2 Qty.
-#' @return Transaction Hash
+#' @return Character vector representing the Transaction Hash
 trade_tok1.to.tok2_tok2.fix <- function(t1_a,t1_d,t2_a,t2_d,t2_q,u_w) as.character(u_w$make_trade_output(t1_a,t2_a,py_int(t2_q*10**t2_d),recipient=NULL)$hex())
 #################################################################
 #################################################################

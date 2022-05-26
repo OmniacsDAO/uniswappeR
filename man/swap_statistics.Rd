@@ -12,7 +12,7 @@ swap_statistics(swap_data, aggregate_addresses = TRUE)
 \item{aggregate_addresses}{If TRUE, aggregate the addresses passed in}
 }
 \value{
-Statistics on the swaps for the given account owner
+dataframe of statistics on the swaps for the given account owner
 }
 \description{
 Get statistics on the swaps data for a given address or addresses

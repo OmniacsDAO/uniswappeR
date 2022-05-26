@@ -12,7 +12,7 @@ pair_stats_hist_hourly_v3(
 \item{pair_address}{Pair's Address}
 }
 \value{
-Hourly Historical Data on a particular Pair
+Data frame representing Hourly Historical Data on a particular Pair
 }
 \description{
 Get UniswapV3 Hourly Pair Historical Stats
