@@ -1,10 +1,10 @@
 Package: uniswappeR
 Type: Package
 Title: Interact with the Uniswap Platform
-Version: 0.6.0
+Version: 0.6.1
 Authors@R: c(
-    person("Omni Analytics Group", email = "services@omnianalytics.io", role = "aut"),
-    person("Eric Hare", email = "eric@omnianalytics.io", role = "cre"))
+    person("Omni Analytics Group", email = "services@omnianalytics.org", role = "aut"),
+    person("Eric Hare", email = "eric@omnianalytics.org", role = "cre"))
 Description: Routines to interact with the Uniswap trading platform and its API <https://uniswap.org>.
   The package contains codebase to interact with the uniswap platform directly from R console, Ability 
   to pull and export data related to the platform and analyse some aspects.
@@ -14,7 +14,7 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/Omni-Analytics-Group/uniswappeR
 BugReports: https://github.com/Omni-Analytics-Group/uniswappeR/issues
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Imports:
   httr,
   lubridate,
