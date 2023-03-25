@@ -27,13 +27,13 @@ View the [video walkthrough](https://www.youtube.com/watch?v=GpWZLMB2lvM) on how
 - Create a Virtual Environment to keep the backend sandboxed using<br>`virtualenv_create("uniswappeR-env")`
 - Install uniswap-python package using<br>`virtualenv_install(envname="uniswappeR-env",packages=c("uniswap-python"))`
 - Use the Virtual Environment using<br>`use_virtualenv("uniswappeR-env",required=TRUE)`
-- Extract checksum function from Web3 module<br>`Web3_checksum <- import("web3",convert=FALSE)$Web3$toChecksumAddress`
+- Extract checksum function from Web3 module<br>`Web3_checksum <- import("web3",convert=FALSE)$Web3$to_checksum_address`
 
 #### 1. Use the Virtual Environment generated above
 - `library(reticulate)`
 - `library(uniswappeR)`
 - `use_virtualenv("uniswappeR-env",required=TRUE)`
-- `Web3_checksum <- import("web3",convert=FALSE)$Web3$toChecksumAddress`
+- `Web3_checksum <- import("web3",convert=FALSE)$Web3$to_checksum_address`
 
 #### 2. Use your Infura Node
 `set_infura_node("https://mainnet.infura.io/v3/XXXXXXXXXXXXXXXXXXX")`
