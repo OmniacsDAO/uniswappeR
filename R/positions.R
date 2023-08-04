@@ -145,7 +145,7 @@ swap_visualizations <- function(swap_data) {
             x = "Date",
             y = "Number of Swaps"
         )+
-        theme(axis.text.x = element_text(size=6))
+        theme(axis.text.x = element_text(size=6,angle = 90))
 
     p2 <- ggplot(swap_data %>% arrange(.data$timestamp) %>% mutate(Sum = cumsum(.data$amountUSD)), aes(x = .data$timestamp, y = .data$Sum)) +
         geom_point(colour = "green4") +
@@ -159,11 +159,11 @@ swap_visualizations <- function(swap_data) {
             x = "Date",
             y = "Cumulative Amount ($)"
         )+
-        theme(axis.text.x = element_text(size=6))
+        theme(axis.text.x = element_text(size=6,angle = 90))
 
     p3 <- ggplot(swap_data %>% mutate(Pair = paste0(.data$token0_symbol, "/", .data$token1_symbol)) %>%
                      group_by(.data$Pair) %>% summarise(Count = n()) %>%
-                     arrange(desc(.data$Count)) %>% mutate(Pair = factor(.data$Pair, levels = .data$Pair)), aes(x = .data$Pair, y = .data$Count)) +
+                     arrange(desc(.data$Count)) %>% top_n(50) %>% mutate(Pair = factor(.data$Pair, levels = .data$Pair)), aes(x = .data$Pair, y = .data$Count)) +
         geom_bar(stat = "identity", fill = "goldenrod3", colour = "black") +
         labs(
             title = "Total Number of Swaps of Each Pair",
@@ -180,6 +180,7 @@ swap_visualizations <- function(swap_data) {
         group_by(.data$Token) %>%
         summarise(Count = sum(.data$Count)) %>%
         arrange(desc(.data$Count)) %>%
+        top_n(50) %>%
         mutate(Token = factor(.data$Token, levels = .data$Token))
 
     p4 <- ggplot(unique_tokens, aes(x = .data$Token, y = .data$Count)) +

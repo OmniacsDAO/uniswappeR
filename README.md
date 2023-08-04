@@ -356,6 +356,11 @@ Allows for a user to visualise liquidity positions spread in a given pair via a 
 <img src="man/figures/vis_pair_liq_positions_v2.png" align="center"/>
 <div align="center">Liquidity Token Distribution</div>
 
+- `vis_pair_liq_positions_v3(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")`
+
+<img src="man/figures/vis_pair_liq_positions_v3.png" align="center"/>
+<div align="center">Liquidity Token Distribution</div>
+
 #### 8. User Swap Performance
 
 Allows a user to retrieve all the swaps data for a given address or addresses. This allows a user to readily recognize their level of activity.
@@ -365,9 +370,9 @@ Allows a user to retrieve all the swaps data for a given address or addresses. T
 - `swap_visualizations(swap_data)`
 <img src="man/figures/swap_visualizations.png"  align="center"/>
 
-- `swap_performance(swap_data)`
+<!-- - `swap_performance(swap_data)`
 <img src="man/figures/example3_pricechange.png"  align="center"/>
-
+ -->
 
 #### 9. Save analysis plot
 

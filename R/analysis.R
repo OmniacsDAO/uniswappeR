@@ -173,13 +173,14 @@ vis_uniswap_stats_hist_v2 <- function()
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
-    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
-        geom_line()+
-        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
-        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
-        labs(x = "Date", y = "Value")+
-        ggtitle("UniswapV2 Platform Growth")+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+            geom_line()+
+            facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+            scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+            labs(x = "Date", y = "Value")+
+            ggtitle("UniswapV2 Platform Growth")+
+            theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 90))
+    return(plot)
 }
 
 
@@ -212,13 +213,14 @@ vis_uniswap_stats_hist_v3 <- function()
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
-    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
-        geom_line()+
-        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
-        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
-        labs(x = "Date", y = "Value")+
-        ggtitle("UniswapV3 Platform Growth")+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+            geom_line()+
+            facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+            scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+            labs(x = "Date", y = "Value")+
+            ggtitle("UniswapV3 Platform Growth")+
+            theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 90))
+    return(plot)
 }
 
 
@@ -253,13 +255,14 @@ vis_token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
-    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
-        geom_line()+
-        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
-        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
-        labs(x = "Date", y = "Value")+
-        ggtitle(paste0("Token Growth (", token_address, ")"))+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+            geom_line()+
+            facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+            scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+            labs(x = "Date", y = "Value")+
+            ggtitle(paste0("Token Growth V2 (", token_address, ")"))+
+            theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 90))
+    return(plot)
 }
 
 
@@ -294,13 +297,14 @@ vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
-    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
-        geom_line()+
-        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
-        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
-        labs(x = "Date", y = "Value")+
-        ggtitle("Token Growth")+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+            geom_line()+
+            facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+            scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+            labs(x = "Date", y = "Value")+
+            ggtitle(paste0("Token Growth V3 (", token_address, ")"))+
+            theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 90))
+    return(plot)
 }
 
 
@@ -336,13 +340,14 @@ vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
-    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
-        geom_line()+
-        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
-        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
-        labs(x = "Date", y = "Number of Pairs")+
-        ggtitle("Token Number of Pairs Growth")+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+            geom_line()+
+            facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+            scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+            labs(x = "Date", y = "Number of Pairs")+
+            ggtitle("Token Number of Pairs Growth")+
+            theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 90))
+    return(plot)
 
 }
 
@@ -379,13 +384,14 @@ vis_token_pair_map_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925b
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
-    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
-        geom_line()+
-        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
-        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
-        labs(x = "Date", y = "Number of Pairs")+
-        ggtitle("Token Number of Pairs Growth")+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+            geom_line()+
+            facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+            scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+            labs(x = "Date", y = "Number of Pairs")+
+            ggtitle("Token Number of Pairs Growth")+
+            theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 90))
+    return(plot)
 
 }
 
@@ -423,13 +429,14 @@ vis_pair_stats_hist_daily_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa2
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
-    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
-        geom_line()+
-        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
-        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
-        labs(x = "Date", y = "Value")+
-        ggtitle(paste0("Pair Growth (", pair_address, ")"))+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+            geom_line()+
+            facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+            scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+            labs(x = "Date", y = "Value")+
+            ggtitle(paste0("Pair Growth V2 (", pair_address, ")"))+
+            theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 90))
+    return(plot)
 
 }
 
@@ -467,13 +474,14 @@ vis_pair_stats_hist_daily_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85
                         )
     variable_labeller <- function(variable,value) return(variable_names[value])
 
-    ggplot(plot_data_long, aes(x=Date, y=met_val)) +
-        geom_line()+
-        facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
-        scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
-        labs(x = "Date", y = "Value")+
-        ggtitle("Pair Growth")+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data_long, aes(x=Date, y=met_val)) +
+            geom_line()+
+            facet_wrap(~met_nam, scales="free_y", ncol=1, labeller= variable_labeller)+
+            scale_x_date(date_breaks = "months" , date_labels = "%b-%y")+
+            labs(x = "Date", y = "Value")+
+            ggtitle(paste0("Pair Growth V3 (", pair_address, ")"))+
+            theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 90))
+    return(plot)
 
 }
 
@@ -497,12 +505,13 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
     plot_data$liquidityTokenBalance <- as.numeric(plot_data$liquidityTokenBalance)
     plot_data <- plot_data[plot_data$liquidityTokenBalance>0,]
 
-    ggplot(plot_data, aes(x=liquidityTokenBalance)) +
-        geom_histogram()+
-        scale_x_continuous(breaks = pretty(plot_data$liquidityTokenBalance, n = 20))+
-        labs(x = "Liquidity Token Balance", y = "Number of Holders")+
-        ggtitle(paste0("Liquidity Token Distribution (", pair_address, ")"))+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data, aes(x=liquidityTokenBalance)) +
+            geom_histogram()+
+            scale_x_continuous(breaks = pretty(plot_data$liquidityTokenBalance, n = 20))+
+            labs(x = "Liquidity Token Balance", y = "Number of Holders")+
+            ggtitle(paste0("Liquidity Token Distribution V2 (", pair_address, ")"))+
+            theme(plot.title = element_text(hjust = 0.5))
+    return(plot)
 
 }
 
@@ -524,17 +533,18 @@ vis_pair_liq_positions_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a
 #' }
 vis_pair_liq_positions_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801")
 {
-    liquidityTokenBalance <- NULL
+    liquidity <- NULL
     plot_data <- pair_liq_positions_v3(pair_address)
-    plot_data$liquidityTokenBalance <- as.numeric(plot_data$liquidityTokenBalance)
-    plot_data <- plot_data[plot_data$liquidityTokenBalance>0,]
+    plot_data$liquidity <- as.numeric(plot_data$liquidity)
+    plot_data <- plot_data[plot_data$liquidity>0,]
 
-    ggplot(plot_data, aes(x=liquidityTokenBalance)) +
-        geom_histogram()+
-        scale_x_continuous(breaks = pretty(plot_data$liquidityTokenBalance, n = 20))+
-        labs(x = "Liquidity Token Balance", y = "Number of Holders")+
-        ggtitle(paste0("Liquidity Token Distribution (", pair_address, ")"))+
-        theme(plot.title = element_text(hjust = 0.5))
+    plot <- ggplot(plot_data, aes(x=liquidity)) +
+            geom_histogram()+
+            scale_x_continuous(breaks = pretty(plot_data$liquidity, n = 20))+
+            labs(x = "Liquidity Token Balance", y = "Number of Holders")+
+            ggtitle(paste0("Liquidity Token Distribution V3 (", pair_address, ")"))+
+            theme(plot.title = element_text(hjust = 0.5))
+    return(plot)
 
 }
 
