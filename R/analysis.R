@@ -320,7 +320,7 @@ vis_token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f92
 #' @import tidyr
 #'
 #' @examples
-#' vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+#' \dontrun{vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")}
 vis_token_pair_map_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
 {
     met_val <- NULL

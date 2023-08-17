@@ -18,5 +18,5 @@ ggplot2 Plot of Number of pairs the token is present
 Visualise Number of pairs the token is present UniswapV2
 }
 \examples{
-vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")
+\dontrun{vis_token_pair_map_v2(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984")}
 }
