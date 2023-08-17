@@ -16,17 +16,12 @@ URL: https://github.com/Omni-Analytics-Group/uniswappeR
 BugReports: https://github.com/Omni-Analytics-Group/uniswappeR/issues
 RoxygenNote: 7.2.3
 Imports:
-  httr,
   lubridate,
   dplyr,
   rlang,
-  tibble,
   tidyr,
   ggplot2,
-  scales,
   ghql,
   jsonlite,
-  patchwork,
-  purrr,
   reticulate,
   utils

@@ -65,6 +65,7 @@ factory_stats_v3 <- function()
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -98,6 +99,7 @@ uniswap_stats_hist_v2 <- function()
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -176,6 +178,7 @@ token_stats_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bdaddc42
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -212,6 +215,7 @@ token_stats_hist_v2 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -247,6 +251,7 @@ token_stats_hist_v3 <- function(token_address = "0x1f9840a85d5af5bf1d1762f925bda
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -806,6 +811,7 @@ pair_mint_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -841,6 +847,7 @@ pair_burn_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -876,6 +883,7 @@ pair_burn_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -911,6 +919,7 @@ pair_swap_txs_v2 <- function(pair_address = "0xf00e80f0de9aea0b33aa229a401457277
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -946,6 +955,7 @@ pair_swap_txs_v3 <- function(pair_address = "0x1d42064fc4beb5f8aaf85f4617ae8b3b5
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -980,6 +990,7 @@ user_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f9272270454094a
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -1014,6 +1025,7 @@ user_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58486B9
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -1047,6 +1059,7 @@ user_hist_lps_v2 <- function(user_address = "0x2502f65d77ca13f183850b5f927227045
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -1081,6 +1094,7 @@ user_hist_lps_v3 <- function(user_address = "0xF1c206dd83ee2b8E6Ea675Cf827C93c58
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -1115,6 +1129,7 @@ user_swaps_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -1149,6 +1164,7 @@ user_swaps_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -1183,6 +1199,7 @@ user_mints_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -1217,6 +1234,7 @@ user_mints_v3 <- function(user_address = "0x431B5A84aCC1297Eda88259f300262F1bc3A
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
@@ -1251,6 +1269,7 @@ user_burns_v2 <- function(user_address = "0xcd8aa390e6eabbd2169b3580c1f7ce854675
 #' @export
 #'
 #' @importFrom jsonlite fromJSON
+#' @importFrom utils tail
 #' @import dplyr
 #'
 #' @examples
