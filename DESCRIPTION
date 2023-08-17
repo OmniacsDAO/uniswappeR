@@ -12,8 +12,8 @@ Depends: R (>= 3.1)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/Omni-Analytics-Group/uniswappeR
-BugReports: https://github.com/Omni-Analytics-Group/uniswappeR/issues
+URL: https://github.com/OmniacsDAO/uniswappeR
+BugReports: https://github.com/OmniacsDAO/uniswappeR/issues
 RoxygenNote: 7.2.3
 Imports:
   lubridate,

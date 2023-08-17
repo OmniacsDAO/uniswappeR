@@ -2,12 +2,12 @@
 
 R Package to Interact and Trade with Uniswap Platform and Exploration of Uniswap data from GraphQL.<br>
 Install Using <br>
-`devtools::install_github("Omni-Analytics-Group/uniswappeR")`
+`devtools::install_github("OmniacsDAO/uniswappeR")`
 
 The package has 3 Functionalities
-- [Trade : To query prices and make trades on Uniswap from R console](https://github.com/Omni-Analytics-Group/uniswappeR#trade-functionality)
-- [Pull Data : To pull all types of data from Uniswap GraphQL to explore yourself](https://github.com/Omni-Analytics-Group/uniswappeR#pull-data-functionality)
-- [Explore Data : To Analyse and explore the uniswap data](https://github.com/Omni-Analytics-Group/uniswappeR#data-exploration-functionality)
+- [Trade : To query prices and make trades on Uniswap from R console](https://github.com/OmniacsDAO/uniswappeR#trade-functionality)
+- [Pull Data : To pull all types of data from Uniswap GraphQL to explore yourself](https://github.com/OmniacsDAO/uniswappeR#pull-data-functionality)
+- [Explore Data : To Analyse and explore the uniswap data](https://github.com/OmniacsDAO/uniswappeR#data-exploration-functionality)
 
 <hr>
 
@@ -394,4 +394,4 @@ Allows a user to retrieve all the swaps data for a given address or addresses. T
 
 ## About Us
 
-[Omni Analytics Group](https://omnianalytics.io) is an incorporated group of passionate technologists who help others use data science to change the world. Our  practice of data science leads us into many exciting areas where we enthusiastically apply our machine learning, artificial intelligence and analysis skills. Our flavor for this month, the blockchain!  To learn more about what we do or just to have fun, join us over on [Twitter](https://twitter.com/OmniAnalytics).
+[Omni Analytics Group](https://omnianalytics.org) is an incorporated group of passionate technologists who help others use data science to change the world. Our  practice of data science leads us into many exciting areas where we enthusiastically apply our machine learning, artificial intelligence and analysis skills. Our flavor for this month, the blockchain!  To learn more about what we do or just to have fun, join us over on [Twitter](https://twitter.com/OmniAnalytics).
