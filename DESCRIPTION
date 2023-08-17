@@ -20,8 +20,11 @@ Imports:
   dplyr,
   rlang,
   tidyr,
+  scales,
   ggplot2,
   ghql,
   jsonlite,
   reticulate,
-  utils
+  utils,
+  patchwork,
+  purrr
